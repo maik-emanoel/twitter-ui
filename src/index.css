@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html, body, #root {
+        min-height: 100vh;
+    }
+
+    body {
+        color: #0f1419;
+        -webkit-font-smoothing: antialiased;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    button {
+        cursor: pointer;
+    }
+
+    a {
+        color: inherit;
+    }
+}
