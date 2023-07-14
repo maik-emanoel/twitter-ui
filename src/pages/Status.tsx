@@ -1,14 +1,22 @@
+import { FormEvent, useState } from "react";
 import { Header } from "../components/Header";
 import { Separator } from "../components/Separator";
 import { Tweet } from "../components/Tweet";
 
-const answers = [
+export function Status() {
+  const [newAnswer, setNewAnswer] = useState('')
+  const [answers, setAnswers] = useState([
     'Concordo...',
     'Olha, faz sentido!',
     'Parabéns pelo progresso.'
-]
+  ])
 
-export function Status() {
+  function createNewAnswer(e: FormEvent) {
+    e.preventDefault();
+    setAnswers([newAnswer, ...answers])
+    setNewAnswer('')
+  }
+
   return (
     <main>
       <Header title="Tweet" />
@@ -17,7 +25,7 @@ export function Status() {
 
       <Separator />
 
-      <form className="py-6 px-5 flex items-center gap-2 border-b-[1px] border-grayBorder">
+      <form onSubmit={createNewAnswer} className="py-6 px-5 flex items-center gap-2 border-b-[1px] border-grayBorder">
         <label htmlFor="tweet" className="flex items-center gap-3 flex-1">
           <img
             src="https://github.com/maik-emanoel.png"
@@ -27,7 +35,9 @@ export function Status() {
           <textarea
             id="tweet"
             placeholder="Tweet your answer"
+            value={newAnswer}
             className="flex-1 text-xl font-medium mt-5 resize-none focus:outline-none placeholder:text-[#5b7073]"
+            onChange={(e) => setNewAnswer(e.target.value)}
           />
         </label>
 
