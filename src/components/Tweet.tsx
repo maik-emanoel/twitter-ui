@@ -1,13 +1,21 @@
 import { ArrowsClockwise, ChatCircle, Heart } from "@phosphor-icons/react";
+import { Link } from "react-router-dom";
 
 interface TweetProps {
-  content: string
+  content: string;
 }
 
-export function Tweet( {content} :TweetProps) {
+export function Tweet({ content }: TweetProps) {
   return (
-    <a href="#" className="py-6 px-5 grid grid-cols-[3rem_1fr] gap-3 border-b-[1px] border-grayBorder">
-      <img src="https://github.com/maik-emanoel.png" alt="Maik Emanoel" className="w-12 h-12 rounded-full" />
+    <Link
+      to="/status"
+      className="py-6 px-5 grid grid-cols-[3rem_1fr] gap-3 border-b-[1px] border-grayBorder"
+    >
+      <img
+        src="https://github.com/maik-emanoel.png"
+        alt="Maik Emanoel"
+        className="w-12 h-12 rounded-full"
+      />
 
       <div className="flex flex-col gap-2">
         <div className="flex items-center gap-1">
@@ -34,6 +42,6 @@ export function Tweet( {content} :TweetProps) {
           </button>
         </div>
       </div>
-    </a>
+    </Link>
   );
 }
