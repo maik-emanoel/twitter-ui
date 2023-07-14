@@ -21,3 +21,9 @@
         color: inherit;
     }
 }
+
+@layer components {
+    .active {
+        @apply text-twitterBlue
+    }
+}
