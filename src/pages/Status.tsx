@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, KeyboardEvent, useState } from "react";
 import { Header } from "../components/Header";
 import { Separator } from "../components/Separator";
 import { Tweet } from "../components/Tweet";
@@ -16,6 +16,14 @@ export function Status() {
     setAnswers([newAnswer, ...answers])
     setNewAnswer('')
   }
+
+  function handleHotKeySubmit(e: KeyboardEvent) {
+    if(e.key === "Enter" && (e.ctrlKey || e.metaKey)) {
+      setAnswers([newAnswer, ...answers])
+      setNewAnswer('')
+    }
+  }
+
 
   return (
     <main>
@@ -36,6 +44,7 @@ export function Status() {
             id="tweet"
             placeholder="Tweet your answer"
             value={newAnswer}
+            onKeyDown={handleHotKeySubmit}
             className="flex-1 text-xl font-medium mt-5 resize-none focus:outline-none placeholder:text-[#5b7073]"
             onChange={(e) => setNewAnswer(e.target.value)}
           />
