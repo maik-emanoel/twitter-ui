@@ -1,5 +1,6 @@
 import { createBrowserRouter  } from "react-router-dom";
 import { Timeline } from "./pages/Timeline";
+import { Status } from "./pages/Status";
 
 export const router = createBrowserRouter([
     {
@@ -7,7 +8,7 @@ export const router = createBrowserRouter([
         element: <Timeline />
     },
     {
-        path: '/tweet',
-        element: <h1>Tweet</h1>
+        path: '/status',
+        element: <Status />
     }
 ])
