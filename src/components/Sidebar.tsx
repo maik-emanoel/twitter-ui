@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom'
 import twitterLogo from '../assets/logo-twitter.svg'
 import { Bell, BookmarkSimple, DotsThreeCircle, Envelope, FileText, Hash, House, User } from '@phosphor-icons/react'
 
@@ -7,10 +8,10 @@ export function Sidebar() {
         <img src={twitterLogo} alt="Logo" className='w-8 h-8'/>
 
         <nav className='flex flex-col gap-8'>
-          <a href="" className='flex items-center gap-5 text-xl font-bold text-twitterBlue'>
+          <NavLink to="/" className='flex items-center gap-5 text-xl font-bold'>
             <House className='w-8 h-8' weight='fill' />
             Home
-          </a>
+          </NavLink>
           <a href="" className='flex items-center gap-5 text-xl font-bold'>
             <Hash className='w-8 h-8' />
             Explorer
