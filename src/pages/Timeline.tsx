@@ -34,7 +34,7 @@ export function Timeline() {
           <textarea
             id="tweet"
             placeholder="What's happening?"
-            className="flex-1 text-xl font-medium mt-3 resize-none focus:outline-none placeholder:text-[#5b7073]"
+            className="flex-1 text-xl font-medium mt-3 resize-none focus:outline-none placeholder:text-[#5b7073] placeholder:dark:text-[#828282]"
             value={newTweet}
             onKeyDown={handleHotKeySubmit}
             onChange={(e) => setNewTweet(e.target.value)}

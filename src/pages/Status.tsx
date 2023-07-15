@@ -45,7 +45,7 @@ export function Status() {
             placeholder="Tweet your answer"
             value={newAnswer}
             onKeyDown={handleHotKeySubmit}
-            className="flex-1 text-xl font-medium mt-5 resize-none focus:outline-none placeholder:text-[#5b7073]"
+            className="flex-1 text-xl font-medium mt-5 resize-none focus:outline-none placeholder:text-[#5b7073] placeholder:dark:text-[#828282]"
             onChange={(e) => setNewAnswer(e.target.value)}
           />
         </label>
