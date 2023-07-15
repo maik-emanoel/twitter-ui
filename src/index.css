@@ -17,6 +17,10 @@
         cursor: pointer;
     }
 
+    textarea {
+        background: transparent;
+    }
+
     a {
         color: inherit;
     }
