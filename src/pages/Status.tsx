@@ -33,7 +33,7 @@ export function Status() {
 
       <Separator />
 
-      <form onSubmit={createNewAnswer} className="py-6 px-5 flex items-center gap-2 border-b-[1px] border-grayBorder">
+      <form onSubmit={createNewAnswer} className="py-6 px-5 flex items-center gap-2 border-b-[1px] border-grayBorde dark:border-grayBorderDark">
         <label htmlFor="tweet" className="flex items-center gap-3 flex-1">
           <img
             src="https://github.com/maik-emanoel.png"
