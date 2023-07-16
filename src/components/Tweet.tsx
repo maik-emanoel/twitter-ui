@@ -9,7 +9,7 @@ export function Tweet({ content }: TweetProps) {
   return (
     <Link
       to="/status"
-      className="py-6 px-5 grid grid-cols-[3rem_1fr] gap-3 border-b-[1px] border-grayBorder dark:border-grayBorderDark"
+      className="w-full py-6 px-5 grid grid-cols-[3rem_1fr] gap-3 border-b-[1px] border-grayBorder dark:border-grayBorderDark"
     >
       <img
         src="https://github.com/maik-emanoel.png"
@@ -23,7 +23,7 @@ export function Tweet({ content }: TweetProps) {
           <span className="text-sm text-[#89a2b8] dark:text-[#828282]">@maik_emanoel</span>
         </div>
 
-        <p className="leading-5 dark:text-tweetColor">{content}</p>
+        <p className="leading-5 dark:text-tweetColor max-w-[600px] break-words">{content}</p>
 
         <div className="flex items-center gap-12 mt-3">
           <button className="flex items-center gap-2 text-sm text-[#89a2b8] hover:text-twitterBlue">
