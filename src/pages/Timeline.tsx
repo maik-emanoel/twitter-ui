@@ -9,11 +9,15 @@ export function Timeline() {
 
   function createNewTweet(e: FormEvent) {
     e.preventDefault();
+    if(newTweet === '') return
+    
     setTweets([newTweet, ...tweets])
     setNewTweet('')
   }
 
   function handleHotKeySubmit(e: KeyboardEvent) {
+    if(newTweet === '') return
+
     if(e.key === "Enter" && (e.ctrlKey || e.metaKey)) {
       setTweets([newTweet, ...tweets])
       setNewTweet('')

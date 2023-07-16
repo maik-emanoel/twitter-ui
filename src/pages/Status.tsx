@@ -13,11 +13,15 @@ export function Status() {
 
   function createNewAnswer(e: FormEvent) {
     e.preventDefault();
+    if(newAnswer === '') return
+
     setAnswers([newAnswer, ...answers])
     setNewAnswer('')
   }
 
   function handleHotKeySubmit(e: KeyboardEvent) {
+    if(newAnswer === '') return
+
     if(e.key === "Enter" && (e.ctrlKey || e.metaKey)) {
       setAnswers([newAnswer, ...answers])
       setNewAnswer('')
