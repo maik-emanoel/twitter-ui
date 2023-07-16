@@ -1,4 +1,3 @@
-import { NavLink } from "react-router-dom";
 import twitterLogo from "../assets/logo-twitter.svg";
 import {
   Bell,
@@ -11,6 +10,7 @@ import {
   Pencil,
   User,
 } from "@phosphor-icons/react";
+import { SidebarLink } from "./SidebarLink";
 
 export function Sidebar() {
   return (
@@ -18,38 +18,26 @@ export function Sidebar() {
       <img src={twitterLogo} alt="Logo" className="w-8 h-8" />
 
       <nav className="flex flex-col gap-8">
-        <NavLink to="/" className="flex items-center gap-5 text-xl font-bold">
-          <House className="w-8 h-8" weight="fill" />
-          <span className="md:hidden">Home</span>
-        </NavLink>
-        <a href="" className="flex items-center gap-5 text-xl font-bold">
-          <Hash className="w-8 h-8" />
-          <span className="md:hidden">Explorer</span>
-        </a>
-        <a href="" className="flex items-center gap-5 text-xl font-bold">
-          <Bell className="w-8 h-8" />
-          <span className="md:hidden">Notifications</span>
-        </a>
-        <a href="" className="flex items-center gap-5 text-xl font-bold">
-          <Envelope className="w-8 h-8" />
-          <span className="md:hidden">Messages</span>
-        </a>
-        <a href="" className="flex items-center gap-5 text-xl font-bold">
-          <BookmarkSimple className="w-8 h-8" />
-          <span className="md:hidden">Bookmarks</span>
-        </a>
-        <a href="" className="flex items-center gap-5 text-xl font-bold">
-          <FileText className="w-8 h-8" />
-          <span className="md:hidden">Lists</span>
-        </a>
-        <a href="" className="flex items-center gap-5 text-xl font-bold">
-          <User className="w-8 h-8" />
-          <span className="md:hidden">Profile</span>
-        </a>
-        <a href="" className="flex items-center gap-5 text-xl font-bold">
-          <DotsThreeCircle className="w-8 h-8" />
-          <span className="md:hidden">More</span>
-        </a>
+        <SidebarLink
+          path="/"
+          icon={<House size={32} weight="fill" />}
+          text="Home"
+        />
+        <SidebarLink path="" icon={<Hash size={32} />} text="Explorer" />
+        <SidebarLink path="" icon={<Bell size={32} />} text="Notifications" />
+        <SidebarLink path="" icon={<Envelope size={32} />} text="Messages" />
+        <SidebarLink
+          path=""
+          icon={<BookmarkSimple size={32} />}
+          text="Bookmarks"
+        />
+        <SidebarLink path="" icon={<FileText size={32} />} text="Lists" />
+        <SidebarLink path="" icon={<User size={32} />} text="Profile" />
+        <SidebarLink
+          path=""
+          icon={<DotsThreeCircle size={32} />}
+          text="More"
+        />
       </nav>
 
       <button className="bg-twitterBlue rounded-full p-4 flex justify-center w-full text-white text-xl font-black hover:brightness-90 md:p-2">
