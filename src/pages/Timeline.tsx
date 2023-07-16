@@ -10,7 +10,7 @@ export function Timeline() {
   function createNewTweet(e: FormEvent) {
     e.preventDefault();
     if(newTweet === '') return
-    
+
     setTweets([newTweet, ...tweets])
     setNewTweet('')
   }
@@ -47,7 +47,8 @@ export function Timeline() {
 
         <button
           type="submit"
-          className="ml-auto bg-twitterBlue rounded-full py-3 px-6 text-white font-black hover:brightness-90"
+          className="ml-auto bg-twitterBlue rounded-full py-3 px-6 text-white font-black transition-all duration-300 ease-in-out hover:brightness-90 disabled:brightness-75"
+          disabled={newTweet === '' ? true : false}
         >
           Tweet
         </button>
