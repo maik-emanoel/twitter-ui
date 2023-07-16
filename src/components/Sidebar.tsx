@@ -14,7 +14,7 @@ import { SidebarLink } from "./SidebarLink";
 
 export function Sidebar() {
   return (
-    <aside className="py-6 px-5 flex flex-col gap-8 md:items-center">
+    <aside className="py-6 px-5 flex flex-col gap-8 md:items-center h-screen sticky top-0">
       <img src={twitterLogo} alt="Logo" className="w-8 h-8" />
 
       <nav className="flex flex-col gap-2">
