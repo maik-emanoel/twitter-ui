@@ -41,7 +41,7 @@ export function Sidebar() {
       </nav>
 
       <button className="bg-twitterBlue rounded-full p-4 flex justify-center w-full text-white text-xl font-black hover:brightness-90 md:p-2">
-        <Pencil className="w-6 h-6" />
+        <Pencil className="w-6 h-6 hidden md:block" />
         <span className="md:hidden">Tweet</span>
       </button>
     </aside>
