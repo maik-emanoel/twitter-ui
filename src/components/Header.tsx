@@ -20,7 +20,7 @@ export function Header({ title }: HeaderProps) {
   }
 
   return (
-    <div className="py-6 px-5 flex items-center justify-between text-xl font-bold border-b-[1px] border-b-grayBorder dark:border-b-grayBorderDark dark:text-tweetColor">
+    <div className="py-6 px-5 flex items-center justify-between text-xl font-bold border-b-[1px] border-b-grayBorder bg-white/80 sticky top-0 backdrop-blur-md z-10 dark:border-b-grayBorderDark dark:text-tweetColor dark:bg-bodyDark/80">
       {title}
       <div className="flex items-center gap-2">
         <button onClick={handleToggleTheme}>
