@@ -10,6 +10,7 @@
     body {
         color: #0f1419;
         -webkit-font-smoothing: antialiased;
+        -webkit-tap-highlight-color: transparent;
         font-family: 'Roboto', sans-serif;
     }
 
