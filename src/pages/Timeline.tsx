@@ -56,9 +56,11 @@ export function Timeline() {
 
       <Separator />
 
-      {tweets.map((tweet) => {
-        return <Tweet key={tweet} content={tweet} />;
-      })}
+      <div className="sm:mb-12">
+        {tweets.map((tweet) => {
+          return <Tweet key={tweet} content={tweet} />;
+        })}
+      </div>
     </main>
   );
 }

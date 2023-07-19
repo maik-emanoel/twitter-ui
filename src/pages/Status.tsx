@@ -63,9 +63,11 @@ export function Status() {
         </button>
       </form>
 
-      {answers.map((answer) => {
-        return <Tweet key={answer} content={answer} />;
-      })}
+      <div className="sm:mb-12">
+        {answers.map((answer) => {
+          return <Tweet key={answer} content={answer} />;
+        })}
+      </div>
     </main>
   );
 }
