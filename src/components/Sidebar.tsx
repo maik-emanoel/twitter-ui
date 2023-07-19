@@ -5,8 +5,8 @@ import {
   DotsThreeCircle,
   Envelope,
   FileText,
-  Hash,
   House,
+  MagnifyingGlass,
   Pencil,
   User,
 } from "@phosphor-icons/react";
@@ -14,7 +14,7 @@ import { SidebarLink } from "./SidebarLink";
 
 export function Sidebar() {
   return (
-    <aside className="py-6 px-5 flex flex-col gap-8 md:items-center h-screen sticky top-0">
+    <aside className="py-6 px-5 flex flex-col gap-8 md:items-center h-screen sticky top-0 sm:hidden">
       <img src={twitterLogo} alt="Logo" className="w-8 h-8" />
 
       <nav className="flex flex-col gap-2">
@@ -23,7 +23,7 @@ export function Sidebar() {
           icon={<House size={32} weight="fill" />}
           text="Home"
         />
-        <SidebarLink path="" icon={<Hash size={32} />} text="Explorer" />
+        <SidebarLink path="" icon={<MagnifyingGlass size={32} />} text="Explorer" />
         <SidebarLink path="" icon={<Bell size={32} />} text="Notifications" />
         <SidebarLink path="" icon={<Envelope size={32} />} text="Messages" />
         <SidebarLink
