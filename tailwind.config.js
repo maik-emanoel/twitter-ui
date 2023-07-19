@@ -14,6 +14,9 @@ export default {
         separatorColor: '#f7f9fa',
         bodyDark: '#121214',
         tweetColor: '#E1E1E6'
+      },
+      boxShadow: {
+        floatButton: 'rgba(217, 217, 217, 0.2) 0px 0px 5px, rgba(217, 217, 217, 0.25) 0px 1px 4px 1px'
       }
     },
     screens: {
