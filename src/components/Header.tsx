@@ -1,5 +1,6 @@
 import { Moon, Sparkle, SunDim } from "@phosphor-icons/react";
 import { useState } from "react";
+import twitterLogo from "../assets/logo-twitter.svg";
 
 interface HeaderProps {
   title: string;
@@ -20,8 +21,17 @@ export function Header({ title }: HeaderProps) {
   }
 
   return (
-    <div className="py-6 px-5 flex items-center justify-between text-xl font-bold border-b-[1px] border-b-grayBorder bg-white/80 sticky top-0 backdrop-blur-md z-10 dark:border-b-grayBorderDark dark:text-tweetColor dark:bg-bodyDark/80">
-      {title}
+    <div className="py-6 px-5 flex items-center justify-between text-xl font-bold border-b-[1px] border-b-grayBorder bg-white/80 sticky top-0 backdrop-blur-md z-10 dark:border-b-grayBorderDark dark:text-tweetColor dark:bg-bodyDark/80 sm:py-3">
+      <div className="hidden sm:block">
+        <img
+          src="https://github.com/maik-emanoel.png"
+          alt="Maik Emanoel"
+          className="w-8 h-8 rounded-full"
+        />
+      </div>
+      <span className="sm:hidden">{title}</span>
+
+      <img src={twitterLogo} alt="Logo do Twitter" className="hidden w-6 h-6 sm:block" />
       <div className="flex items-center gap-2">
         <button onClick={handleToggleTheme}>
           {isDark ? (
@@ -30,7 +40,8 @@ export function Header({ title }: HeaderProps) {
             <Moon size={24} className="text-twitterBlue" />
           )}
         </button>
-        <Sparkle className="w-6 h-6 text-twitterBlue" />
+
+        <Sparkle className="w-6 h-6 text-twitterBlue sm:hidden" />
       </div>
     </div>
   );
