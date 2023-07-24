@@ -1,11 +1,13 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { ReactNode, createContext, useContext, useState } from "react";
 import { MobileSidebar } from "../components/MobileSidebar";
 
 const SidebarContext = createContext<{
   handleShowMobileSidebar: () => void;
+  handleHideMobileSidebar: () => void;
 }>({
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   handleShowMobileSidebar: () => {},
+  handleHideMobileSidebar: () => {}
 });
 
 export function useSidebarContext() {
@@ -23,8 +25,12 @@ export function SidebarProvider({ children }: SidebarProviderProps) {
         setShowMobileSidebar(true)
     }
 
+    function handleHideMobileSidebar() {
+        setShowMobileSidebar(false)
+    }
+
     return (
-        <SidebarContext.Provider value={{ handleShowMobileSidebar }}>
+        <SidebarContext.Provider value={{ handleShowMobileSidebar, handleHideMobileSidebar }}>
             {children}
             {showMobileSidebar && <MobileSidebar />}
         </SidebarContext.Provider>
