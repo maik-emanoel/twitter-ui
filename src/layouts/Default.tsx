@@ -6,8 +6,8 @@ import { SidebarProvider } from "../context/SidebarContext";
 
 export function Default() {
   return (
-    <SidebarProvider>
-      <div className="mx-auto max-w-[1000px] grid grid-cols-[300px_1fr] md:grid-cols-[80px_1fr] min-h-screen sm:grid-cols-1">
+    <div className="mx-auto max-w-[1000px] grid grid-cols-[300px_1fr] md:grid-cols-[80px_1fr] min-h-screen sm:grid-cols-1">
+      <SidebarProvider>
         <Sidebar />
 
         <div className="border-l-[1px] border-r-[1px] border-grayBorder dark:border-grayBorderDark">
@@ -18,7 +18,7 @@ export function Default() {
         </div>
 
         <Bottombar />
-      </div>
-    </SidebarProvider>
+      </SidebarProvider>
+    </div>
   );
 }
