@@ -21,7 +21,7 @@ export function MobileSidebar() {
   const { handleHideMobileSidebar } = useSidebarContext();
 
   return (
-    <div className="absolute inset-0 backdrop-blur-sm z-20">
+    <div className="fixed inset-0 backdrop-blur-sm z-20">
       <div className="min-w-[280px] max-w-[70%] h-screen bg-white shadow-lg overflow-y-auto dark:bg-bodyDark dark:shadow-zinc-800">
         <div className="h-[53px] px-4 flex items-center justify-between sticky top-0 bg-white/95 backdrop-blur-md z-30 dark:bg-bodyDark/95">
           <span className="font-bold">Account Info</span>
