@@ -8,7 +8,7 @@ interface MobileSidebarLinkProps {
 export function MobileSidebarLink({icon, text}: MobileSidebarLinkProps) {
   return (
     <a href="#">
-      <div className="p-4 flex items-center gap-5 active:bg-zinc-100">
+      <div className="p-4 flex items-center gap-5 active:bg-zinc-100 active:dark:bg-zinc-800">
         {icon}
         <span className="font-bold text-xl">{text}</span>
       </div>

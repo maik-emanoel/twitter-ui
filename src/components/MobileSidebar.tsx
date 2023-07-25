@@ -22,10 +22,10 @@ export function MobileSidebar() {
 
   return (
     <div className="fixed inset-0 backdrop-blur-sm z-20">
-      <div className="min-w-[280px] max-w-[70%] min-h-screen bg-white shadow-lg">
+      <div className="min-w-[280px] max-w-[70%] min-h-screen bg-white shadow-lg dark:bg-bodyDark dark:shadow-zinc-800">
         <div className="h-[53px] px-4 flex items-center justify-between">
           <span className="font-bold">Account Info</span>
-          <button onClick={handleHideMobileSidebar} className="bg-white">
+          <button onClick={handleHideMobileSidebar}>
             <X size={20} />
           </button>
         </div>
@@ -88,14 +88,14 @@ export function MobileSidebar() {
           <SectionLinks title="Professional Tools">
             <a
               href="#"
-              className="flex items-center gap-2 p-3 active:bg-zinc-100"
+              className="flex items-center gap-2 p-3 active:bg-zinc-100 hover:dark:bg-zinc-800"
             >
               <RocketLaunch size={18} />
               <span className="leading-5">Twitter for Professionals</span>
             </a>
             <a
               href="#"
-              className="flex items-center gap-2 p-3 active:bg-zinc-100"
+              className="flex items-center gap-2 p-3 active:bg-zinc-100 hover:dark:bg-zinc-800"
             >
               <ArrowSquareUpRight size={18} />
               <span className="leading-5">Twitter Ads</span>
@@ -104,21 +104,21 @@ export function MobileSidebar() {
           <SectionLinks title="Settings and Support">
             <a
               href="#"
-              className="flex items-center gap-2 p-3 active:bg-zinc-100"
+              className="flex items-center gap-2 p-3 active:bg-zinc-100 hover:dark:bg-zinc-800"
             >
               <Gear size={18} />
               <span className="leading-5">Settings</span>
             </a>
             <a
               href="#"
-              className="flex items-center gap-2 p-3 active:bg-zinc-100"
+              className="flex items-center gap-2 p-3 active:bg-zinc-100 hover:dark:bg-zinc-800"
             >
               <Question size={18} />
               <span className="leading-5">Help Center</span>
             </a>
             <a
               href="#"
-              className="flex items-center gap-2 p-3 active:bg-zinc-100"
+              className="flex items-center gap-2 p-3 active:bg-zinc-100 hover:dark:bg-zinc-800"
             >
               <SignOut size={18} />
               <span className="leading-5">Log Out</span>
