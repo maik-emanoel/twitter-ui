@@ -17,6 +17,18 @@ export default {
       },
       boxShadow: {
         floatButton: 'rgba(217, 217, 217, 0.2) 0px 0px 5px, rgba(217, 217, 217, 0.25) 0px 1px 4px 1px'
+      },
+      animation: {
+        fadeIn: 'fadeIn .2s ease-in-out backwards',
+        fadeOut: 'fadeOut .2s ease-in-out forwards'
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { transform: 'translateX(-100%)' }
+        },
+        fadeOut: {
+          '100%': { transform: 'translateX(-100%)' }
+        }
       }
     },
     screens: {
