@@ -16,16 +16,26 @@ import {
 import { useSidebarContext } from "../context/SidebarContext";
 import { MobileSidebarLink } from "./MobileSidebarLink";
 import { SectionLinks } from "./SectionLinks";
+import { useState } from "react";
 
 export function MobileSidebar() {
   const { handleHideMobileSidebar } = useSidebarContext();
+  const [isVisible, setIsVisible] = useState(true)
 
   return (
     <div className="fixed inset-0 backdrop-blur-sm z-20">
-      <div className="min-w-[280px] max-w-[70%] h-screen bg-white shadow-lg overflow-y-auto dark:bg-bodyDark dark:shadow-zinc-800">
+      <div 
+        data-visible={isVisible}
+        className="min-w-[280px] max-w-[70%] h-screen bg-white shadow-lg overflow-y-auto dark:bg-bodyDark dark:shadow-zinc-800 data-[visible=true]:animate-fadeIn data-[visible=false]:animate-fadeOut">
         <div className="h-[53px] px-4 flex items-center justify-between sticky top-0 bg-white/95 backdrop-blur-md z-30 dark:bg-bodyDark/95">
           <span className="font-bold">Account Info</span>
-          <button onClick={handleHideMobileSidebar}>
+          <button onClick={() => {
+            setIsVisible(false)
+
+            setTimeout(() => {
+              handleHideMobileSidebar()
+            }, 200)
+          }}>
             <X size={20} />
           </button>
         </div>
