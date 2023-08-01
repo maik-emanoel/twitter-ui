@@ -1,7 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { Sidebar } from "../components/Sidebar";
 import { Bottombar } from "../components/Bottombar";
-import { Pencil } from "@phosphor-icons/react";
 import { SidebarProvider } from "../context/SidebarContext";
 
 export function Default() {
@@ -12,9 +11,6 @@ export function Default() {
 
         <div className="border-l-[1px] border-r-[1px] border-grayBorder dark:border-grayBorderDark sm:border-none">
           <Outlet />
-          <button className="fixed right-4 bottom-20 bg-twitterBlue w-14 h-14 rounded-full shadow-floatButton hidden sm:block">
-            <Pencil size={24} color="white" className="mx-auto" />
-          </button>
         </div>
 
         <Bottombar />
