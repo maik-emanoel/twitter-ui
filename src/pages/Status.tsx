@@ -56,7 +56,7 @@ export function Status() {
 
         <button
           type="submit"
-          className="ml-auto bg-twitterBlue rounded-full py-3 px-6 text-white font-black transition-all duration-300 ease-in-out hover:brightness-90 disabled:brightness-125"
+          className="ml-auto bg-twitterBlue rounded-full py-3 px-6 text-white font-black transition-all duration-300 ease-in-out hover:brightness-90 disabled:opacity-60"
           disabled={newAnswer === '' ? true : false}
         >
           Answer
