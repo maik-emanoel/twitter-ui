@@ -2,42 +2,69 @@ import { FormEvent, KeyboardEvent, useState } from "react";
 import { Header } from "../components/Header";
 import { Separator } from "../components/Separator";
 import { Tweet } from "../components/Tweet";
+import { TweetProps } from "./Timeline";
 
 export function Status() {
-  const [newAnswer, setNewAnswer] = useState('')
-  const [answers, setAnswers] = useState([
-    'Concordo...',
-    'Olha, faz sentido!',
-    'Parabéns pelo progresso.'
-  ])
+  const [newAnswer, setNewAnswer] = useState("");
+  const [answers, setAnswers] = useState<TweetProps[]>([
+    {
+      userAvatar: "https://github.com/maik-emanoel.png",
+      userName: "Maik Emanoel",
+      userLogin: "maik_emanoel",
+      content: "Estamos fazendo progresso",
+      hasImage: false,
+    },
+    {
+      userAvatar: "https://github.com/diego3g.png",
+      userName: "Diego Fernandes",
+      userLogin: "diego_3g",
+      content: "Realmente, faz sentido",
+      hasImage: false,
+    },
+  ]);
+
+  const newAnswerObj: TweetProps = {
+    userAvatar: "https://github.com/maik-emanoel.png",
+    userName: "Maik Emanoel",
+    userLogin: "maik_emanoel",
+    content: newAnswer,
+    hasImage: false,
+  };
 
   function createNewAnswer(e: FormEvent) {
     e.preventDefault();
-    if(newAnswer === '') return
+    if (newAnswer === "") return;
 
-    setAnswers([newAnswer, ...answers])
-    setNewAnswer('')
+    setAnswers([newAnswerObj, ...answers]);
+    setNewAnswer("");
   }
 
   function handleHotKeySubmit(e: KeyboardEvent) {
-    if(newAnswer === '') return
+    if (newAnswer === "") return;
 
-    if(e.key === "Enter" && (e.ctrlKey || e.metaKey)) {
-      setAnswers([newAnswer, ...answers])
-      setNewAnswer('')
+    if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) {
+      setAnswers([newAnswerObj, ...answers]);
+      setNewAnswer("");
     }
   }
-
 
   return (
     <main>
       <Header title="Tweet" />
 
-      <Tweet content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime quam quod molestiae. Natus dolores corporis voluptates perspiciatis in cum, eius eos aliquam illo voluptas unde quas asperiores libero pariatur quia!" />
+      <Tweet
+        userAvatar="https://github.com/maik-emanoel.png"
+        userName="Maik Emanoel"
+        userLogin="maik_emanoel"
+        content="adipisci suscipit beatae perferendis doloribus facere voluptate. Ipsam aperiam reiciendis reprehenderit quas animi recusandae."
+      />
 
       <Separator />
 
-      <form onSubmit={createNewAnswer} className="py-6 px-5 flex items-center gap-2 border-b-[1px] border-grayBorde dark:border-grayBorderDark">
+      <form
+        onSubmit={createNewAnswer}
+        className="py-6 px-5 flex items-center gap-2 border-b-[1px] border-grayBorde dark:border-grayBorderDark"
+      >
         <label htmlFor="tweet" className="flex items-center gap-3 flex-1">
           <img
             src="https://github.com/maik-emanoel.png"
@@ -57,15 +84,24 @@ export function Status() {
         <button
           type="submit"
           className="ml-auto bg-twitterBlue rounded-full py-3 px-6 text-white font-black transition-all duration-300 ease-in-out hover:brightness-90 disabled:opacity-60"
-          disabled={newAnswer === '' ? true : false}
+          disabled={newAnswer === "" ? true : false}
         >
           Answer
         </button>
       </form>
 
       <div className="sm:mb-12">
-        {answers.map((answer) => {
-          return <Tweet key={answer} content={answer} />;
+        {answers.map((answer, index) => {
+          return (
+            <Tweet
+              key={index}
+              userAvatar={answer.userAvatar}
+              userName={answer.userName}
+              userLogin={answer.userLogin}
+              content={answer.content}
+              hasImage={answer.hasImage}
+            />
+          );
         })}
       </div>
     </main>
