@@ -1,10 +1,11 @@
 import { ArrowLeft } from "@phosphor-icons/react";
 import { useState, FormEvent, KeyboardEvent } from "react";
 import { TweetToolbar } from "./TweetToolbar";
+import { TweetProps } from "../pages/Timeline";
 
 interface CreateNewFormProps {
-  tweets: string[];
-  setTweets: React.Dispatch<React.SetStateAction<string[]>>;
+  tweets: TweetProps[];
+  setTweets: React.Dispatch<React.SetStateAction<TweetProps[]>>;
   isTweetFormVisible: boolean;
   setIsTweetFormVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -16,12 +17,19 @@ export function CreateTweetForm({
   setIsTweetFormVisible,
 }: CreateNewFormProps) {
   const [newTweet, setNewTweet] = useState("");
+  const newTweetObj: TweetProps = {
+    userAvatar: "https://github.com/maik-emanoel.png",
+    userName: "Maik Emanoel",
+    userLogin: "maik_emanoel",
+    content: newTweet,
+    hasImage: false,
+  }
 
   function createNewTweet(e: FormEvent) {
     e.preventDefault();
     if (newTweet === "") return;
 
-    setTweets([newTweet, ...tweets]);
+    setTweets([newTweetObj, ...tweets]);
     setNewTweet("");
 
     setTimeout(() => {
@@ -33,7 +41,7 @@ export function CreateTweetForm({
     if (newTweet === "") return;
 
     if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) {
-      setTweets([newTweet, ...tweets]);
+      setTweets([newTweetObj, ...tweets]);
       setNewTweet("");
 
       setTimeout(() => {
