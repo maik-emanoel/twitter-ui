@@ -21,8 +21,7 @@ export function CreateTweetForm({
     userAvatar: "https://github.com/maik-emanoel.png",
     userName: "Maik Emanoel",
     userLogin: "maik_emanoel",
-    content: newTweet,
-    hasImage: false,
+    content: newTweet
   }
 
   function createNewTweet(e: FormEvent) {
