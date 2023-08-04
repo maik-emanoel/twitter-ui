@@ -12,14 +12,12 @@ export function Status() {
       userName: "Maik Emanoel",
       userLogin: "maik_emanoel",
       content: "Estamos fazendo progresso",
-      hasImage: false,
     },
     {
       userAvatar: "https://github.com/diego3g.png",
       userName: "Diego Fernandes",
       userLogin: "diego_3g",
       content: "Realmente, faz sentido",
-      hasImage: false,
     },
   ]);
 
@@ -28,7 +26,6 @@ export function Status() {
     userName: "Maik Emanoel",
     userLogin: "maik_emanoel",
     content: newAnswer,
-    hasImage: false,
   };
 
   function createNewAnswer(e: FormEvent) {
@@ -99,7 +96,6 @@ export function Status() {
               userName={answer.userName}
               userLogin={answer.userLogin}
               content={answer.content}
-              hasImage={answer.hasImage}
             />
           );
         })}
