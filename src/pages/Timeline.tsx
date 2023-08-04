@@ -4,33 +4,19 @@ import { Tweet } from "../components/Tweet";
 import { CreateTweetForm } from "../components/CreateTweetForm";
 import { useState } from "react";
 import { Pencil } from "@phosphor-icons/react";
+import { initialTweets } from "../InitialTweets";
 
 export interface TweetProps {
   userAvatar: string;
   userName: string;
   userLogin: string;
   content: string;
-  hasImage?: boolean;
+  imageUrl?: string | undefined;
 }
 
 export function Timeline() {
   const [isTweetFormVisible, setIsTweetFormVisible] = useState(false);
-  const [tweets, setTweets] = useState<TweetProps[]>([
-    {
-      userAvatar: "https://github.com/maik-emanoel.png",
-      userName: "Maik Emanoel",
-      userLogin: "maik_emanoel",
-      content: "Meu primeiro tweet",
-      hasImage: false,
-    },
-    {
-      userAvatar: "https://github.com/diego3g.png",
-      userName: "Diego Fernandes",
-      userLogin: "diego_3g",
-      content: "Teste teste",
-      hasImage: false,
-    },
-  ]);
+  const [tweets, setTweets] = useState<TweetProps[]>([...initialTweets]);
 
   function handleShowTweetForm() {
     setIsTweetFormVisible(true);
@@ -58,7 +44,8 @@ export function Timeline() {
               userName={tweet.userName}
               userLogin={tweet.userLogin}
               content={tweet.content}
-              hasImage={tweet.hasImage} />
+              imageUrl={tweet.imageUrl}
+            />
           );
         })}
       </div>
