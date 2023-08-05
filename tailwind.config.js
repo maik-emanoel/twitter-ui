@@ -13,7 +13,9 @@ export default {
         grayBorderDark: '#2F2F2F',
         separatorColor: '#f7f9fa',
         bodyDark: '#121214',
-        tweetColor: '#E1E1E6'
+        tweetColor: '#E1E1E6',
+        retweetGreen: 'rgb(0, 186, 124)',
+        likePink: 'rgb(249, 24, 128)'
       },
       boxShadow: {
         floatButton: 'rgba(217, 217, 217, 0.2) 0px 0px 5px, rgba(217, 217, 217, 0.25) 0px 1px 4px 1px'
