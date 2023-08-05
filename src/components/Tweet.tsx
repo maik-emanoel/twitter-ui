@@ -1,4 +1,10 @@
-import { ArrowsClockwise, ChatCircle, Heart } from "@phosphor-icons/react";
+import {
+  ArrowsClockwise,
+  ChartLine,
+  ChatCircle,
+  Export,
+  Heart,
+} from "@phosphor-icons/react";
 import { Link } from "react-router-dom";
 import { TweetProps } from "../pages/Timeline";
 
@@ -16,7 +22,7 @@ export function Tweet({
     >
       <img src={userAvatar} alt={userName} className="w-12 h-12 rounded-full" />
 
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 max-w-[500px]">
         <div className="flex items-center gap-1">
           <strong>{userName}</strong>
           <span className="text-sm text-[#89a2b8] dark:text-[#828282]">
@@ -39,20 +45,42 @@ export function Tweet({
           )}
         </div>
 
-        <div className="flex items-center gap-12 mt-3">
-          <button className="flex items-center gap-2 text-sm text-[#89a2b8] hover:text-twitterBlue">
-            <ChatCircle className="w-5 h-5" />
-            20
+        <div
+          className="flex items-center gap-12 mt-3 justify-between h-5"
+          onClick={(e) => e.preventDefault()}
+        >
+          <button className="flex items-center gap-2 text-sm text-[#89a2b8] hover:text-twitterBlue group">
+            <div className="w-[34.75px] h-[34.75px] grid place-items-center rounded-full transition-colors duration-200 group-hover:bg-twitterBlue/10">
+              <ChatCircle size={18.75} />
+            </div>
+            <span>20</span>
           </button>
 
-          <button className="flex items-center gap-2 text-sm text-[#89a2b8] hover:text-twitterBlue">
-            <ArrowsClockwise className="w-5 h-5" />
-            20
+          <button className="flex items-center gap-2 text-sm text-[#89a2b8] hover:text-retweetGreen group">
+            <div className="w-[34.75px] h-[34.75px] grid place-items-center rounded-full transition-colors duration-200 group-hover:bg-retweetGreen/10">
+              <ArrowsClockwise size={18.75} />
+            </div>
+            <span>20</span>
           </button>
 
-          <button className="flex items-center gap-2 text-sm text-[#89a2b8] hover:text-twitterBlue">
-            <Heart className="w-5 h-5" />
-            20
+          <button className="flex items-center gap-2 text-sm text-[#89a2b8] hover:text-likePink group">
+            <div className="w-[34.75px] h-[34.75px] grid place-items-center rounded-full transition-colors duration-200 group-hover:bg-likePink/10">
+              <Heart size={18.75} />
+            </div>
+            <span>20</span>
+          </button>
+
+          <button className="flex items-center gap-2 text-sm text-[#89a2b8] hover:text-twitterBlue group">
+            <div className="w-[34.75px] h-[34.75px] grid place-items-center rounded-full transition-colors duration-200 group-hover:bg-twitterBlue/10">
+              <ChartLine size={18.75} />
+            </div>
+            <span>20</span>
+          </button>
+
+          <button className="flex items-center gap-2 text-sm text-[#89a2b8] hover:text-twitterBlue group">
+            <div className="w-[34.75px] h-[34.75px] grid place-items-center rounded-full transition-colors duration-200 group-hover:bg-twitterBlue/10">
+              <Export size={18.75} />
+            </div>
           </button>
         </div>
       </div>
