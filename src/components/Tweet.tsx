@@ -50,35 +50,35 @@ export function Tweet({
           onClick={(e) => e.preventDefault()}
         >
           <button className="flex items-center gap-2 text-sm text-[#89a2b8] hover:text-twitterBlue group">
-            <div className="w-[34.75px] h-[34.75px] grid place-items-center rounded-full transition-colors duration-200 group-hover:bg-twitterBlue/10">
+            <div className="w-[34.75px] h-[34.75px] grid place-items-center rounded-full -m-2 transition-colors duration-200 group-hover:bg-twitterBlue/10">
               <ChatCircle size={18.75} />
             </div>
-            <span>20</span>
+            <span className="pl-1">20</span>
           </button>
 
           <button className="flex items-center gap-2 text-sm text-[#89a2b8] hover:text-retweetGreen group">
-            <div className="w-[34.75px] h-[34.75px] grid place-items-center rounded-full transition-colors duration-200 group-hover:bg-retweetGreen/10">
+            <div className="w-[34.75px] h-[34.75px] grid place-items-center rounded-full -m-2 transition-colors duration-200 group-hover:bg-retweetGreen/10">
               <ArrowsClockwise size={18.75} />
             </div>
-            <span>20</span>
+            <span className="pl-1">20</span>
           </button>
 
           <button className="flex items-center gap-2 text-sm text-[#89a2b8] hover:text-likePink group">
-            <div className="w-[34.75px] h-[34.75px] grid place-items-center rounded-full transition-colors duration-200 group-hover:bg-likePink/10">
+            <div className="w-[34.75px] h-[34.75px] grid place-items-center rounded-full -m-2 transition-colors duration-200 group-hover:bg-likePink/10">
               <Heart size={18.75} />
             </div>
-            <span>20</span>
+            <span className="pl-1">20</span>
           </button>
 
           <button className="flex items-center gap-2 text-sm text-[#89a2b8] hover:text-twitterBlue group">
-            <div className="w-[34.75px] h-[34.75px] grid place-items-center rounded-full transition-colors duration-200 group-hover:bg-twitterBlue/10">
+            <div className="w-[34.75px] h-[34.75px] grid place-items-center rounded-full -m-2 transition-colors duration-200 group-hover:bg-twitterBlue/10">
               <ChartLine size={18.75} />
             </div>
-            <span>20</span>
+            <span className="pl-1">999</span>
           </button>
 
           <button className="flex items-center gap-2 text-sm text-[#89a2b8] hover:text-twitterBlue group">
-            <div className="w-[34.75px] h-[34.75px] grid place-items-center rounded-full transition-colors duration-200 group-hover:bg-twitterBlue/10">
+            <div className="w-[34.75px] h-[34.75px] grid place-items-center rounded-full -m-2 transition-colors duration-200 group-hover:bg-twitterBlue/10">
               <Export size={18.75} />
             </div>
           </button>
