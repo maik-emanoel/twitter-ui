@@ -2,11 +2,17 @@ import { FormEvent, KeyboardEvent, useState } from "react";
 import { Header } from "../components/Header";
 import { Separator } from "../components/Separator";
 import { Tweet } from "../components/Tweet";
-import { TweetProps } from "./Timeline";
+
+interface AnswerProps {
+  userAvatar: string,
+  userName: string,
+  userLogin: string,
+  content: string
+}
 
 export function Status() {
   const [newAnswer, setNewAnswer] = useState("");
-  const [answers, setAnswers] = useState<TweetProps[]>([
+  const [answers, setAnswers] = useState<AnswerProps[]>([
     {
       userAvatar: "https://github.com/maik-emanoel.png",
       userName: "Maik Emanoel",
@@ -21,7 +27,7 @@ export function Status() {
     },
   ]);
 
-  const newAnswerObj: TweetProps = {
+  const newAnswerObj: AnswerProps = {
     userAvatar: "https://github.com/maik-emanoel.png",
     userName: "Maik Emanoel",
     userLogin: "maik_emanoel",
