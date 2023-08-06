@@ -18,7 +18,7 @@ export function Tweet({
   return (
     <Link
       to="/status"
-      className="w-full py-6 px-5 grid grid-cols-[max-content_1fr] gap-3 border-b-[1px] border-grayBorder dark:border-grayBorderDark"
+      className="w-full py-6 px-5 grid grid-cols-[max-content_1fr] gap-3 border-b-[1px] border-grayBorder transition-colors duration-200 dark:border-grayBorderDark hover:bg-black/[0.03] hover:dark:bg-white/[0.03]"
     >
       <img src={userAvatar} alt={userName} className="w-10 h-10 rounded-full" />
 
@@ -38,8 +38,8 @@ export function Tweet({
             <div className="max-w-[500px] w-full mt-2">
               <img
                 src={imageUrl}
-                alt=""
-                className="rounded-2xl aspect-square w-full"
+                alt="Imagem aleatória"
+                className="rounded-2xl aspect-square w-full object-cover"
               />
             </div>
           )}
