@@ -22,6 +22,8 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
   hoverTextColor: string;
   hoverBgColor: string;
+  activeTextColor: string;
+  activeBgColor: string;
 }
 
 function Button({
@@ -32,17 +34,25 @@ function Button({
   handleIncreaseLike,
   isLiked,
   className,
+  activeTextColor,
+  activeBgColor,
 }: ButtonProps) {
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
   return (
     <button
       className={twMerge(
-        `flex items-center gap-2 text-sm text-[#89a2b8] ${hoverTextColor} group`,
+        `flex items-center gap-2 text-sm text-[#89a2b8] ${
+          isMobile ? activeTextColor : hoverTextColor
+        } group`,
         className
       )}
       onClick={handleIncreaseLike}
     >
       <div
-        className={`w-[34.75px] h-[34.75px] grid place-items-center rounded-full -m-2 transition-colors duration-200 ${hoverBgColor}`}
+        className={`w-[34.75px] h-[34.75px] grid place-items-center rounded-full -m-2 transition-colors duration-200 ${
+          isMobile ? activeBgColor : hoverBgColor
+        } active:scale-95`}
       >
         {!isLiked ? <Icon size={18.75} /> : <Icon size={18.75} weight="fill" />}
       </div>
@@ -76,12 +86,16 @@ export function ButtonsWrapper({
         text={comments ? comments : "01"}
         hoverTextColor="hover:text-twitterBlue"
         hoverBgColor="group-hover:bg-twitterBlue/10"
+        activeTextColor="active:text-twitterBlue"
+        activeBgColor="group-active:bg-twitterBlue/10"
       />
       <Button
         icon={ArrowsClockwise}
         text={retweets ? String(retweets).padStart(2, "0") : "09"}
         hoverTextColor="hover:text-retweetGreen"
         hoverBgColor="group-hover:bg-retweetGreen/10"
+        activeTextColor="active:text-retweetGreen"
+        activeBgColor="group-active:bg-retweetGreen/10"
       />
       <Button
         icon={Heart}
@@ -90,7 +104,9 @@ export function ButtonsWrapper({
         hoverBgColor="group-hover:bg-likePink/10"
         handleIncreaseLike={handleIncreaseLike}
         isLiked={isLiked}
-        className={`${isLiked ? 'text-likePink' : ''}`}
+        className={`${isLiked ? "text-likePink" : ""}`}
+        activeTextColor="active:text-likePink"
+        activeBgColor="group-active:bg-likePink/10"
       />
       <Button
         icon={ChartLine}
@@ -98,6 +114,8 @@ export function ButtonsWrapper({
         hoverTextColor="hover:text-twitterBlue"
         hoverBgColor="group-hover:bg-twitterBlue/10"
         className="md:hidden"
+        activeTextColor=""
+        activeBgColor=""
       />
       <Button
         icon={Export}
@@ -105,6 +123,8 @@ export function ButtonsWrapper({
         hoverTextColor="hover:text-twitterBlue"
         hoverBgColor="group-hover:bg-twitterBlue/10"
         className="md:hidden"
+        activeTextColor=""
+        activeBgColor=""
       />
     </div>
   );
