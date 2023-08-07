@@ -6,6 +6,7 @@ import {
   Export,
 } from "@phosphor-icons/react";
 import { useState } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface ButtonsWrapperProps {
   comments: number | undefined;
@@ -13,22 +14,35 @@ interface ButtonsWrapperProps {
   likes: number | undefined;
 }
 
-interface ButtonProps {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   icon: React.ElementType;
   text: string | number;
-  hoverColorClass: string;
-  handleIncreaseLike?: () => void
-  isLiked?: boolean
+  handleIncreaseLike?: () => void;
+  isLiked?: boolean;
+
+  hoverTextColor: string;
+  hoverBgColor: string;
 }
 
-function Button({ icon: Icon, text, hoverColorClass, handleIncreaseLike, isLiked }: ButtonProps) {
+function Button({
+  icon: Icon,
+  text,
+  hoverTextColor,
+  hoverBgColor,
+  handleIncreaseLike,
+  isLiked,
+  className,
+}: ButtonProps) {
   return (
     <button
-      className={`flex items-center gap-2 text-sm text-[#89a2b8] hover:text-${hoverColorClass} group ${isLiked ? 'text-likePink' : ''}`}
+      className={twMerge(
+        `flex items-center gap-2 text-sm text-[#89a2b8] ${hoverTextColor} group`,
+        className
+      )}
       onClick={handleIncreaseLike}
     >
       <div
-        className={`w-[34.75px] h-[34.75px] grid place-items-center rounded-full -m-2 transition-colors duration-200 group-hover:bg-${hoverColorClass}/10`}
+        className={`w-[34.75px] h-[34.75px] grid place-items-center rounded-full -m-2 transition-colors duration-200 ${hoverBgColor}`}
       >
         {!isLiked ? <Icon size={18.75} /> : <Icon size={18.75} weight="fill" />}
       </div>
@@ -42,15 +56,15 @@ export function ButtonsWrapper({
   retweets,
   likes,
 }: ButtonsWrapperProps) {
-    const [initialLikes, setInitialLikes] = useState(likes)
-    const [isLiked, setIsLiked] = useState(false)
+  const [initialLikes, setInitialLikes] = useState(likes);
+  const [isLiked, setIsLiked] = useState(false);
 
-    function handleIncreaseLike() {
-        if(isLiked) return
+  function handleIncreaseLike() {
+    if (isLiked) return;
 
-        setInitialLikes((prevState) => (prevState ?? 2004) + 1)
-        setIsLiked(true)
-    }
+    setInitialLikes((prevState) => (prevState ?? 2004) + 1);
+    setIsLiked(true);
+  }
 
   return (
     <div
@@ -60,29 +74,35 @@ export function ButtonsWrapper({
       <Button
         icon={ChatCircle}
         text={comments ? comments : "01"}
-        hoverColorClass="twitterBlue"
+        hoverTextColor="hover:text-twitterBlue"
+        hoverBgColor="group-hover:bg-twitterBlue/10"
       />
       <Button
         icon={ArrowsClockwise}
         text={retweets ? String(retweets).padStart(2, "0") : "09"}
-        hoverColorClass="retweetGreen"
+        hoverTextColor="hover:text-retweetGreen"
+        hoverBgColor="group-hover:bg-retweetGreen/10"
       />
       <Button
         icon={Heart}
         text={initialLikes ? initialLikes : 2004}
-        hoverColorClass="likePink"
+        hoverTextColor="hover:text-likePink"
+        hoverBgColor="group-hover:bg-likePink/10"
         handleIncreaseLike={handleIncreaseLike}
         isLiked={isLiked}
+        className={`${isLiked ? 'text-likePink' : ''}`}
       />
-      <Button 
-        icon={ChartLine} 
-        text="1.2k" 
-        hoverColorClass="twitterBlue" 
+      <Button
+        icon={ChartLine}
+        text="1.2k"
+        hoverTextColor="hover:text-twitterBlue"
+        hoverBgColor="group-hover:bg-twitterBlue/10"
       />
-      <Button 
-        icon={Export} 
-        text="" 
-        hoverColorClass="twitterBlue" 
+      <Button
+        icon={Export}
+        text=""
+        hoverTextColor="hover:text-twitterBlue"
+        hoverBgColor="group-hover:bg-twitterBlue/10"
       />
     </div>
   );
