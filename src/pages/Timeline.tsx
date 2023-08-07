@@ -12,6 +12,9 @@ export interface TweetProps {
   userLogin: string;
   content: string;
   imageUrl?: string | undefined;
+  comments?: number,
+  retweets?: number
+  likes?: number
 }
 
 export function Timeline() {
@@ -45,6 +48,9 @@ export function Timeline() {
               userLogin={tweet.userLogin}
               content={tweet.content}
               imageUrl={tweet.imageUrl}
+              comments={tweet.comments}
+              retweets={tweet.retweets}
+              likes={tweet.likes}
             />
           );
         })}
