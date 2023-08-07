@@ -1,12 +1,6 @@
-import {
-  ArrowsClockwise,
-  ChartLine,
-  ChatCircle,
-  Export,
-  Heart,
-} from "@phosphor-icons/react";
 import { Link } from "react-router-dom";
 import { TweetProps } from "../pages/Timeline";
+import { ButtonsWrapper } from "./ButtonsWrapper";
 
 export function Tweet({
   userAvatar,
@@ -51,46 +45,7 @@ export function Tweet({
           )}
         </div>
 
-        <div
-          className="flex items-center mt-3 justify-between h-5"
-          onClick={(e) => e.preventDefault()}
-        >
-          <button className="flex items-center gap-2 text-sm text-[#89a2b8] hover:text-twitterBlue group">
-            <div className="w-[34.75px] h-[34.75px] grid place-items-center rounded-full -m-2 transition-colors duration-200 group-hover:bg-twitterBlue/10">
-              <ChatCircle size={18.75} />
-            </div>
-            <span className="pl-1">{comments ? comments : "01"}</span>
-          </button>
-
-          <button className="flex items-center gap-2 text-sm text-[#89a2b8] hover:text-retweetGreen group">
-            <div className="w-[34.75px] h-[34.75px] grid place-items-center rounded-full -m-2 transition-colors duration-200 group-hover:bg-retweetGreen/10">
-              <ArrowsClockwise size={18.75} />
-            </div>
-            <span className="pl-1">
-              {retweets ? String(retweets).padStart(2, "0") : "09"}
-            </span>
-          </button>
-
-          <button className="flex items-center gap-2 text-sm text-[#89a2b8] hover:text-likePink group">
-            <div className="w-[34.75px] h-[34.75px] grid place-items-center rounded-full -m-2 transition-colors duration-200 group-hover:bg-likePink/10">
-              <Heart size={18.75} />
-            </div>
-            <span className="pl-1">{likes ? likes : 2004}</span>
-          </button>
-
-          <button className="flex items-center gap-2 text-sm text-[#89a2b8] hover:text-twitterBlue group sm:hidden">
-            <div className="w-[34.75px] h-[34.75px] grid place-items-center rounded-full -m-2 transition-colors duration-200 group-hover:bg-twitterBlue/10">
-              <ChartLine size={18.75} />
-            </div>
-            <span className="pl-1">1.2k</span>
-          </button>
-
-          <button className="flex items-center gap-2 text-sm text-[#89a2b8] hover:text-twitterBlue group sm:hidden">
-            <div className="w-[34.75px] h-[34.75px] grid place-items-center rounded-full -m-2 transition-colors duration-200 group-hover:bg-twitterBlue/10">
-              <Export size={18.75} />
-            </div>
-          </button>
-        </div>
+        <ButtonsWrapper comments={comments} retweets={retweets} likes={likes} />
       </div>
     </Link>
   );
