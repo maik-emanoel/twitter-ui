@@ -97,12 +97,14 @@ export function ButtonsWrapper({
         text="1.2k"
         hoverTextColor="hover:text-twitterBlue"
         hoverBgColor="group-hover:bg-twitterBlue/10"
+        className="md:hidden"
       />
       <Button
         icon={Export}
         text=""
         hoverTextColor="hover:text-twitterBlue"
         hoverBgColor="group-hover:bg-twitterBlue/10"
+        className="md:hidden"
       />
     </div>
   );
