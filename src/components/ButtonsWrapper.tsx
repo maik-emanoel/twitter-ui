@@ -74,7 +74,7 @@ function Button({
         aria-label={ariaLabel}
       >
         {!isLiked ? <Icon size={18.75} /> : <Icon size={18.75} weight="fill" />}
-        {showTooltip && <span className="tooltip">{ariaLabel}</span>}
+        {showTooltip && !isMobile && <span className="tooltip">{ariaLabel}</span>}
       </div>
       <span className="pl-1">{text}</span>
     </button>
