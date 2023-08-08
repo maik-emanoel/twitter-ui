@@ -70,10 +70,13 @@ export function ButtonsWrapper({
   const [isLiked, setIsLiked] = useState(false);
 
   function handleIncreaseLike() {
-    if (isLiked) return;
-
-    setInitialLikes((prevState) => (prevState ?? 2004) + 1);
-    setIsLiked(true);
+    if (isLiked) {
+      setIsLiked(false)
+      setInitialLikes((prevState) => (prevState ?? 2004) - 1)
+    } else {
+      setInitialLikes((prevState) => (prevState ?? 2004) + 1);
+      setIsLiked(true);
+    }
   }
 
   return (
