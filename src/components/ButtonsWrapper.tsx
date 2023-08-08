@@ -24,6 +24,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   hoverBgColor: string;
   activeTextColor: string;
   activeBgColor: string;
+  ariaLabel: string;
 }
 
 function Button({
@@ -36,8 +37,23 @@ function Button({
   className,
   activeTextColor,
   activeBgColor,
+  ariaLabel,
 }: ButtonProps) {
   const isMobile = window.matchMedia("(max-width: 768px)").matches;
+  const [showTooltip, setShowTooltip] = useState(false);
+
+  let timeout: number;
+
+  function handleMouseEnter() {
+    timeout = setTimeout(() => {
+      setShowTooltip(true);
+    }, 500);
+  }
+
+  function handleMouseLeave() {
+    clearTimeout(timeout);
+    setShowTooltip(false);
+  }
 
   return (
     <button
@@ -48,13 +64,17 @@ function Button({
         className
       )}
       onClick={handleIncreaseLike}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       <div
         className={`w-[34.75px] h-[34.75px] grid place-items-center rounded-full -m-2 transition-colors duration-200 ${
           isMobile ? activeBgColor : hoverBgColor
-        } active:scale-95`}
+        } active:scale-95 relative`}
+        aria-label={ariaLabel}
       >
         {!isLiked ? <Icon size={18.75} /> : <Icon size={18.75} weight="fill" />}
+        {showTooltip && <span className="tooltip">{ariaLabel}</span>}
       </div>
       <span className="pl-1">{text}</span>
     </button>
@@ -71,8 +91,8 @@ export function ButtonsWrapper({
 
   function handleIncreaseLike() {
     if (isLiked) {
-      setIsLiked(false)
-      setInitialLikes((prevState) => (prevState ?? 2004) - 1)
+      setIsLiked(false);
+      setInitialLikes((prevState) => (prevState ?? 2004) - 1);
     } else {
       setInitialLikes((prevState) => (prevState ?? 2004) + 1);
       setIsLiked(true);
@@ -91,6 +111,7 @@ export function ButtonsWrapper({
         hoverBgColor="group-hover:bg-twitterBlue/10"
         activeTextColor="active:text-twitterBlue"
         activeBgColor="group-active:bg-twitterBlue/10"
+        ariaLabel="Reply"
       />
       <Button
         icon={ArrowsClockwise}
@@ -99,6 +120,7 @@ export function ButtonsWrapper({
         hoverBgColor="group-hover:bg-retweetGreen/10"
         activeTextColor="active:text-retweetGreen"
         activeBgColor="group-active:bg-retweetGreen/10"
+        ariaLabel="Retweet"
       />
       <Button
         icon={Heart}
@@ -110,6 +132,7 @@ export function ButtonsWrapper({
         className={`${isLiked ? "text-likePink" : ""}`}
         activeTextColor="active:text-likePink"
         activeBgColor="group-active:bg-likePink/10"
+        ariaLabel={`${isLiked ? "Unlike" : "Like"}`}
       />
       <Button
         icon={ChartLine}
@@ -119,6 +142,7 @@ export function ButtonsWrapper({
         className="md:hidden"
         activeTextColor=""
         activeBgColor=""
+        ariaLabel="View"
       />
       <Button
         icon={Export}
@@ -128,6 +152,7 @@ export function ButtonsWrapper({
         className="md:hidden"
         activeTextColor=""
         activeBgColor=""
+        ariaLabel="Share"
       />
     </div>
   );
