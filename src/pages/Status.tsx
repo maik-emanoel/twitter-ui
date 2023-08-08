@@ -14,9 +14,9 @@ export function Status() {
   const [newAnswer, setNewAnswer] = useState("");
   const [answers, setAnswers] = useState<AnswerProps[]>([
     {
-      userAvatar: "https://github.com/maik-emanoel.png",
-      userName: "Maik Emanoel",
-      userLogin: "maik_emanoel",
+      userAvatar: "https://github.com/maykbrito.png",
+      userName: "Mayk Brito",
+      userLogin: "maykbrito",
       content: "Estamos fazendo progresso",
     },
     {
