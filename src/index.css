@@ -14,16 +14,29 @@
         font-family: 'Roboto', sans-serif;
     }
 
-    button {
-        cursor: pointer;
-    }
-
     textarea {
         background: transparent;
     }
 
     a {
         color: inherit;
+    }
+
+    html.dark .tooltip {
+        color: white;
+        background: rgba(240, 240, 240, .4);
+    }
+
+    .tooltip {
+        position: absolute;
+        bottom: -80%;
+        background-color: rgba(0, 0, 0, 0.6);
+        color: white;
+        padding: 2px 4px;
+        border-radius: 3px;
+        font-size: .75rem;
+        white-space: nowrap;
+        pointer-events: none;
     }
 }
 
