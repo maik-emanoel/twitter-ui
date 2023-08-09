@@ -7,7 +7,10 @@ interface AnswerProps {
   userAvatar: string,
   userName: string,
   userLogin: string,
-  content: string
+  content: string,
+  comments: number,
+  retweets: number,
+  likes: number
 }
 
 export function Status() {
@@ -18,12 +21,18 @@ export function Status() {
       userName: "Mayk Brito",
       userLogin: "maykbrito",
       content: "Estamos fazendo progresso",
+      comments: 1,
+      retweets: 9,
+      likes: 2004
     },
     {
       userAvatar: "https://github.com/diego3g.png",
       userName: "Diego Fernandes",
       userLogin: "diego_3g",
       content: "Realmente, faz sentido",
+      comments: 13,
+      retweets: 46,
+      likes: 3021
     },
   ]);
 
@@ -32,6 +41,9 @@ export function Status() {
     userName: "Maik Emanoel",
     userLogin: "maik_emanoel",
     content: newAnswer,
+    comments: 0,
+    retweets: 0,
+    likes: 0
   };
 
   function createNewAnswer(e: FormEvent) {
@@ -60,6 +72,9 @@ export function Status() {
         userName="Maik Emanoel"
         userLogin="maik_emanoel"
         content="adipisci suscipit beatae perferendis doloribus facere voluptate. Ipsam aperiam reiciendis reprehenderit quas animi recusandae."
+        comments={1}
+        retweets={9}
+        likes={2004}
       />
 
       <Separator />
@@ -94,14 +109,17 @@ export function Status() {
       </form>
 
       <div className="sm:mb-12">
-        {answers.map((answer, index) => {
+        {answers.map((answer) => {
           return (
             <Tweet
-              key={index}
+              key={answer.content}
               userAvatar={answer.userAvatar}
               userName={answer.userName}
               userLogin={answer.userLogin}
               content={answer.content}
+              comments={answer.comments}
+              retweets={answer.retweets}
+              likes={answer.likes}
             />
           );
         })}
