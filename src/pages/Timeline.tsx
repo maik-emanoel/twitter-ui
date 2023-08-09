@@ -12,16 +12,19 @@ export interface TweetProps {
   userLogin: string;
   content: string;
   imageUrl?: string | undefined;
-  comments?: number,
-  retweets?: number
-  likes?: number
+  comments: number,
+  retweets: number
+  likes: number
 }
 
 export function Timeline() {
   const [isTweetFormVisible, setIsTweetFormVisible] = useState(false);
   const [tweets, setTweets] = useState<TweetProps[]>([...initialTweets]);
 
+  const [scrollPosition, setScrollPosition] = useState(0)
+
   function handleShowTweetForm() {
+    setScrollPosition(window.scrollY)
     setIsTweetFormVisible(true);
   }
 
@@ -34,15 +37,16 @@ export function Timeline() {
         setTweets={setTweets}
         isTweetFormVisible={isTweetFormVisible}
         setIsTweetFormVisible={setIsTweetFormVisible}
+        scrollPosition={scrollPosition}
       />
 
       <Separator />
 
       <div className="sm:mb-12">
-        {tweets.map((tweet, index) => {
+        {tweets.map((tweet) => {
           return (
             <Tweet
-              key={index}
+              key={tweet.content}
               userAvatar={tweet.userAvatar}
               userName={tweet.userName}
               userLogin={tweet.userLogin}
