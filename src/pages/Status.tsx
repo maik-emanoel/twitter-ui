@@ -87,21 +87,21 @@ export function Status() {
           <img
             src="https://github.com/maik-emanoel.png"
             alt="Maik Emanoel"
-            className="w-12 h-12 rounded-full"
+            className="w-12 h-12 rounded-full sm:w-10 sm:h-10"
           />
           <textarea
             id="tweet"
             placeholder="Tweet your answer"
             value={newAnswer}
             onKeyDown={handleHotKeySubmit}
-            className="flex-1 text-xl font-medium mt-5 resize-none focus:outline-none placeholder:text-[#5b7073] placeholder:dark:text-[#828282]"
+            className="flex-1 text-xl font-medium mt-5 resize-none focus:outline-none placeholder:text-[#5b7073] placeholder:dark:text-[#828282] sm:placeholder:text-base"
             onChange={(e) => setNewAnswer(e.target.value)}
           />
         </label>
 
         <button
           type="submit"
-          className="ml-auto bg-twitterBlue rounded-full py-3 px-6 text-white font-black transition-all duration-300 ease-in-out hover:brightness-90 disabled:opacity-60"
+          className="ml-auto bg-twitterBlue rounded-full py-3 px-6 text-white font-black transition-all duration-300 ease-in-out hover:brightness-90 disabled:opacity-60 sm:py-2 sm:px-5"
           disabled={newAnswer === "" ? true : false}
         >
           Answer
