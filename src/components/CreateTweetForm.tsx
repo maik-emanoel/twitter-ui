@@ -1,5 +1,5 @@
 import { ArrowLeft } from "@phosphor-icons/react";
-import { useState, FormEvent, KeyboardEvent, useEffect } from "react";
+import { useState, FormEvent, KeyboardEvent } from "react";
 import { TweetToolbar } from "./TweetToolbar";
 import { TweetProps } from "../pages/Timeline";
 
@@ -19,6 +19,7 @@ export function CreateTweetForm({
   scrollPosition,
 }: CreateNewFormProps) {
   const [newTweet, setNewTweet] = useState("");
+
   const newTweetObj: TweetProps = {
     userAvatar: "https://github.com/maik-emanoel.png",
     userName: "Maik Emanoel",
@@ -37,7 +38,7 @@ export function CreateTweetForm({
     setNewTweet("");
 
     setTimeout(() => {
-      handleHideTweetForm();
+      handleHideTweetFormAndShowTweetOnTop()
     }, 700);
   }
 
@@ -49,24 +50,22 @@ export function CreateTweetForm({
       setNewTweet("");
 
       setTimeout(() => {
-        handleHideTweetForm();
+        handleHideTweetFormAndShowTweetOnTop();
       }, 700);
     }
   }
 
-  function handleHideTweetForm() {
-    setIsTweetFormVisible(false);
+  function handleHideTweetFormAndShowTweetOnTop () {
+    setIsTweetFormVisible(false)
+    window.scrollTo(0, 0)
+    document.body.style.overflow = 'initial'
   }
 
-  useEffect(() => {
-    if(isTweetFormVisible) {
-      window.scrollTo(0, 0)
-      document.body.style.overflow = "hidden"
-    } else {
-      window.scrollTo(0, scrollPosition)
-      document.body.style.overflow = "initial"
-    }
-  }, [isTweetFormVisible, scrollPosition])
+  function handleHideTweetForm() {
+    setIsTweetFormVisible(false);
+    window.scrollTo(0, scrollPosition)
+    document.body.style.overflow = 'initial'
+  }
 
   return (
     <form
