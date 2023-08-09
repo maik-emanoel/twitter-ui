@@ -106,7 +106,7 @@ export function ButtonsWrapper({
     >
       <Button
         icon={ChatCircle}
-        text={comments ? comments : "01"}
+        text={comments ? comments : 0}
         hoverTextColor="hover:text-twitterBlue"
         hoverBgColor="group-hover:bg-twitterBlue/10"
         activeTextColor="active:text-twitterBlue"
@@ -115,7 +115,7 @@ export function ButtonsWrapper({
       />
       <Button
         icon={ArrowsClockwise}
-        text={retweets ? String(retweets).padStart(2, "0") : "09"}
+        text={retweets ? String(retweets).padStart(2, "0") : 0}
         hoverTextColor="hover:text-retweetGreen"
         hoverBgColor="group-hover:bg-retweetGreen/10"
         activeTextColor="active:text-retweetGreen"
@@ -124,7 +124,7 @@ export function ButtonsWrapper({
       />
       <Button
         icon={Heart}
-        text={initialLikes ? initialLikes : 2004}
+        text={initialLikes ? initialLikes : 0}
         hoverTextColor="hover:text-likePink"
         hoverBgColor="group-hover:bg-likePink/10"
         handleIncreaseLike={handleIncreaseLike}
