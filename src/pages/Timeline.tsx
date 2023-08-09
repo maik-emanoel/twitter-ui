@@ -26,6 +26,9 @@ export function Timeline() {
   function handleShowTweetForm() {
     setScrollPosition(window.scrollY)
     setIsTweetFormVisible(true);
+
+    window.scrollTo(0, 0)
+    document.body.style.overflow = 'hidden'
   }
 
   return (
