@@ -1,5 +1,5 @@
 import { ArrowLeft } from "@phosphor-icons/react";
-import { useState, FormEvent, KeyboardEvent } from "react";
+import { useState, FormEvent, KeyboardEvent, useEffect } from "react";
 import { TweetToolbar } from "./TweetToolbar";
 import { TweetProps } from "../pages/Timeline";
 
@@ -8,6 +8,7 @@ interface CreateNewFormProps {
   setTweets: React.Dispatch<React.SetStateAction<TweetProps[]>>;
   isTweetFormVisible: boolean;
   setIsTweetFormVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  scrollPosition: number
 }
 
 export function CreateTweetForm({
@@ -15,14 +16,18 @@ export function CreateTweetForm({
   setTweets,
   isTweetFormVisible,
   setIsTweetFormVisible,
+  scrollPosition,
 }: CreateNewFormProps) {
   const [newTweet, setNewTweet] = useState("");
   const newTweetObj: TweetProps = {
     userAvatar: "https://github.com/maik-emanoel.png",
     userName: "Maik Emanoel",
     userLogin: "maik_emanoel",
-    content: newTweet
-  }
+    content: newTweet,
+    comments: 0,
+    retweets: 0,
+    likes: 0
+  };
 
   function createNewTweet(e: FormEvent) {
     e.preventDefault();
@@ -53,11 +58,21 @@ export function CreateTweetForm({
     setIsTweetFormVisible(false);
   }
 
+  useEffect(() => {
+    if(isTweetFormVisible) {
+      window.scrollTo(0, 0)
+      document.body.style.overflow = "hidden"
+    } else {
+      window.scrollTo(0, scrollPosition)
+      document.body.style.overflow = "initial"
+    }
+  }, [isTweetFormVisible, scrollPosition])
+
   return (
     <form
       data-isvisible={isTweetFormVisible}
       onSubmit={createNewTweet}
-      className="py-6 px-5 flex flex-col gap-2 sm:absolute sm:inset-0 sm:gap-0 sm:bg-white sm:z-50 dark:sm:bg-bodyDark sm:py-0 data-[isvisible=true]:sm:flex data-[isvisible=false]:sm:hidden"
+      className="py-6 px-5 flex flex-col gap-2 sm:absolute sm:inset-0 sm:gap-0 sm:bg-white sm:z-50 dark:sm:bg-bodyDark sm:py-0 data-[isvisible=true]:sm:flex data-[isvisible=false]:sm:hidden sm:min-h-screen overflow-hidden"
     >
       <header className="hidden h-[53px] sm:flex sm:items-center">
         <ArrowLeft size={20} onClick={handleHideTweetForm} />
