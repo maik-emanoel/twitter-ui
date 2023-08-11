@@ -97,7 +97,7 @@ export function CreateTweetForm({
 
       <button
         type="submit"
-        className="ml-auto bg-twitterBlue rounded-full py-3 px-6 text-white font-black transition-all duration-300 ease-in-out hover:brightness-90 disabled:opacity-60 sm:absolute sm:top-3 sm:right-5 sm:h-8 sm:px-4 sm:py-0"
+        className="ml-auto bg-twitterBlue rounded-full py-3 px-6 text-white font-black transition-all duration-300 ease-in-out hover:brightness-90 disabled:opacity-60 disabled:pointer-events-none sm:absolute sm:top-3 sm:right-5 sm:h-8 sm:px-4 sm:py-0"
         disabled={newTweet === "" ? true : false}
       >
         Tweet
