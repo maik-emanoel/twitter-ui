@@ -21,7 +21,7 @@ export function Sidebar() {
       <div className="flex flex-col gap-8 md:items-center">
         <img src={twitterLogo} alt="Logo" className="w-8 h-8" />
 
-        <nav className="flex flex-col gap-2">
+        <nav className="flex flex-col gap-1">
           <SidebarLink
             path="/"
             icon={<House size={32} weight="fill" />}
@@ -48,7 +48,7 @@ export function Sidebar() {
           />
         </nav>
 
-        <button className="bg-twitterBlue rounded-full p-4 flex justify-center w-full text-white text-xl font-black hover:brightness-90 md:p-2 md:w-10 md:h-10">
+        <button className="bg-twitterBlue rounded-full flex justify-center items-center w-full h-14 text-white text-xl font-black hover:brightness-90 md:p-2 md:w-10 md:h-10">
           <Pencil className="w-6 h-6 hidden md:block" />
           <span className="md:hidden">Tweet</span>
         </button>
@@ -56,9 +56,7 @@ export function Sidebar() {
 
       <div
         className={`p-4 flex items-center gap-3 my-3 rounded-full transition-colors duration-200 select-none cursor-pointer ${
-          !isMobile
-            ? "hover:bg-zinc-100 hover:dark:bg-zinc-800"
-            : ''
+          !isMobile ? "hover:bg-zinc-100 hover:dark:bg-zinc-800" : ""
         } md:w-16 md:h-16 md:p-3`}
       >
         <img
