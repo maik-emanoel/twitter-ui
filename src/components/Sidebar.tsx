@@ -19,7 +19,7 @@ export function Sidebar() {
   return (
     <aside className="pt-6 px-5 flex flex-col justify-between md:items-center h-screen sticky top-0 md:px-0 sm:hidden">
       <div className="flex flex-col gap-8 md:items-center">
-        <img src={twitterLogo} alt="Logo" className="w-8 h-8" />
+        <img src={twitterLogo} alt="Logo" className="w-8 h-8 ml-2 cursor-pointer" />
 
         <nav className="flex flex-col gap-1">
           <SidebarLink
