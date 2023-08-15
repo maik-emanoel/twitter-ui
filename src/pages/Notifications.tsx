@@ -19,7 +19,7 @@ function NotificationsLink({ path, name }: NotificationsLinkProps) {
         isActive ? "dark:text-white" : "text-zinc-400 dark:text-white/40"
       } ${
         touchIsSupported
-          ? "active:bg-zinc-100 active:dark:bg-zinc-800"
+          ? ""
           : "hover:bg-zinc-100 hover:dark:bg-zinc-800"
       }`}
     >
