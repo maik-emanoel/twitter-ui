@@ -9,7 +9,7 @@ interface SidebarLinkProps {
 
 export function SidebarLink({ path, icon: Icon, text }: SidebarLinkProps) {
   const location = useLocation(); 
-  const isActive = location.pathname === path; 
+  const isActive = location.pathname.split('/', 2).join('/') === path; 
 
   return (
     <NavLink

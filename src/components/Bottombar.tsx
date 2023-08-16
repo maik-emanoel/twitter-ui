@@ -8,7 +8,7 @@ interface BottombarLinkProps {
 
 export function BottombarLink({ to, icon: Icon }: BottombarLinkProps) {
   const location = useLocation();
-  const isActive = location.pathname === to;
+  const isActive = location.pathname.split('/', 2).join('/') === to;
 
   return (
     <NavLink
