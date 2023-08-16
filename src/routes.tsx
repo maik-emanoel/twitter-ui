@@ -5,6 +5,12 @@ import { Default } from "./layouts/Default";
 import { ErrorPage } from "./pages/ErrorPage";
 import { Notifications } from "./pages/Notifications";
 
+import {
+  DefaultNotification,
+  Verified,
+  Mentions,
+} from "./pages/subpages/NotificationSections";
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -23,12 +29,16 @@ export const router = createBrowserRouter([
         element: <Notifications />,
         children: [
           {
+            path: "/notifications/",
+            element: <DefaultNotification />,
+          },
+          {
             path: "/notifications/verified",
-            element: <h1>Olá</h1>,
+            element: <Verified />,
           },
           {
             path: "/notifications/mentions",
-            element: <h1>Oi</h1>,
+            element: <Mentions />,
           },
         ],
       },
