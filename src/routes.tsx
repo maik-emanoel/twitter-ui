@@ -10,6 +10,7 @@ import {
   Verified,
   Mentions,
 } from "./pages/subpages/NotificationSections";
+import { Messages } from "./pages/Messages";
 
 export const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ export const router = createBrowserRouter([
           },
         ],
       },
+      {
+        path: "/messages",
+        element: <Messages />
+      }
     ],
     errorElement: <ErrorPage />,
   },
