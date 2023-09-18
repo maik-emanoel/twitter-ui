@@ -22,7 +22,7 @@ export const router = createBrowserRouter([
         element: <Timeline />,
       },
       {
-        path: "/status",
+        path: "/status/:id",
         element: <Status />,
       },
       {
