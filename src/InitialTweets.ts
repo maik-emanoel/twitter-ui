@@ -1,5 +1,6 @@
 export const initialTweets = [
   {
+    id: "0f044d98-f23d-48bf-99ed-e447af45f37f",
     userAvatar: "https://github.com/maik-emanoel.png",
     userName: "Maik Emanoel",
     userLogin: "maik_emanoel",
@@ -9,6 +10,7 @@ export const initialTweets = [
     likes: 2023,
   },
   {
+    id: "a23dd7c9-f772-4095-97bc-6fa2f955b096",
     userAvatar: "https://github.com/diego3g.png",
     userName: "Diego Fernandes",
     userLogin: "dieegosf",
@@ -19,6 +21,7 @@ export const initialTweets = [
     likes: 2023,
   },
   {
+    id: "bf89917d-3bd4-4cd8-bad2-da2bdadde488",
     userAvatar: "https://github.com/maykbrito.png",
     userName: "Mayk Brito",
     userLogin: "maykbrito",
@@ -29,6 +32,7 @@ export const initialTweets = [
     likes: 2023,
   },
   {
+    id: "vlneivdd",
     userAvatar: "https://github.com/rocketseat.png",
     userName: "Rocketseat",
     userLogin: "rockeatseat",
@@ -42,6 +46,7 @@ export const initialTweets = [
     likes: 1980,
   },
   {
+    id: "2dd54c62-509b-44a7-bc35-934dcd7d8a6d",
     userAvatar: "https://github.com/diego3g.png",
     userName: "Diego Fernandes",
     userLogin: "dieegosf",
@@ -52,6 +57,7 @@ export const initialTweets = [
     likes: 2005,
   },
   {
+    id: "33a5f411-4e05-4ee0-bc5b-2d66f8c9a117",
     userAvatar: "https://github.com/rocketseat.png",
     userName: "Rocketseat",
     userLogin: "rockeatseat",
