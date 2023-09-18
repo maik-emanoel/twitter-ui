@@ -38,7 +38,6 @@ export function Header({ title }: HeaderProps) {
       } else {
         html?.classList.add("dark");
       }
-      console.log(isDark)
   }, [isDark])
 
   return (
