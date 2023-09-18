@@ -2,18 +2,24 @@ import { FormEvent, KeyboardEvent, useState } from "react";
 import { Header } from "../components/Header";
 import { Separator } from "../components/Separator";
 import { Tweet } from "../components/Tweet";
+import { useParams } from "react-router-dom";
+import { useTweetContext } from "../context/TweetContext";
+import { ErrorPage } from "./ErrorPage";
 
 interface AnswerProps {
-  userAvatar: string,
-  userName: string,
-  userLogin: string,
-  content: string,
-  comments: number,
-  retweets: number,
-  likes: number
+  userAvatar: string;
+  userName: string;
+  userLogin: string;
+  content: string;
+  comments: number;
+  retweets: number;
+  likes: number;
 }
 
 export function Status() {
+  const { id } = useParams();
+  const { tweets } = useTweetContext()
+
   const [newAnswer, setNewAnswer] = useState("");
   const [answers, setAnswers] = useState<AnswerProps[]>([
     {
@@ -23,7 +29,7 @@ export function Status() {
       content: "Estamos fazendo progresso",
       comments: 1,
       retweets: 9,
-      likes: 2004
+      likes: 2004,
     },
     {
       userAvatar: "https://github.com/diego3g.png",
@@ -32,7 +38,7 @@ export function Status() {
       content: "Realmente, faz sentido",
       comments: 13,
       retweets: 46,
-      likes: 3021
+      likes: 3021,
     },
   ]);
 
@@ -43,7 +49,7 @@ export function Status() {
     content: newAnswer,
     comments: 0,
     retweets: 0,
-    likes: 0
+    likes: 0,
   };
 
   function createNewAnswer(e: FormEvent) {
@@ -63,19 +69,27 @@ export function Status() {
     }
   }
 
+  const tweet = tweets.find((tweet) => tweet.id === id);
+
+  if(!tweet) {
+    return <ErrorPage />
+  }
+
   return (
     <main>
       <Header title="Tweet" />
 
       <Tweet
-        userAvatar="https://github.com/maik-emanoel.png"
-        userName="Maik Emanoel"
-        userLogin="maik_emanoel"
-        content="adipisci suscipit beatae perferendis doloribus facere voluptate. Ipsam aperiam reiciendis reprehenderit quas animi recusandae."
-        comments={1}
-        retweets={9}
-        likes={2004}
-      />
+          id={tweet.id}
+          userAvatar={tweet.userAvatar}
+          userName={tweet.userName}
+          userLogin={tweet.userLogin}
+          content={tweet.content}
+          imageUrl={tweet.imageUrl}
+          comments={tweet.comments}
+          retweets={tweet.retweets}
+          likes={tweet.likes}
+        />
 
       <Separator />
 
@@ -83,7 +97,10 @@ export function Status() {
         onSubmit={createNewAnswer}
         className="py-6 px-5 flex items-center gap-2 border-b-[1px] border-grayBorde dark:border-grayBorderDark sm:flex-col sm:pt-2"
       >
-        <label htmlFor="tweet" className="flex items-center gap-3 flex-1 sm:w-full">
+        <label
+          htmlFor="tweet"
+          className="flex items-center gap-3 flex-1 sm:w-full"
+        >
           <img
             src="https://github.com/maik-emanoel.png"
             alt="Maik Emanoel"
@@ -112,6 +129,7 @@ export function Status() {
         {answers.map((answer) => {
           return (
             <Tweet
+              id=""
               key={answer.content}
               userAvatar={answer.userAvatar}
               userName={answer.userName}
