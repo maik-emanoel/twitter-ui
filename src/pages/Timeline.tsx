@@ -4,33 +4,33 @@ import { Tweet } from "../components/Tweet";
 import { CreateTweetForm } from "../components/CreateTweetForm";
 import { useState } from "react";
 import { Pencil } from "@phosphor-icons/react";
-import { initialTweets } from "../InitialTweets";
+import { useTweetContext } from "../context/TweetContext";
 
 export interface TweetProps {
+  id: string;
   userAvatar: string;
   userName: string;
   userLogin: string;
   content: string;
   imageUrl?: string | undefined;
-  comments: number,
-  retweets: number
-  likes: number
+  comments: number;
+  retweets: number;
+  likes: number;
 }
 
 export function Timeline() {
   const [isTweetFormVisible, setIsTweetFormVisible] = useState(false);
-  const [tweets, setTweets] = useState<TweetProps[]>([...initialTweets]);
+  const { tweets, setTweets } = useTweetContext();
 
-  const [scrollPosition, setScrollPosition] = useState(0)
+  const [scrollPosition, setScrollPosition] = useState(0);
 
   function handleShowTweetForm() {
-    setScrollPosition(window.scrollY)
+    setScrollPosition(window.scrollY);
     setIsTweetFormVisible(true);
 
-    window.scrollTo(0, 0)
-    document.body.style.overflow = 'hidden'
+    window.scrollTo(0, 0);
+    document.body.style.overflow = "hidden";
   }
-
   return (
     <main>
       <Header title="Home" />
@@ -49,7 +49,8 @@ export function Timeline() {
         {tweets.map((tweet) => {
           return (
             <Tweet
-              key={tweet.content}
+              key={tweet.id}
+              id={tweet.id}
               userAvatar={tweet.userAvatar}
               userName={tweet.userName}
               userLogin={tweet.userLogin}
