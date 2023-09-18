@@ -2,6 +2,7 @@ import { ArrowLeft } from "@phosphor-icons/react";
 import { useState, FormEvent, KeyboardEvent } from "react";
 import { TweetToolbar } from "./TweetToolbar";
 import { TweetProps } from "../pages/Timeline";
+import { v4 as uuidv4 } from "uuid";
 
 interface CreateNewFormProps {
   tweets: TweetProps[];
@@ -21,13 +22,14 @@ export function CreateTweetForm({
   const [newTweet, setNewTweet] = useState("");
 
   const newTweetObj: TweetProps = {
+    id: uuidv4(),
     userAvatar: "https://github.com/maik-emanoel.png",
     userName: "Maik Emanoel",
     userLogin: "maik_emanoel",
     content: newTweet,
     comments: 0,
     retweets: 0,
-    likes: 0
+    likes: 0,
   };
 
   function createNewTweet(e: FormEvent) {
