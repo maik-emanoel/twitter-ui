@@ -32,7 +32,7 @@ export const initialTweets = [
     likes: 2023,
   },
   {
-    id: "vlneivdd",
+    id: "cc9cbc1e-7012-4346-b0c7-0978987b4975",
     userAvatar: "https://github.com/rocketseat.png",
     userName: "Rocketseat",
     userLogin: "rockeatseat",
