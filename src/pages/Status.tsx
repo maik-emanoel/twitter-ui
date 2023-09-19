@@ -5,6 +5,7 @@ import { Tweet } from "../components/Tweet";
 import { useParams } from "react-router-dom";
 import { useTweetContext } from "../context/TweetContext";
 import { ErrorPage } from "./ErrorPage";
+import { initialTweets } from "../InitialTweets";
 
 interface AnswerProps {
   userAvatar: string;
@@ -69,7 +70,7 @@ export function Status() {
     }
   }
 
-  const tweet = tweets.find((tweet) => tweet.id === id);
+  const tweet = tweets.concat(initialTweets).find((tweet) => tweet.id === id);
 
   if(!tweet) {
     return <ErrorPage />
