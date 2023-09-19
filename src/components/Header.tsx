@@ -9,7 +9,6 @@ interface HeaderProps {
 }
 
 export function Header({ title }: HeaderProps) {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   const [isDark, setIsDark] = useState<boolean>(loadDarkModeValue());
   const { handleShowMobileSidebar } = useSidebarContext()
 
