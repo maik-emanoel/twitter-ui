@@ -5,6 +5,7 @@ import { CreateTweetForm } from "../components/CreateTweetForm";
 import { useState } from "react";
 import { Pencil } from "@phosphor-icons/react";
 import { useTweetContext } from "../context/TweetContext";
+import { initialTweets } from "../InitialTweets";
 
 export interface TweetProps {
   id: string;
@@ -46,7 +47,7 @@ export function Timeline() {
       <Separator />
 
       <div className="sm:mb-12">
-        {tweets.map((tweet) => {
+        {tweets.concat(initialTweets).map((tweet) => {
           return (
             <Tweet
               key={tweet.id}
