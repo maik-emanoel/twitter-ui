@@ -1,6 +1,6 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { TweetProps } from "../pages/Timeline";
-import { initialTweets } from "../InitialTweets";
+import { loadTweets, saveTweets } from "../utils/tweetsUtils";
 
 type TweetContextType = {
   tweets: TweetProps[];
@@ -10,7 +10,11 @@ type TweetContextType = {
 const TweetContext = createContext<TweetContextType | undefined>(undefined);
 
 export function TweetProvider({ children }: { children: React.ReactNode }) {
-  const [tweets, setTweets] = useState<TweetProps[]>([...initialTweets]);
+  const [tweets, setTweets] = useState<TweetProps[]>(loadTweets());
+
+  useEffect(() => {
+    saveTweets(tweets);
+  }, [tweets]);
 
   return (
     <TweetContext.Provider value={{ tweets, setTweets }}>
@@ -23,7 +27,9 @@ export function TweetProvider({ children }: { children: React.ReactNode }) {
 export function useTweetContext() {
   const context = useContext(TweetContext);
   if (context === undefined) {
-    throw new Error("useTweetContext deve ser usado dentro de um TweetProvider");
+    throw new Error(
+      "useTweetContext deve ser usado dentro de um TweetProvider"
+    );
   }
   return context;
 }
