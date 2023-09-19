@@ -1,9 +1,8 @@
 export function saveDarkModeValue(value: boolean | null) {
-    localStorage.setItem('darkModeValue', JSON.stringify(value))
+    localStorage.setItem('lightModeValue', JSON.stringify(value))
 }
 
 export function loadDarkModeValue() {
-    const savedModeDarkValue = localStorage.getItem('darkModeValue')
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    return savedModeDarkValue ? JSON.parse(savedModeDarkValue) : true
+    const savedModeDarkValue = localStorage.getItem('lightModeValue')
+    return savedModeDarkValue ? JSON.parse(savedModeDarkValue) as boolean : true
 }
