@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { TweetProps } from "../pages/Timeline";
 import { ButtonsWrapper } from "./ButtonsWrapper";
+import { isTouchSupported } from "../utils/touchUtils";
 
 export function Tweet({
   userAvatar,
@@ -13,12 +14,13 @@ export function Tweet({
   likes,
   id
 }: TweetProps) {
-  const isMobile = window.matchMedia("(max-width: 768px)").matches
-
   return (
     <Link
       to={`/status/${id}`}
-      className={`w-full py-6 px-5 grid grid-cols-[max-content_1fr] gap-3 border-b-[1px] border-grayBorder transition-colors duration-200 dark:border-grayBorderDark ${isMobile ? '' : 'hover:bg-black/[0.03] hover:dark:bg-white/[0.03]'}`}
+      data-istouchsupported={isTouchSupported}
+      className="w-full py-6 px-5 grid grid-cols-[max-content_1fr] gap-3 border-b-[1px] border-grayBorder transition-colors duration-200 dark:border-grayBorderDark 
+      data-[istouchsupported=false]:hover:bg-black/[0.03] 
+      data-[istouchsupported=false]:hover:dark:bg-white/[0.03]"
     >
       <img src={userAvatar} alt={userName} className="w-10 h-10 rounded-full" />
 

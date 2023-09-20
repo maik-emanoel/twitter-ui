@@ -3,13 +3,14 @@ import { useState, FormEvent, KeyboardEvent } from "react";
 import { TweetToolbar } from "./TweetToolbar";
 import { TweetProps } from "../pages/Timeline";
 import { v4 as uuidv4 } from "uuid";
+import { isTouchSupported } from "../utils/touchUtils";
 
 interface CreateNewFormProps {
   tweets: TweetProps[];
   setTweets: React.Dispatch<React.SetStateAction<TweetProps[]>>;
   isTweetFormVisible: boolean;
   setIsTweetFormVisible: React.Dispatch<React.SetStateAction<boolean>>;
-  scrollPosition: number
+  scrollPosition: number;
 }
 
 export function CreateTweetForm({
@@ -40,7 +41,7 @@ export function CreateTweetForm({
     setNewTweet("");
 
     setTimeout(() => {
-      handleHideTweetFormAndShowTweetOnTop()
+      handleHideTweetFormAndShowTweetOnTop();
     }, 700);
   }
 
@@ -57,16 +58,16 @@ export function CreateTweetForm({
     }
   }
 
-  function handleHideTweetFormAndShowTweetOnTop () {
-    setIsTweetFormVisible(false)
-    window.scrollTo(0, 0)
-    document.body.style.overflow = 'initial'
+  function handleHideTweetFormAndShowTweetOnTop() {
+    setIsTweetFormVisible(false);
+    window.scrollTo(0, 0);
+    document.body.style.overflow = "initial";
   }
 
   function handleHideTweetForm() {
     setIsTweetFormVisible(false);
-    window.scrollTo(0, scrollPosition)
-    document.body.style.overflow = 'initial'
+    window.scrollTo(0, scrollPosition);
+    document.body.style.overflow = "initial";
   }
 
   return (
@@ -99,7 +100,9 @@ export function CreateTweetForm({
 
       <button
         type="submit"
-        className="ml-auto bg-twitterBlue rounded-full py-3 px-6 text-white font-black transition-all duration-300 ease-in-out hover:brightness-90 disabled:opacity-60 disabled:pointer-events-none sm:absolute sm:top-3 sm:right-5 sm:h-8 sm:px-4 sm:py-0"
+        data-istouchsupported={isTouchSupported}
+        className="ml-auto bg-twitterBlue rounded-full py-3 px-6 text-white font-black transition-all duration-300 ease-in-out disabled:opacity-60 disabled:pointer-events-none sm:absolute sm:top-3 sm:right-5 sm:h-8 sm:px-4 sm:py-0
+        data-[istouchsupported=false]:hover:brightness-90"
         disabled={newTweet === "" ? true : false}
       >
         Tweet

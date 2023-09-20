@@ -12,10 +12,9 @@ import {
   User,
 } from "@phosphor-icons/react";
 import { SidebarLink } from "./SidebarLink";
+import { isTouchSupported } from "../utils/touchUtils";
 
 export function Sidebar() {
-  const isMobile = window.matchMedia("(max-width: 768px)").matches;
-
   return (
     <aside className="pt-6 px-5 flex flex-col justify-between md:items-center h-screen sticky top-0 md:px-0 sm:hidden">
       <div className="flex flex-col gap-8 md:items-center">
@@ -44,16 +43,18 @@ export function Sidebar() {
           <SidebarLink path="/more" icon={DotsThreeCircle} text="More" />
         </nav>
 
-        <button className="bg-twitterBlue rounded-full flex justify-center items-center w-full h-14 text-white text-xl font-black hover:brightness-90 md:p-2 md:w-10 md:h-10">
+        <button data-istouchsupported={isTouchSupported} className="bg-twitterBlue rounded-full flex justify-center items-center w-full h-14 text-white text-xl font-black md:p-2 md:w-10 md:h-10 data-[istouchsupported=false]:hover:brightness-90">
           <Pencil className="w-6 h-6 hidden md:block" />
           <span className="md:hidden">Tweet</span>
         </button>
       </div>
 
       <div
-        className={`p-4 flex items-center gap-3 my-3 rounded-full transition-colors duration-200 select-none cursor-pointer ${
-          !isMobile ? "hover:bg-zinc-100 hover:dark:bg-zinc-800" : ""
-        } md:w-16 md:h-16 md:p-3`}
+      data-istouchsupported={isTouchSupported}
+        className="p-4 flex items-center gap-3 my-3 rounded-full transition-colors duration-200 select-none cursor-pointer
+        md:w-16 md:h-16 md:p-3 
+        data-[istouchsupported=false]:hover:bg-zinc-100 
+        data-[istouchsupported=false]:hover:dark:bg-zinc-800"
       >
         <img
           src="https://github.com/maik-emanoel.png"

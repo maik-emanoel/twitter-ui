@@ -1,5 +1,6 @@
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import { Header } from "../components/Header";
+import { isTouchSupported as touchIsSupported } from "../utils/touchUtils";
 
 interface NotificationsLinkProps {
   path: string;
@@ -9,8 +10,6 @@ interface NotificationsLinkProps {
 function NotificationsLink({ path, name }: NotificationsLinkProps) {
   const location = useLocation();
   const isActive = location.pathname === path;
-
-  const touchIsSupported = window.matchMedia("(pointer: coarse)").matches;
 
   return (
     <NavLink

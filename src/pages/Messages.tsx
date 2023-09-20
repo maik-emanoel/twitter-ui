@@ -1,4 +1,5 @@
 import { Header } from "../components/Header";
+import { isTouchSupported } from "../utils/touchUtils";
 
 export function Messages() {
   return (
@@ -11,7 +12,11 @@ export function Messages() {
           you and others on X.
         </p>
 
-        <button className="rounded-full bg-twitterBlue px-8 min-h-[52px] text-white text-lg font-bold hover:brightness-90">
+        <button
+          data-istouchsupported={isTouchSupported}
+          className="rounded-full bg-twitterBlue px-8 min-h-[52px] text-white text-lg font-bold 
+          data-[istouchsupported=false]:hover:brightness-90"
+        >
           Write a message
         </button>
       </div>

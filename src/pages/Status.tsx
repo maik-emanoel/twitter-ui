@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { useTweetContext } from "../context/TweetContext";
 import { ErrorPage } from "./ErrorPage";
 import { initialTweets } from "../InitialTweets";
+import { isTouchSupported } from "../utils/touchUtils";
 
 interface AnswerProps {
   userAvatar: string;
@@ -119,7 +120,8 @@ export function Status() {
 
         <button
           type="submit"
-          className="ml-auto bg-twitterBlue rounded-full py-3 px-6 text-white font-black transition-all duration-300 ease-in-out hover:brightness-90 disabled:opacity-60 disabled:pointer-events-none sm:py-2 sm:px-5"
+          data-istouchsupported={isTouchSupported}
+          className="ml-auto bg-twitterBlue rounded-full py-3 px-6 text-white font-black transition-all duration-300 ease-in-out  disabled:opacity-60 disabled:pointer-events-none sm:py-2 sm:px-5 data-[istouchsupported=false]:hover:brightness-90"
           disabled={newAnswer === "" ? true : false}
         >
           Answer

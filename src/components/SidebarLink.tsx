@@ -1,5 +1,6 @@
 import { IconProps } from "@phosphor-icons/react";
 import { NavLink, useLocation } from "react-router-dom";
+import { isTouchSupported } from "../utils/touchUtils";
 
 interface SidebarLinkProps {
   path: string;
@@ -14,9 +15,12 @@ export function SidebarLink({ path, icon: Icon, text }: SidebarLinkProps) {
   return (
     <NavLink
       to={path}
-      className={`flex items-center gap-5 w-fit text-xl font-bold rounded-full py-2 pl-2 pr-6 hover:bg-zinc-100 hover:dark:bg-zinc-800 md:p-2 ${
-        isActive ? "active" : ""
-      }`}
+      data-istouchsupported={isTouchSupported}
+      data-isactive={isActive}
+      className="flex items-center gap-5 w-fit text-xl font-bold rounded-full py-2 pl-2 pr-6 md:p-2 
+      data-[istouchsupported=false]:hover:bg-zinc-100 
+      data-[istouchsupported=false]:hover:dark:bg-zinc-800 
+      data-[isactive=true]:active"
     >
       <Icon size={32} weight={isActive ? "fill" : "regular"} />
       <span className="md:hidden">{text}</span>

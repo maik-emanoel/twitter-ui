@@ -7,6 +7,7 @@ import {
 } from "@phosphor-icons/react";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
+import { isTouchSupported } from "../utils/touchUtils";
 
 interface ButtonsWrapperProps {
   comments: number | undefined;
@@ -39,7 +40,6 @@ function Button({
   activeBgColor,
   ariaLabel,
 }: ButtonProps) {
-  const isMobile = window.matchMedia("(max-width: 768px)").matches;
   const [showTooltip, setShowTooltip] = useState(false);
 
   let timeout: number;
@@ -59,7 +59,7 @@ function Button({
     <button
       className={twMerge(
         `flex items-center gap-2 text-sm text-[#89a2b8] ${
-          isMobile ? activeTextColor : hoverTextColor
+          isTouchSupported ? activeTextColor : hoverTextColor
         } group`,
         className
       )}
@@ -69,12 +69,12 @@ function Button({
     >
       <div
         className={`w-[34.75px] h-[34.75px] grid place-items-center rounded-full -m-2 transition-colors duration-200 ${
-          isMobile ? activeBgColor : hoverBgColor
+          isTouchSupported ? activeBgColor : hoverBgColor
         } active:scale-95 relative`}
         aria-label={ariaLabel}
       >
         {!isLiked ? <Icon size={18.75} /> : <Icon size={18.75} weight="fill" />}
-        {showTooltip && !isMobile && <span className="tooltip">{ariaLabel}</span>}
+        {showTooltip && !isTouchSupported && <span className="tooltip">{ariaLabel}</span>}
       </div>
       <span className="pl-1">{text}</span>
     </button>
@@ -140,8 +140,8 @@ export function ButtonsWrapper({
         hoverTextColor="hover:text-twitterBlue"
         hoverBgColor="group-hover:bg-twitterBlue/10"
         className="md:hidden"
-        activeTextColor=""
-        activeBgColor=""
+        activeTextColor="active:text-twitterBlue"
+        activeBgColor="group-active:bg-twitterBlue/10"
         ariaLabel="View"
       />
       <Button
@@ -150,8 +150,8 @@ export function ButtonsWrapper({
         hoverTextColor="hover:text-twitterBlue"
         hoverBgColor="group-hover:bg-twitterBlue/10"
         className="md:hidden"
-        activeTextColor=""
-        activeBgColor=""
+        activeTextColor="active:text-twitterBlue"
+        activeBgColor="group-active:bg-twitterBlue/10"
         ariaLabel="Share"
       />
     </div>
