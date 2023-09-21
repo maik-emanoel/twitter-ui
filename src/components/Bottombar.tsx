@@ -1,4 +1,10 @@
-import { Bell, Envelope, House, IconProps, MagnifyingGlass } from "@phosphor-icons/react";
+import {
+  Bell,
+  Envelope,
+  House,
+  IconProps,
+  MagnifyingGlass,
+} from "@phosphor-icons/react";
 import { NavLink, useLocation } from "react-router-dom";
 
 interface BottombarLinkProps {
@@ -8,14 +14,15 @@ interface BottombarLinkProps {
 
 export function BottombarLink({ to, icon: Icon }: BottombarLinkProps) {
   const location = useLocation();
-  const isActive = location.pathname.split('/', 2).join('/') === to;
+  const isActive = location.pathname.split("/", 2).join("/") === to;
 
   return (
-    <NavLink
-      to={to}
-      className="flex items-center h-full justify-center"
-    >
-      <Icon size={24} weight={isActive ? "fill" : "regular"} />
+    <NavLink to={to} className="flex items-center h-full justify-center">
+      <Icon
+        size={24}
+        weight={isActive ? "fill" : "regular"}
+        className={`${isActive ? "text-twitterBlue" : ""}`}
+      />
     </NavLink>
   );
 }
