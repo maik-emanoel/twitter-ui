@@ -2,6 +2,9 @@ import { Link } from "react-router-dom";
 import { TweetProps } from "../pages/Timeline";
 import { ButtonsWrapper } from "./ButtonsWrapper";
 import { isTouchSupported } from "../utils/touchUtils";
+import { DotsThree } from "@phosphor-icons/react";
+import { useState } from "react";
+import { Menu } from "./Menu";
 
 export function Tweet({
   userAvatar,
@@ -12,8 +15,10 @@ export function Tweet({
   comments,
   retweets,
   likes,
-  id
+  id,
 }: TweetProps) {
+  const [isMenuVisible, setIsMenuVisible] = useState(false)
+
   return (
     <Link
       to={`/status/${id}`}
@@ -25,11 +30,34 @@ export function Tweet({
       <img src={userAvatar} alt={userName} className="w-10 h-10 rounded-full" />
 
       <div className="flex flex-col gap-[2px] max-w-[500px]">
-        <div className="flex items-center gap-1">
-          <strong>{userName}</strong>
-          <span className="text-sm text-[#89a2b8] dark:text-[#828282]">
-            @{userLogin}
-          </span>
+        <div className="flex items-center justify-between relative">
+          <div className="flex items-center gap-1">
+            <strong>{userName}</strong>
+            <span className="text-sm text-[#89a2b8] dark:text-[#828282]">
+              @{userLogin}
+            </span>
+          </div>
+
+          <div
+            data-istouchsupported={isTouchSupported}
+            className="absolute -top-2 right-0 w-[34.75px] h-[34.75px] group rounded-full grid place-items-center 
+            data-[istouchsupported=false]:hover:bg-twitterBlue/10"
+            onClick={(e) => {
+              e.preventDefault()
+              setIsMenuVisible(true)
+            }}
+          >
+            <DotsThree
+              weight="bold"
+              size={18.75}
+              data-istouchsupported={isTouchSupported}
+              className="text-black/50 dark:text-white/50 data-[istouchsupported=false]:group-hover:text-twitterBlue"
+            />
+          </div>
+
+          {isMenuVisible && (
+            <Menu setIsMenuVisible={setIsMenuVisible} />
+          )}
         </div>
 
         <div>
