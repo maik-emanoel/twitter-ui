@@ -59,7 +59,7 @@ export function Tweet({
             />
           </div>
 
-          {isMenuVisible && <Menu setIsMenuVisible={setIsMenuVisible} isMenuVisible={isMenuVisible} />}
+          {isMenuVisible && <Menu setIsMenuVisible={setIsMenuVisible} isMenuVisible={isMenuVisible} tweetId={id} />}
         </div>
 
         <div>
