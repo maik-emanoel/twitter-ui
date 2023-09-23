@@ -53,12 +53,12 @@ export function Menu({ setIsMenuVisible, isMenuVisible }: MenuProps) {
 
   return (
     <div
-      className="sm:bg-black/40 sm:fixed sm:z-50 sm:inset-0"
+      className="sm:bg-black/40 sm:fixed sm:z-50 sm:inset-0 sm:dark:bg-[rgba(91,_112,_131,_0.4)]"
       onClick={(e) => e.preventDefault()}
     >
       <div
         ref={menuRef}
-        className="absolute top-0 right-0 w-72 h-fit z-20 bg-white rounded-xl shadow-menu dark:bg-bodyDark dark:shadow-menuDark sm:bottom-0 sm:top-auto sm:w-full sm:rounded-b-none"
+        className="absolute top-0 right-0 w-72 h-fit z-20 bg-white rounded-xl shadow-menu dark:bg-bodyDark dark:shadow-menuDark sm:bottom-0 sm:top-auto sm:w-full sm:rounded-b-none sm:dark:shadow-none"
         onClick={(e) => e.preventDefault()}
       >
         <MenuItem icon={Trash} text="Delete" />
@@ -70,7 +70,7 @@ export function Menu({ setIsMenuVisible, isMenuVisible }: MenuProps) {
         <MenuItem icon={ChartBar} text="View post analytics" />
 
         <button
-          className="hidden w-[95%] h-11 my-3 mx-auto border rounded-full items-center justify-center font-bold transition-colors duration-200 sm:flex active:bg-tweetColor"
+          className="hidden w-[95%] h-11 my-3 mx-auto border rounded-full items-center justify-center font-bold transition-colors duration-200 sm:flex active:bg-tweetColor dark:border-grayBorderDark dark:active:bg-white/10"
           onClick={() => setIsMenuVisible(false)}
         >
           Cancel
