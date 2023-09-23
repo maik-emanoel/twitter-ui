@@ -16,6 +16,7 @@ interface MenuItemProps {
 
 interface MenuProps {
   setIsMenuVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  isMenuVisible: boolean
 }
 
 function MenuItem(props: MenuItemProps) {
@@ -27,13 +28,12 @@ function MenuItem(props: MenuItemProps) {
   );
 }
 
-export function Menu({ setIsMenuVisible }: MenuProps) {
+export function Menu({ setIsMenuVisible, isMenuVisible }: MenuProps) {
   const menuRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (menuRef.current && !menuRef.current?.contains(e.target as Node)) {
-        console.log("oi");
         setIsMenuVisible(false);
       }
     }
@@ -42,16 +42,23 @@ export function Menu({ setIsMenuVisible }: MenuProps) {
       window.addEventListener("click", handleClickOutside);
     }, 100);
 
+    if(window.matchMedia('(max-width: 425px)').matches && isMenuVisible) {
+      document.body.style.overflowY = 'hidden'
+    } 
+
     return () => {
-      window.removeEventListener("click", handleClickOutside);
-    };
-  }, [setIsMenuVisible]);
+      document.body.style.overflowY = 'initial'
+    }
+  }, [setIsMenuVisible, isMenuVisible]);
 
   return (
-    <div className="sm:bg-red-500 sm:fixed sm:z-50 sm:inset-0">
+    <div
+      className="sm:bg-black/40 sm:fixed sm:z-50 sm:inset-0"
+      onClick={(e) => e.preventDefault()}
+    >
       <div
         ref={menuRef}
-        className="absolute top-0 right-0 w-72 h-fit z-20 bg-white rounded-xl shadow-menu dark:bg-bodyDark dark:shadow-menuDark sm:w-full sm:bottom-2"
+        className="absolute top-0 right-0 w-72 h-fit z-20 bg-white rounded-xl shadow-menu dark:bg-bodyDark dark:shadow-menuDark sm:bottom-0 sm:top-auto sm:w-full sm:rounded-b-none"
         onClick={(e) => e.preventDefault()}
       >
         <MenuItem icon={Trash} text="Delete" />
@@ -61,6 +68,13 @@ export function Menu({ setIsMenuVisible }: MenuProps) {
         <MenuItem icon={ChartBar} text="View post engagements" />
         <MenuItem icon={Code} text="Embed post" />
         <MenuItem icon={ChartBar} text="View post analytics" />
+
+        <button
+          className="hidden w-[95%] h-11 my-3 mx-auto border rounded-full items-center justify-center font-bold transition-colors duration-200 sm:flex active:bg-tweetColor"
+          onClick={() => setIsMenuVisible(false)}
+        >
+          Cancel
+        </button>
       </div>
     </div>
   );
