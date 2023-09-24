@@ -9,6 +9,7 @@ import {
 } from "@phosphor-icons/react";
 import { useEffect, useRef } from "react";
 import { useTweetContext } from "../context/TweetContext";
+import { isTouchSupported } from "../utils/touchUtils";
 
 interface MenuItemProps {
   icon: React.ElementType<IconProps>;
@@ -29,11 +30,17 @@ function MenuItem(props: MenuItemProps) {
   return (
     <div
       data-isdeletebutton={props.isDeleteButton}
-      className="py-3 px-4 flex items-center gap-2 data-[isdeletebutton=true]:text-red-600"
+      data-istouchsupported={isTouchSupported}
+      className="py-3 px-4 flex items-center gap-2 
+      data-[isdeletebutton=true]:text-red-600 
+      data-[istouchsupported=false]:hover:bg-black/5 
+      data-[istouchsupported=false]:dark:hover:bg-white/5"
       onClick={() => {
         if (props.isDeleteButton) {
-          const updatedTweets = tweets.filter((tweet) => props.tweetId !== tweet.id)
-          setTweets(updatedTweets)
+          const updatedTweets = tweets.filter(
+            (tweet) => props.tweetId !== tweet.id
+          );
+          setTweets(updatedTweets);
         }
       }}
     >
@@ -73,7 +80,7 @@ export function Menu({ setIsMenuVisible, isMenuVisible, tweetId }: MenuProps) {
     >
       <div
         ref={menuRef}
-        className="absolute top-0 right-0 w-72 h-fit z-20 bg-white rounded-xl shadow-menu dark:bg-bodyDark dark:shadow-menuDark sm:bottom-0 sm:top-auto sm:w-full sm:rounded-b-none sm:dark:shadow-none"
+        className="absolute top-0 right-0 w-72 h-fit z-20 bg-white rounded-xl shadow-menu overflow-hidden dark:bg-bodyDark dark:shadow-menuDark sm:bottom-0 sm:top-auto sm:w-full sm:rounded-b-none sm:dark:shadow-none"
         onClick={(e) => e.preventDefault()}
       >
         <MenuItem icon={Trash} text="Delete" isDeleteButton tweetId={tweetId} />
