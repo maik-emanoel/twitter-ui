@@ -2,10 +2,15 @@ import {
   ChartBar,
   ChatCircle,
   Code,
+  FlagPennant,
   IconProps,
+  ListPlus,
+  Prohibit,
   PushPinSimple,
   Sparkle,
+  SpeakerX,
   Trash,
+  UserMinus,
 } from "@phosphor-icons/react";
 import { useEffect, useRef } from "react";
 import { useTweetContext } from "../context/TweetContext";
@@ -22,6 +27,7 @@ interface MenuProps {
   setIsMenuVisible: React.Dispatch<React.SetStateAction<boolean>>;
   isMenuVisible: boolean;
   tweetId: string;
+  userLogin: string;
 }
 
 function MenuItem(props: MenuItemProps) {
@@ -50,7 +56,12 @@ function MenuItem(props: MenuItemProps) {
   );
 }
 
-export function Menu({ setIsMenuVisible, isMenuVisible, tweetId }: MenuProps) {
+export function Menu({
+  setIsMenuVisible,
+  isMenuVisible,
+  tweetId,
+  userLogin,
+}: MenuProps) {
   const menuRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -80,16 +91,38 @@ export function Menu({ setIsMenuVisible, isMenuVisible, tweetId }: MenuProps) {
     >
       <div
         ref={menuRef}
-        className="absolute top-0 right-0 w-72 h-fit z-20 bg-white rounded-xl shadow-menu overflow-hidden dark:bg-bodyDark dark:shadow-menuDark sm:bottom-0 sm:top-auto sm:w-full sm:rounded-b-none sm:dark:shadow-none"
+        className={`absolute top-0 right-0 max-w-[384px] h-fit z-20 bg-white rounded-xl shadow-menu overflow-hidden dark:bg-bodyDark dark:shadow-menuDark sm:bottom-0 sm:top-auto sm:w-full sm:rounded-b-none sm:dark:shadow-none ${userLogin === 'maik_emanoel' ? 'w-72' : 'w-fit'} sm:max-w-none`}
         onClick={(e) => e.preventDefault()}
       >
-        <MenuItem icon={Trash} text="Delete" isDeleteButton tweetId={tweetId} />
-        <MenuItem icon={PushPinSimple} text="Pin to your profile" />
-        <MenuItem icon={Sparkle} text="Highlight on your profile" />
-        <MenuItem icon={ChatCircle} text="Change who can reply" />
-        <MenuItem icon={ChartBar} text="View post engagements" />
-        <MenuItem icon={Code} text="Embed post" />
-        <MenuItem icon={ChartBar} text="View post analytics" />
+        {userLogin === "maik_emanoel" ? (
+          <>
+            <MenuItem
+              icon={Trash}
+              text="Delete"
+              isDeleteButton
+              tweetId={tweetId}
+            />
+            <MenuItem icon={PushPinSimple} text="Pin to your profile" />
+            <MenuItem icon={Sparkle} text="Highlight on your profile" />
+            <MenuItem icon={ChatCircle} text="Change who can reply" />
+            <MenuItem icon={ChartBar} text="View post engagements" />
+            <MenuItem icon={Code} text="Embed post" />
+            <MenuItem icon={ChartBar} text="View post analytics" />
+          </>
+        ) : (
+          <>
+            <MenuItem icon={UserMinus} text={`Unfollow @${userLogin}`} />
+            <MenuItem
+              icon={ListPlus}
+              text={`Add/Remove @${userLogin} from lists`}
+            />
+            <MenuItem icon={SpeakerX} text={`Mute @${userLogin}`} />
+            <MenuItem icon={Prohibit} text={`Block @${userLogin}`} />
+            <MenuItem icon={ChartBar} text="View post engagements" />
+            <MenuItem icon={Code} text="Embed post" />
+            <MenuItem icon={FlagPennant} text="Report post" />
+          </>
+        )}
 
         <button
           className="hidden w-[95%] h-11 my-3 mx-auto border rounded-full items-center justify-center font-bold transition-colors duration-200 sm:flex active:bg-tweetColor dark:border-grayBorderDark dark:active:bg-white/10"
