@@ -91,7 +91,7 @@ export function Menu({
     >
       <div
         ref={menuRef}
-        className={`absolute top-0 right-0 max-w-[384px] h-fit z-20 bg-white rounded-xl shadow-menu overflow-hidden dark:bg-bodyDark dark:shadow-menuDark sm:bottom-0 sm:top-auto sm:w-full sm:rounded-b-none sm:dark:shadow-none ${userLogin === 'maik_emanoel' ? 'w-72' : 'w-fit'} sm:max-w-none`}
+        className={`absolute top-0 right-0 max-w-[384px] h-fit z-20 bg-white rounded-xl shadow-menu overflow-hidden dark:bg-bodyDark dark:shadow-menuDark animate-fadeDown sm:bottom-0 sm:top-auto sm:w-full sm:rounded-b-none sm:dark:shadow-none ${userLogin === 'maik_emanoel' ? 'w-72' : 'w-fit'} sm:max-w-none sm:animate-fadeUp`}
         onClick={(e) => e.preventDefault()}
       >
         {userLogin === "maik_emanoel" ? (
