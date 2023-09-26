@@ -35,7 +35,7 @@ export function CreateTweetForm({
 
   function createNewTweet(e: FormEvent) {
     e.preventDefault();
-    if (newTweet === "") return;
+    if (newTweet.trim() === "") return;
 
     setTweets([newTweetObj, ...tweets]);
     setNewTweet("");
@@ -46,7 +46,7 @@ export function CreateTweetForm({
   }
 
   function handleHotKeySubmit(e: KeyboardEvent) {
-    if (newTweet === "") return;
+    if (newTweet.trim() === "") return;
 
     if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) {
       setTweets([newTweetObj, ...tweets]);
@@ -101,9 +101,9 @@ export function CreateTweetForm({
       <button
         type="submit"
         data-istouchsupported={isTouchSupported}
-        className="ml-auto bg-twitterBlue rounded-full py-3 px-6 text-white font-black transition-all duration-300 ease-in-out disabled:opacity-60 disabled:pointer-events-none sm:absolute sm:top-3 sm:right-5 sm:h-8 sm:px-4 sm:py-0
+        className="ml-auto bg-twitterBlue rounded-full py-3 px-6 text-white font-black transition-all duration-300 ease-in-out select-none disabled:opacity-60 disabled:pointer-events-none sm:absolute sm:top-3 sm:right-5 sm:h-8 sm:px-4 sm:py-0
         data-[istouchsupported=false]:hover:brightness-90"
-        disabled={newTweet === "" ? true : false}
+        disabled={newTweet.trim() === "" ? true : false}
       >
         Tweet
       </button>
