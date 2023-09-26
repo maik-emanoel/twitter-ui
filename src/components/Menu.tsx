@@ -12,7 +12,7 @@ import {
   Trash,
   UserMinus,
 } from "@phosphor-icons/react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTweetContext } from "../context/TweetContext";
 import { isTouchSupported } from "../utils/touchUtils";
 
@@ -63,11 +63,20 @@ export function Menu({
   userLogin,
 }: MenuProps) {
   const menuRef = useRef<HTMLDivElement | null>(null);
+  const layerRef = useRef<HTMLDivElement | null>(null);
+  const [layer, setLayer] = useState(false);
 
   useEffect(() => {
+    setLayer(true);
     function handleClickOutside(e: MouseEvent) {
       if (menuRef.current && !menuRef.current?.contains(e.target as Node)) {
         setIsMenuVisible(false);
+      }
+
+      if (layerRef.current) {
+        if (menuRef.current?.contains(e.target as Node)) {
+          layerRef.current.style.pointerEvents = "none";
+        }
       }
     }
 
@@ -91,7 +100,9 @@ export function Menu({
     >
       <div
         ref={menuRef}
-        className={`absolute top-0 right-0 max-w-[384px] h-fit z-20 bg-white rounded-xl shadow-menu overflow-hidden dark:bg-bodyDark dark:shadow-menuDark animate-fadeDown sm:bottom-0 sm:top-auto sm:w-full sm:rounded-b-none sm:dark:shadow-none ${userLogin === 'maik_emanoel' ? 'w-72' : 'w-fit'} sm:max-w-none sm:animate-fadeUp`}
+        className={`absolute top-0 right-0 max-w-[384px] h-fit z-20 bg-white rounded-xl shadow-menu overflow-hidden dark:bg-bodyDark dark:shadow-menuDark animate-fadeDown sm:bottom-0 sm:top-auto sm:w-full sm:rounded-b-none sm:dark:shadow-none ${
+          userLogin === "maik_emanoel" ? "w-72" : "w-fit"
+        } sm:max-w-none sm:animate-fadeUp`}
         onClick={(e) => e.preventDefault()}
       >
         {userLogin === "maik_emanoel" ? (
@@ -131,6 +142,14 @@ export function Menu({
           Cancel
         </button>
       </div>
+
+      {layer && (
+        <div
+          ref={layerRef}
+          className="fixed inset-0"
+          onClick={(e) => e.preventDefault()}
+        ></div>
+      )}
     </div>
   );
 }
