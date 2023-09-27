@@ -1,5 +1,6 @@
 import { Plus } from "@phosphor-icons/react";
 import { useEffect, useState } from "react";
+import { maxCharacters } from "../utils/maxCharacters";
 
 interface CountdownWrapper {
   characters: string;
@@ -8,7 +9,6 @@ interface CountdownWrapper {
 export function CountdownWrapper(props: CountdownWrapper) {
   const [progress, setProgress] = useState(0);
   const numberCharacters = props.characters.length;
-  const totalCharacters = 280;
 
   useEffect(() => {
     setProgress(numberCharacters);
@@ -16,9 +16,9 @@ export function CountdownWrapper(props: CountdownWrapper) {
 
   let fillColor;
 
-  if (progress >= 260 && progress < totalCharacters) {
+  if (progress >= 260 && progress < maxCharacters) {
     fillColor = "#FFD400";
-  } else if (progress >= totalCharacters) {
+  } else if (progress >= maxCharacters) {
     fillColor = "#F4212E";
   } else {
     fillColor = "#1D9BF0";
@@ -33,15 +33,15 @@ export function CountdownWrapper(props: CountdownWrapper) {
             className="relative w-6 h-6 rounded-full bg-gradient dark:bg-gradient-dark transition-all duration-200"
             style={
               {
-                "--progress": `${progress * (360 / totalCharacters)}deg`,
+                "--progress": `${progress * (360 / maxCharacters)}deg`,
                 "--fillColor": fillColor,
               } as React.CSSProperties
             }
           >
             <div className="absolute top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%] bg-white dark:bg-bodyDark w-5 h-5 rounded-full">
-              {numberCharacters >= totalCharacters - 20 && (
+              {numberCharacters >= maxCharacters - 20 && (
                 <span className="absolute top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%] text-[10px]">
-                  {totalCharacters - numberCharacters}
+                  {maxCharacters - numberCharacters}
                 </span>
               )}
             </div>
