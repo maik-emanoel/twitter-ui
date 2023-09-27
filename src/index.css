@@ -38,6 +38,14 @@
         white-space: nowrap;
         pointer-events: none;
     }
+
+    .bg-gradient {
+        background: conic-gradient(var(--fillColor) var(--progress, 0) , #EFF3F4 0deg);
+    }
+
+    .bg-gradient-dark {
+        background: conic-gradient(var(--fillColor) var(--progress, 0) , #2F3336 0deg);
+    }
 }
 
 @layer components {
