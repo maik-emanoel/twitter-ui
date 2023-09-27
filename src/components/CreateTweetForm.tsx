@@ -4,6 +4,7 @@ import { TweetToolbar } from "./TweetToolbar";
 import { TweetProps } from "../pages/Timeline";
 import { v4 as uuidv4 } from "uuid";
 import { isTouchSupported } from "../utils/touchUtils";
+import { CountdownWrapper } from "./CountdownWrapper";
 
 interface CreateNewFormProps {
   tweets: TweetProps[];
@@ -98,15 +99,19 @@ export function CreateTweetForm({
 
       <TweetToolbar />
 
-      <button
-        type="submit"
-        data-istouchsupported={isTouchSupported}
-        className="ml-auto bg-twitterBlue rounded-full py-3 px-6 text-white font-black transition-all duration-300 ease-in-out select-none disabled:opacity-60 disabled:pointer-events-none sm:absolute sm:top-3 sm:right-5 sm:h-8 sm:px-4 sm:py-0
+      <div className="ml-auto flex items-center gap-3">
+        <CountdownWrapper characters={newTweet} />
+
+        <button
+          type="submit"
+          data-istouchsupported={isTouchSupported}
+          className="bg-twitterBlue rounded-full py-3 px-6 text-white font-black transition-all duration-300 ease-in-out select-none disabled:opacity-60 disabled:pointer-events-none sm:absolute sm:top-3 sm:right-5 sm:h-8 sm:px-4 sm:py-0
         data-[istouchsupported=false]:hover:brightness-90"
-        disabled={newTweet.trim() === "" ? true : false}
-      >
-        Tweet
-      </button>
+          disabled={newTweet.trim() === "" ? true : false}
+        >
+          Tweet
+        </button>
+      </div>
     </form>
   );
 }
