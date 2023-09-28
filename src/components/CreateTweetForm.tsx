@@ -1,5 +1,5 @@
 import { ArrowLeft } from "@phosphor-icons/react";
-import { useState, FormEvent, KeyboardEvent } from "react";
+import { useState, FormEvent, KeyboardEvent, useRef, useEffect } from "react";
 import { TweetToolbar } from "./TweetToolbar";
 import { TweetProps } from "../pages/Timeline";
 import { v4 as uuidv4 } from "uuid";
@@ -23,6 +23,7 @@ export function CreateTweetForm({
   scrollPosition,
 }: CreateNewFormProps) {
   const [newTweet, setNewTweet] = useState("");
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null)
 
   const newTweetObj: TweetProps = {
     id: uuidv4(),
@@ -73,11 +74,19 @@ export function CreateTweetForm({
     document.body.style.overflow = "initial";
   }
 
+  useEffect(() => {
+    if (textareaRef && textareaRef.current) {
+      textareaRef.current.style.height = "0px";
+      const scrollHeight = textareaRef.current.scrollHeight;
+      textareaRef.current.style.height = `${scrollHeight}px`;
+    }
+  }, [newTweet])
+
   return (
     <form
       data-isvisible={isTweetFormVisible}
       onSubmit={createNewTweet}
-      className="py-6 px-5 flex flex-col gap-2 sm:absolute sm:inset-0 sm:gap-0 sm:bg-white sm:z-50 dark:sm:bg-bodyDark sm:py-0 data-[isvisible=true]:sm:flex data-[isvisible=false]:sm:hidden sm:min-h-screen overflow-hidden"
+      className="py-6 px-5 flex flex-col gap-2 sm:absolute sm:inset-0 sm:gap-0 sm:bg-white sm:z-50 dark:sm:bg-bodyDark sm:py-0 data-[isvisible=true]:sm:flex data-[isvisible=false]:sm:hidden sm:max-h-screen overflow-hidden"
     >
       <header className="hidden h-[53px] sm:flex sm:items-center">
         <ArrowLeft size={20} onClick={handleHideTweetForm} />
@@ -91,11 +100,13 @@ export function CreateTweetForm({
         />
         <textarea
           id="tweet"
+          ref={textareaRef}
           placeholder="What's happening?"
-          className="flex-1 text-xl font-medium mt-3 resize-none focus:outline-none placeholder:text-[#5b7073] placeholder:dark:text-[#828282] sm:min-h-[96px]"
+          className="flex-1 text-xl font-medium mt-3 resize-none focus:outline-none placeholder:text-[#5b7073] placeholder:dark:text-[#828282] min-h-[56px] sm:min-h-[96px]"
           value={newTweet}
           onKeyDown={handleHotKeySubmit}
           onChange={(e) => setNewTweet(e.target.value)}
+          maxLength={380}
         />
       </label>
 
