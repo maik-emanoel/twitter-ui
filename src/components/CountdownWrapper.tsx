@@ -24,6 +24,8 @@ export function CountdownWrapper(props: CountdownWrapper) {
     fillColor = "#1D9BF0";
   }
 
+  const reachedTheLimit = progress >= maxCharacters;
+
   return (
     <>
       {progress > 0 && (
@@ -40,7 +42,10 @@ export function CountdownWrapper(props: CountdownWrapper) {
           >
             <div className="absolute top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%] bg-white dark:bg-bodyDark w-5 h-5 rounded-full">
               {numberCharacters >= maxCharacters - 20 && (
-                <span className="absolute top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%] text-[10px]">
+                <span
+                  data-reachedthelimit={reachedTheLimit}
+                  className="absolute top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%] text-[10px] data-[reachedthelimit=true]:text-[#F4212E]"
+                >
                   {maxCharacters - numberCharacters}
                 </span>
               )}
