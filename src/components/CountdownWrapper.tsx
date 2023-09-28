@@ -27,7 +27,7 @@ export function CountdownWrapper(props: CountdownWrapper) {
   return (
     <>
       {progress > 0 && (
-        <div className="flex items-center gap-1 h-8">
+        <div className="flex items-center gap-1 h-8 sm:self-end sm:mb-[2px]">
           <div
             role="circular-progress"
             className="relative w-6 h-6 rounded-full bg-gradient dark:bg-gradient-dark transition-all duration-200"
