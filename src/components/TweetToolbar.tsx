@@ -13,13 +13,19 @@ import React from "react";
 interface TweetToolbarItemProps {
   icon: React.ElementType<IconProps>;
   isFirst?: boolean;
+  isLast?: boolean;
 }
 
-function TweetToolbarItem({ icon: Icon, isFirst }: TweetToolbarItemProps) {
+function TweetToolbarItem({
+  icon: Icon,
+  isFirst,
+  isLast,
+}: TweetToolbarItemProps) {
   return (
     <div
       data-isfirst={isFirst}
-      className="w-9 h-9 grid place-items-center rounded-full active:bg-twitterBlue/20 data-[isfirst=true]:-ml-2"
+      data-islast={isLast}
+      className="w-9 h-9 grid place-items-center rounded-full active:bg-twitterBlue/20 data-[isfirst=true]:-ml-2 data-[islast=true]:opacity-40 data-[islast=true]:pointer-events-none"
     >
       <Icon size={20} weight="bold" />
     </div>
@@ -39,7 +45,7 @@ export function TweetToolbar() {
         <TweetToolbarItem icon={ListBullets} />
         <TweetToolbarItem icon={Smiley} />
         <TweetToolbarItem icon={CalendarBlank} />
-        <TweetToolbarItem icon={MapPin} />
+        <TweetToolbarItem icon={MapPin} isLast />
       </div>
     </div>
   );
