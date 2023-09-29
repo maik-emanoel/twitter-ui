@@ -8,11 +8,14 @@ import {
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { isTouchSupported } from "../utils/touchUtils";
+import { useTweetContext } from "../context/TweetContext";
 
 interface ButtonsWrapperProps {
   comments: number | undefined;
   retweets: number | undefined;
-  likes: number | undefined;
+  likes: number;
+  id: string;
+  isLikedTweet: boolean | undefined
 }
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -74,7 +77,9 @@ function Button({
         aria-label={ariaLabel}
       >
         {!isLiked ? <Icon size={18.75} /> : <Icon size={18.75} weight="fill" />}
-        {showTooltip && !isTouchSupported && <span className="tooltip">{ariaLabel}</span>}
+        {showTooltip && !isTouchSupported && (
+          <span className="tooltip">{ariaLabel}</span>
+        )}
       </div>
       <span className="pl-1">{text}</span>
     </button>
@@ -85,18 +90,35 @@ export function ButtonsWrapper({
   comments,
   retweets,
   likes,
+  id,
+  isLikedTweet
 }: ButtonsWrapperProps) {
   const [initialLikes, setInitialLikes] = useState(likes);
-  const [isLiked, setIsLiked] = useState(false);
+  const [isLiked, setIsLiked] = useState(isLikedTweet);
+
+  const { tweets, setTweets } = useTweetContext();
 
   function handleIncreaseLike() {
-    if (isLiked) {
-      setIsLiked(false);
-      setInitialLikes((prevState) => (prevState ?? 2004) - 1);
-    } else {
-      setInitialLikes((prevState) => (prevState ?? 2004) + 1);
-      setIsLiked(true);
-    }
+    setInitialLikes((prevState) => {
+      const newLikes = isLiked ? prevState - 1 : prevState + 1;
+      
+      const updatedLikes = tweets.map((tweet) => {
+        if (tweet.id === id) {
+          return {
+            ...tweet,
+            likes: newLikes,
+            isLiked: !isLiked
+          };
+        }
+        return tweet;
+      });
+  
+      setTweets(updatedLikes);
+      
+      return newLikes;
+    });
+  
+    setIsLiked((prevIsLiked) => !prevIsLiked);
   }
 
   return (
