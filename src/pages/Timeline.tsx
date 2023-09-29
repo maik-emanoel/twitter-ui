@@ -17,6 +17,7 @@ export interface TweetProps {
   comments: number;
   retweets: number;
   likes: number;
+  isLiked?: boolean
 }
 
 export function Timeline() {
@@ -60,6 +61,7 @@ export function Timeline() {
               comments={tweet.comments}
               retweets={tweet.retweets}
               likes={tweet.likes}
+              isLiked={tweet.isLiked}
             />
           );
         })}

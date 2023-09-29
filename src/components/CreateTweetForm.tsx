@@ -34,6 +34,7 @@ export function CreateTweetForm({
     comments: 0,
     retweets: 0,
     likes: 0,
+    isLiked: false
   };
 
   function createNewTweet(e: FormEvent) {

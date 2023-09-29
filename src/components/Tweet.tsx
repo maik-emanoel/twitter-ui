@@ -16,6 +16,7 @@ export function Tweet({
   retweets,
   likes,
   id,
+  isLiked
 }: TweetProps) {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
 
@@ -87,7 +88,7 @@ export function Tweet({
           )}
         </div>
 
-        <ButtonsWrapper comments={comments} retweets={retweets} likes={likes} />
+        <ButtonsWrapper comments={comments} retweets={retweets} likes={likes} id={id} isLikedTweet={isLiked} />
       </div>
     </Link>
   );
