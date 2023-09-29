@@ -40,7 +40,7 @@ export function Sidebar() {
           />
           <SidebarLink path="/lists" icon={FileText} text="Lists" />
           <SidebarLink path="/profile" icon={User} text="Profile" />
-          <SidebarLink path="/more" icon={DotsThreeCircle} text="More" />
+          <SidebarLink path="" icon={DotsThreeCircle} text="More" isNotAlink />
         </nav>
 
         <button data-istouchsupported={isTouchSupported} className="bg-twitterBlue rounded-full flex justify-center items-center w-full h-14 text-white text-xl font-black md:p-2 md:w-10 md:h-10 data-[istouchsupported=false]:hover:brightness-90">
