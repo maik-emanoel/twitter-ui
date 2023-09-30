@@ -36,9 +36,9 @@ export function Tweet({
           className="flex items-center justify-between relative
           sm:data-[ismenuvisible=true]:static"
         >
-          <div className="flex items-center gap-1">
-            <strong>{userName}</strong>
-            <span className="text-sm text-[#89a2b8] dark:text-[#828282]">
+          <div className="flex items-center gap-1 w-full">
+            <strong className="whitespace-nowrap">{userName}</strong>
+            <span className="text-sm text-[#89a2b8] dark:text-[#828282] w-full overflow-hidden overflow-ellipsis pr-9">
               @{userLogin}
             </span>
           </div>
