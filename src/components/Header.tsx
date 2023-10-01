@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import twitterLogo from "../assets/logo-twitter.svg";
 import { useSidebarContext } from "../context/SidebarContext";
 import { loadDarkModeValue, saveDarkModeValue } from "../utils/darkModeUtils";
+import { isTouchSupported } from "../utils/touchUtils";
 
 interface HeaderProps {
   title: string;
@@ -10,7 +11,7 @@ interface HeaderProps {
 
 export function Header({ title }: HeaderProps) {
   const [isDark, setIsDark] = useState<boolean>(loadDarkModeValue());
-  const { handleShowMobileSidebar } = useSidebarContext()
+  const { handleShowMobileSidebar } = useSidebarContext();
 
   function handleToggleTheme() {
     const html = document.querySelector("html");
@@ -24,20 +25,20 @@ export function Header({ title }: HeaderProps) {
   }
 
   function handleShowSidebar() {
-    handleShowMobileSidebar()
+    handleShowMobileSidebar();
   }
 
   useEffect(() => {
-      saveDarkModeValue(isDark);
+    saveDarkModeValue(isDark);
 
-      const html = document.querySelector("html");
-  
-      if (isDark) {
-        html?.classList.remove("dark");
-      } else {
-        html?.classList.add("dark");
-      }
-  }, [isDark])
+    const html = document.querySelector("html");
+
+    if (isDark) {
+      html?.classList.remove("dark");
+    } else {
+      html?.classList.add("dark");
+    }
+  }, [isDark]);
 
   return (
     <div className="py-6 px-5 flex items-center justify-between text-xl font-bold border-b-[1px] border-b-grayBorder bg-white/75 sticky top-0 backdrop-blur-md z-10 dark:border-b-grayBorderDark dark:text-tweetColor dark:bg-bodyDark/60 sm:py-3">
@@ -50,9 +51,17 @@ export function Header({ title }: HeaderProps) {
       </div>
       <span className="sm:hidden">{title}</span>
 
-      <img src={twitterLogo} alt="Logo do Twitter" className="hidden w-6 h-6 sm:block" />
-      <div className="flex items-center gap-2">
-        <button onClick={handleToggleTheme}>
+      <img
+        src={twitterLogo}
+        alt="Logo do Twitter"
+        className="hidden w-6 h-6 sm:block"
+      />
+      <div className="flex items-center gap-3">
+        <button
+          data-istouchsupported={isTouchSupported}
+          onClick={handleToggleTheme}
+          className="outline outline-transparent outline-8 data-[istouchsupported=false]:hover:outline-twitterBlue/10 data-[istouchsupported=false]:hover:bg-twitterBlue/10 rounded-full"
+        >
           {isDark ? (
             <SunDim size={24} className="text-twitterBlue" />
           ) : (
@@ -60,7 +69,12 @@ export function Header({ title }: HeaderProps) {
           )}
         </button>
 
-        <Sparkle className="w-6 h-6 text-twitterBlue sm:hidden" />
+        <button
+          data-istouchsupported={isTouchSupported}
+          className="outline outline-transparent outline-8 data-[istouchsupported=false]:hover:outline-twitterBlue/10 data-[istouchsupported=false]:hover:bg-twitterBlue/10 rounded-full sm:hidden"
+        >
+          <Sparkle size={24} className="text-twitterBlue" />
+        </button>
       </div>
     </div>
   );
