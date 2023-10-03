@@ -40,7 +40,7 @@ export function Sidebar() {
             text="Bookmarks"
           />
           <SidebarLink path="/lists" icon={FileText} text="Lists" />
-          <SidebarLink path="/profile" icon={User} text="Profile" />
+          <SidebarLink path={`/${initialUser.login}`} icon={User} text="Profile" />
           <SidebarLink path="" icon={DotsThreeCircle} text="More" isNotAlink />
         </nav>
 

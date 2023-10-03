@@ -12,6 +12,7 @@ import {
 } from "./pages/subpages/NotificationSections";
 import { Messages } from "./pages/Messages";
 import { Profile } from "./pages/Profile";
+import { initialUser } from "./initialUser";
 
 export const router = createBrowserRouter([
   {
@@ -49,7 +50,7 @@ export const router = createBrowserRouter([
         element: <Messages />
       },
       {
-        path: "/profile",
+        path: `/${initialUser.login}`,
         element: <Profile />
       }
     ],
