@@ -7,6 +7,7 @@ import { useTweetContext } from "../context/TweetContext";
 import { ErrorPage } from "./ErrorPage";
 import { initialTweets } from "../InitialTweets";
 import { isTouchSupported } from "../utils/touchUtils";
+import { initialUser } from "../initialUser";
 
 interface AnswerProps {
   userAvatar: string;
@@ -45,9 +46,9 @@ export function Status() {
   ]);
 
   const newAnswerObj: AnswerProps = {
-    userAvatar: "https://github.com/maik-emanoel.png",
-    userName: "Maik Emanoel",
-    userLogin: "maik_emanoel",
+    userAvatar: initialUser.avatarURL,
+    userName: initialUser.name,
+    userLogin: initialUser.login,
     content: newAnswer,
     comments: 0,
     retweets: 0,
@@ -104,8 +105,8 @@ export function Status() {
           className="flex items-center gap-3 flex-1 sm:w-full"
         >
           <img
-            src="https://github.com/maik-emanoel.png"
-            alt="Maik Emanoel"
+            src={initialUser.avatarURL}
+            alt={`Foto de perfil do usuário ${initialUser.name}`}
             className="w-12 h-12 rounded-full sm:w-10 sm:h-10"
           />
           <textarea

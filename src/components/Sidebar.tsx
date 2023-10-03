@@ -13,6 +13,7 @@ import {
 } from "@phosphor-icons/react";
 import { SidebarLink } from "./SidebarLink";
 import { isTouchSupported } from "../utils/touchUtils";
+import { initialUser } from "../initialUser";
 
 export function Sidebar() {
   return (
@@ -57,14 +58,14 @@ export function Sidebar() {
         data-[istouchsupported=false]:hover:dark:bg-zinc-800"
       >
         <img
-          src="https://github.com/maik-emanoel.png"
-          alt="Foto de perfil do usuário"
+          src={initialUser.avatarURL}
+          alt={`Foto de perfil do usuário ${initialUser.name}`}
           className="w-10 h-10 rounded-full"
         />
         <div className="flex flex-1 justify-between items-center md:hidden">
           <div className="flex flex-col flex-shrink-0 text-sm">
-            <span className="font-bold">Maik</span>
-            <span className="opacity-70 dark:opacity-50">@maik_emanoel</span>
+            <span className="font-bold">{initialUser.name}</span>
+            <span className="opacity-70 dark:opacity-50">@{initialUser.login}</span>
           </div>
           <div>
             <DotsThree weight="bold" size={18.75} />

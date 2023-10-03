@@ -17,6 +17,7 @@ import { useSidebarContext } from "../context/SidebarContext";
 import { MobileSidebarLink } from "./MobileSidebarLink";
 import { SectionLinks } from "./SectionLinks";
 import { useState } from "react";
+import { initialUser } from "../initialUser";
 
 export function MobileSidebar() {
   const { handleHideMobileSidebar } = useSidebarContext();
@@ -46,8 +47,8 @@ export function MobileSidebar() {
         <div className="p-4 flex flex-col">
           <div className="flex justify-between">
             <img
-              src="https://github.com/maik-emanoel.png"
-              alt="Maik Emanoel"
+              src={initialUser.avatarURL}
+              alt={`Foto de perfil do usuário ${initialUser.name}`}
               className="w-10 h-10 rounded-full"
             />
             <div className="w-8 h-8 rounded-full border border-grayBorder flex items-center justify-center">
@@ -56,17 +57,17 @@ export function MobileSidebar() {
           </div>
 
           <div className="flex flex-col mt-2">
-            <span className="font-bold leading-5">Maik</span>
-            <span className="text-sm opacity-80">@maik_emanoel</span>
+            <span className="font-bold leading-5">{initialUser.name}</span>
+            <span className="text-sm opacity-80">@{initialUser.login}</span>
           </div>
 
           <div className="flex mt-3 text-sm gap-5">
             <div>
-              <span className="font-bold mr-1 opacity-80">3</span>
+              <span className="font-bold mr-1 opacity-80">{initialUser.following}</span>
               <span>Following</span>
             </div>
             <div>
-              <span className="font-bold mr-1 opacity-80">1.232</span>
+              <span className="font-bold mr-1 opacity-80">{initialUser.followers}</span>
               <span>Follower</span>
             </div>
           </div>

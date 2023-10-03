@@ -5,6 +5,7 @@ import { useSidebarContext } from "../context/SidebarContext";
 import { loadDarkModeValue, saveDarkModeValue } from "../utils/darkModeUtils";
 import { isTouchSupported } from "../utils/touchUtils";
 import { twMerge } from "tailwind-merge";
+import { initialUser } from "../initialUser";
 
 interface HeaderProps extends React.HTMLProps<HTMLDivElement> {
   title: string;
@@ -55,8 +56,8 @@ export function Header({ title, children, className }: HeaderProps) {
         <>
           <div className="hidden sm:block" onClick={handleShowSidebar}>
             <img
-              src="https://github.com/maik-emanoel.png"
-              alt="Maik Emanoel"
+              src={initialUser.avatarURL}
+              alt={`Foto de perfil do usuário ${initialUser.name}`}
               className="w-8 h-8 rounded-full"
             />
           </div>

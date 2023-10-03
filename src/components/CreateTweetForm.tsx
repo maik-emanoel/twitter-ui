@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 import { isTouchSupported } from "../utils/touchUtils";
 import { CountdownWrapper } from "./CountdownWrapper";
 import { maxCharacters } from "../utils/maxCharacters";
+import { initialUser } from "../initialUser";
 
 interface CreateNewFormProps {
   tweets: TweetProps[];
@@ -27,9 +28,9 @@ export function CreateTweetForm({
 
   const newTweetObj: TweetProps = {
     id: uuidv4(),
-    userAvatar: "https://github.com/maik-emanoel.png",
-    userName: "Maik Emanoel",
-    userLogin: "maik_emanoel",
+    userAvatar: initialUser.avatarURL,
+    userName: initialUser.name,
+    userLogin: initialUser.login,
     content: newTweet,
     comments: 0,
     retweets: 0,
@@ -95,8 +96,8 @@ export function CreateTweetForm({
 
       <label htmlFor="tweet" className="flex gap-3 sm:mt-4">
         <img
-          src="https://github.com/maik-emanoel.png"
-          alt="Maik Emanoel"
+          src={initialUser.avatarURL}
+          alt={`Foto de perfil do usuário ${initialUser.name}`}
           className="w-12 h-12 rounded-full sm:w-10 sm:h-10"
         />
         <textarea
