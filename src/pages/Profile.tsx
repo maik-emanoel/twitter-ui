@@ -21,17 +21,48 @@ export function Profile() {
       </Header>
 
       <div>
-        <div aria-label="Banner">
-          <img
-            src="https://source.unsplash.com/random?sun"
-            alt="User profile banner"
-            className="max-h-[200px] w-full"
+        <div aria-label="User profile banner">
+          <div
+            className="w-full bg-twitterBlue flex-shrink-0"
             style={{
-                height: 'calc(100% - 20vh)'
+              height: "min(33vw, 199px)",
             }}
-          />
+          ></div>
         </div>
-        <div></div>
+
+        <div className="px-4 pt-3 mb-4">
+          <div className="grid items-start relative min-h-[48px]">
+            <div
+              style={{
+                width: "max(45px, min(135px, 22vw))",
+              }}
+              className="p-1 rounded-full bg-white dark:bg-bodyDark absolute -translate-y-[52%]"
+            >
+              <img
+                src="https://github.com/maik-emanoel.png"
+                alt="Maik Emanoel"
+                className="rounded-full"
+              />
+            </div>
+
+            <button
+              data-istouchsupported={isTouchSupported}
+              className="justify-self-end w-28 h-9 rounded-full font-bold text-white/95a border border-black/10 dark:border-white/40 transition-all duration-200 
+            data-[istouchsupported=false]:hover:bg-black/10 
+            dark:data-[istouchsupported=false]:hover:bg-white/10"
+            >
+              Edit Profile
+            </button>
+          </div>
+
+          <div
+            style={{
+              padding: "min(calc(2vw + 7px), 67px) 0 0 0",
+            }}
+          >
+            oi
+          </div>
+        </div>
       </div>
     </>
   );
