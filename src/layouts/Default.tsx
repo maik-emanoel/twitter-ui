@@ -11,7 +11,7 @@ export function Default() {
         <SidebarProvider>
           <Sidebar />
 
-          <div className="border-l-[1px] border-r-[1px] border-grayBorder dark:border-grayBorderDark sm:border-none">
+          <div className="border-l border-r border-grayBorder dark:border-grayBorderDark sm:border-none">
             <Outlet />
           </div>
 
