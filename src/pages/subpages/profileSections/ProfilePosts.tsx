@@ -5,10 +5,11 @@ export function ProfilePosts() {
   const { tweets } = useTweetContext();
 
   return (
-    <>
+    <div className="min-h-[50vh]">
       {tweets.map((tweet) => {
         return (
           <Tweet
+            key={tweet.id}
             id={tweet.id}
             userAvatar={tweet.userAvatar}
             userName={tweet.userName}
@@ -22,6 +23,6 @@ export function ProfilePosts() {
           />
         );
       })}
-    </>
+    </div>
   );
 }
