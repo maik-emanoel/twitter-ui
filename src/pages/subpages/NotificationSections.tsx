@@ -15,7 +15,7 @@ function Section({ description, hasImage }: SectionProps) {
       )}
 
       <h2 className="text-3xl font-extrabold mb-2">Nothing to see here — yet</h2>
-      <p className="text-sm dark:text-white/60">{description}</p>
+      <p className="text-sm dark:text-muteDark">{description}</p>
     </div>
   );
 }
