@@ -12,8 +12,11 @@ export default {
         grayBorder: '#ebeef0',
         grayBorderDark: '#2F2F2F',
         separatorColor: '#f7f9fa',
-        bodyDark: '#121214',
+        bodyDark: '#000',
         tweetColor: '#E1E1E6',
+        textDark: '#E7E9EA',
+        mute: '#536471',
+        muteDark: '#71767B',
         retweetGreen: 'rgb(0, 186, 124)',
         likePink: 'rgb(249, 24, 128)'
       },
