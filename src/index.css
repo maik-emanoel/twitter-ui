@@ -5,6 +5,7 @@
 @layer base {
     html, body, #root {
         min-height: 100vh;
+        scroll-behavior: smooth;
     }
 
     body {
