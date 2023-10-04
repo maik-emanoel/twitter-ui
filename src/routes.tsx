@@ -13,6 +13,11 @@ import {
 import { Messages } from "./pages/Messages";
 import { Profile } from "./pages/Profile";
 import { initialUser } from "./initialUser";
+import { ProfilePosts } from "./pages/subpages/profileSections/ProfilePosts";
+import { ProfileReplies } from "./pages/subpages/profileSections/ProfileReplies";
+import { ProfileHighlights } from "./pages/subpages/profileSections/ProfileHighlights";
+import { ProfileMedia } from "./pages/subpages/profileSections/ProfileMedia";
+import { ProfileLikes } from "./pages/subpages/profileSections/ProfileLikes";
 
 export const router = createBrowserRouter([
   {
@@ -51,7 +56,29 @@ export const router = createBrowserRouter([
       },
       {
         path: `/${initialUser.login}`,
-        element: <Profile />
+        element: <Profile />,
+        children: [
+          {
+            path: `/${initialUser.login}`,
+            element: <ProfilePosts />
+          },
+          {
+            path: `/${initialUser.login}/with_replies`,
+            element: <ProfileReplies />
+          },
+          {
+            path: `/${initialUser.login}/highlights`,
+            element: <ProfileHighlights />
+          },
+          {
+            path: `/${initialUser.login}/media`,
+            element: <ProfileMedia />
+          },
+          {
+            path: `/${initialUser.login}/likes`,
+            element: <ProfileLikes />
+          }
+        ]
       }
     ],
     errorElement: <ErrorPage />,
