@@ -63,27 +63,41 @@ export function MobileSidebar() {
 
           <div className="flex mt-3 text-sm gap-5">
             <div>
-              <span className="font-bold mr-1 opacity-80">{initialUser.following}</span>
+              <span className="font-bold mr-1 opacity-80">
+                {initialUser.following}
+              </span>
               <span>Following</span>
             </div>
             <div>
-              <span className="font-bold mr-1 opacity-80">{initialUser.followers}</span>
+              <span className="font-bold mr-1 opacity-80">
+                {initialUser.followers}
+              </span>
               <span>Follower</span>
             </div>
           </div>
         </div>
 
-        <MobileSidebarLink icon={<User size={24} />} text="Profile" />
         <MobileSidebarLink
+          path={`/${initialUser.login}`}
+          icon={<User size={24} />}
+          text="Profile"
+        />
+        <MobileSidebarLink
+          path=""
           icon={<TwitterLogo size={24} weight="fill" />}
           text="Twitter Blue"
         />
-        <MobileSidebarLink icon={<FileText size={24} />} text="Lists" />
+        <MobileSidebarLink path="" icon={<FileText size={24} />} text="Lists" />
         <MobileSidebarLink
+          path=""
           icon={<BookmarkSimple size={24} />}
           text="Bookmarks"
         />
-        <MobileSidebarLink icon={<Users size={24} />} text="Communities" />
+        <MobileSidebarLink
+          path=""
+          icon={<Users size={24} />}
+          text="Communities"
+        />
 
         <div>
           <span className="w-[89%] h-[1px] bg-grayBorder block mx-auto my-[2px]"></span>
