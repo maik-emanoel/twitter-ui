@@ -22,8 +22,8 @@ export function ProfileHighlights() {
       </p>
       <button
         data-istouchsupported={isTouchSupported}
-        className={`mt-6 rounded-full px-8 min-h-[52px] text-lg font-bold ${buttonColors.light.bg} ${buttonColors.light.text} dark:${buttonColors.dark.bg} dark:${buttonColors.dark.text}
-          data-[istouchsupported=false]:hover:brightness-90`}
+        className={`mt-6 rounded-full px-8 min-h-[52px] text-lg font-bold ${buttonColors.light.bg} ${buttonColors.light.text} dark:${buttonColors.dark.bg} dark:${buttonColors.dark.text} transition-all duration-300
+        data-[istouchsupported=false]:hover:brightness-75 dark:data-[istouchsupported=false]:hover:brightness-75`}
       >
         Subscribe to Premium
       </button>
