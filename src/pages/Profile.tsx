@@ -13,18 +13,19 @@ export function Profile() {
   let message: string;
   let number: number;
 
-  const likedTweets = tweets.filter(tweet => tweet.isLiked)
-  const tweetsWithImages = tweets.filter(tweet => tweet.imageUrl)
+  const likedTweets = tweets.filter((tweet) => tweet.isLiked);
+  const tweetsWithImages = tweets.filter((tweet) => tweet.imageUrl);
 
   if (location === `/${initialUser.login}/media`) {
-    message = "Photos & videos";
+    message =
+      tweetsWithImages.length === 1 ? "Photo & video" : "Photos & videos";
     number = tweetsWithImages.length;
   } else if (location === `/${initialUser.login}/likes`) {
-    message = "Likes";
-    number = likedTweets.length
+    message = likedTweets.length === 1 ? "Like" : "Likes";
+    number = likedTweets.length;
   } else {
-    message = "Posts";
-    number = tweets.length
+    message = tweets.length === 1 ? "Post" : "Posts";
+    number = tweets.length;
   }
 
   return (
@@ -40,7 +41,9 @@ export function Profile() {
 
         <div className="flex flex-col">
           <span>{initialUser.name}</span>
-          <span className="text-xs font-normal opacity-70">{number} {message}</span>
+          <span className="text-xs font-normal opacity-70">
+            {number} {message}
+          </span>
         </div>
       </Header>
 
