@@ -36,18 +36,16 @@ export function Tweet({
           className="flex items-center justify-between relative
           sm:data-[ismenuvisible=true]:static"
         >
-          <div className="flex items-center gap-1">
-            <strong className="whitespace-nowrap">{userName}</strong>
-            <span className="text-sm text-[#89a2b8] dark:text-[#828282] overflow-hidden overflow-ellipsis" style={{
-              width: '30vw'
-            }}>
+          <div className="flex items-center gap-1 flex-wrap sm:gap-0">
+            <strong className="whitespace-nowrap leading-5 sm:mr-1">{userName}</strong>
+            <span className="text-sm text-[#89a2b8] dark:text-[#828282] pr-8">
               @{userLogin}
             </span>
           </div>
 
           <div
             data-istouchsupported={isTouchSupported}
-            className="absolute -top-2 -right-2 w-[34.75px] h-[34.75px] group rounded-full grid place-items-center 
+            className="absolute -top-2 right-0 w-[34.75px] h-[34.75px] group rounded-full grid place-items-center 
             data-[istouchsupported=false]:hover:bg-twitterBlue/10"
             onClick={(e) => {
               e.preventDefault();
