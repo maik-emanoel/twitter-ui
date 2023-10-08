@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Pencil } from "@phosphor-icons/react";
 import { useTweetContext } from "../context/TweetContext";
 import { initialTweets } from "../InitialTweets";
+import { useScrollDirection } from "../context/ScrollContext";
 
 export interface TweetProps {
   id: string;
@@ -17,12 +18,13 @@ export interface TweetProps {
   comments: number;
   retweets: number;
   likes: number;
-  isLiked?: boolean
+  isLiked?: boolean;
 }
 
 export function Timeline() {
   const [isTweetFormVisible, setIsTweetFormVisible] = useState(false);
   const { tweets, setTweets } = useTweetContext();
+  const scrollDirection = useScrollDirection();
 
   const [scrollPosition, setScrollPosition] = useState(0);
 
@@ -68,7 +70,8 @@ export function Timeline() {
       </div>
 
       <button
-        className="fixed right-4 bottom-20 bg-twitterBlue w-14 h-14 rounded-full shadow-floatButton hidden sm:block"
+        data-isscrolldown={scrollDirection === "down"}
+        className="fixed right-4 bottom-20 bg-twitterBlue w-14 h-14 rounded-full shadow-floatButton hidden transition-opacity duration-200 sm:block data-[isscrolldown=true]:opacity-30"
         onClick={handleShowTweetForm}
       >
         <Pencil size={24} color="white" className="mx-auto" />
