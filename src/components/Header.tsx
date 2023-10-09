@@ -49,7 +49,7 @@ export function Header({ title, children, className }: HeaderProps) {
     <div
       data-isscrolldown={scrollDirection === "down"}
       className={twMerge(
-        "py-6 px-5 h-[76px] flex items-center justify-between text-xl font-bold border-b border-b-grayBorder bg-white/75 sticky top-0 backdrop-blur-md z-10 transition-all duration-200 dark:border-b-grayBorderDark dark:text-tweetColor dark:bg-bodyDark/60 sm:py-3 sm:h-16 sm:data-[isscrolldown=true]:-translate-y-[100%]",
+        "py-6 px-5 h-[76px] flex items-center justify-between text-xl font-bold border-b border-b-grayBorder bg-white/75 sticky top-0 backdrop-blur-md z-10 transition-transform duration-200 dark:border-b-grayBorderDark dark:text-tweetColor dark:bg-bodyDark/60 sm:py-3 sm:h-16 sm:data-[isscrolldown=true]:-translate-y-[100%]",
         className
       )}
     >
