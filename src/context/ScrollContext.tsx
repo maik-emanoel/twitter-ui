@@ -24,7 +24,7 @@ export function ScrollDirectionProvider({ children }: ScrollDirectionProps) {
     let lastScrollPosition = window.scrollY;
 
     window.addEventListener("scroll", () => {
-      const currentScrollPosition = window.scrollY - 10;
+      const currentScrollPosition = window.scrollY;
 
       if (currentScrollPosition > lastScrollPosition) {
         setScrollDirection("down");
