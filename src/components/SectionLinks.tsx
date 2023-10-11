@@ -16,7 +16,7 @@ export function SectionLinks({ children, title }: SectionLinksProps) {
   return (
     <>
       <div
-        className="flex items-center justify-between p-4 active:bg-zinc-100 active:dark:bg-zinc-800"
+        className="flex items-center justify-between p-4 transition-all duration-100 active:bg-zinc-100 active:dark:bg-[rgb(22,_24,_28)] "
         onClick={handleShowSection}
       >
         <span className="font-bold">{title}</span>
