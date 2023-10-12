@@ -18,6 +18,7 @@ import { ProfileReplies } from "./pages/subpages/profileSections/ProfileReplies"
 import { ProfileHighlights } from "./pages/subpages/profileSections/ProfileHighlights";
 import { ProfileMedia } from "./pages/subpages/profileSections/ProfileMedia";
 import { ProfileLikes } from "./pages/subpages/profileSections/ProfileLikes";
+import { SignUp } from "./layouts/SignUp";
 
 export const router = createBrowserRouter([
   {
@@ -83,4 +84,8 @@ export const router = createBrowserRouter([
     ],
     errorElement: <ErrorPage />,
   },
+  {
+    path: '/login',
+    element: <SignUp />
+  }
 ]);
