@@ -18,7 +18,8 @@ import { ProfileReplies } from "./pages/subpages/profileSections/ProfileReplies"
 import { ProfileHighlights } from "./pages/subpages/profileSections/ProfileHighlights";
 import { ProfileMedia } from "./pages/subpages/profileSections/ProfileMedia";
 import { ProfileLikes } from "./pages/subpages/profileSections/ProfileLikes";
-import { SignUp } from "./layouts/SignUp";
+import { Flow } from "./layouts/Flow";
+import { Signup } from "./layouts/Signup";
 
 export const router = createBrowserRouter([
   {
@@ -85,7 +86,13 @@ export const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: '/login',
-    element: <SignUp />
+    path: '/flow',
+    element: <Flow />,
+    children: [
+      {
+        path: '/flow/signup',
+        element: <Signup />
+      }
+    ]
   }
 ]);
