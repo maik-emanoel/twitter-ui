@@ -7,7 +7,7 @@ import {
 import logoTwitter from "../assets/logo-twitter.svg";
 import { isTouchSupported } from "../utils/touchUtils";
 import { useState } from "react";
-import { Navigate, Outlet } from "react-router-dom";
+import { NavLink, Navigate, Outlet } from "react-router-dom";
 
 interface ContentProps {
   icon: React.ElementType<IconProps>;
@@ -61,13 +61,16 @@ export function Flow() {
           <div>
             <p className="font-bold mb-3">Join Twitter today.</p>
 
-            <button
-              data-istouchsupported={isTouchSupported}
-              className="w-full rounded-full bg-twitterBlue px-3 py-2 text-white font-bold transition-all duration-300
+            <NavLink to="/flow/signup">
+              <button
+                data-istouchsupported={isTouchSupported}
+                className="w-full rounded-full bg-twitterBlue px-3 py-2 text-white font-bold transition-all duration-300
             data-[istouchsupported=false]:hover:brightness-90"
-            >
-              Sign Up
-            </button>
+              >
+                Sign Up
+              </button>
+            </NavLink>
+
             <button
               data-istouchsupported={isTouchSupported}
               className="w-full rounded-full px-3 py-2 text-twitterBlue font-bold border border-twitterBlue mt-3 transition-all duration-300
