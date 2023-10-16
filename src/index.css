@@ -53,4 +53,12 @@
     .active {
         @apply text-twitterBlue
     }
+
+    .selectLabel {
+        @apply text-mute text-xs absolute pt-2 px-2 group-focus-within:text-twitterBlue
+    }
+
+    .selectSignup {
+        @apply appearance-none outline-none w-full mt-3 pt-3 pb-2 px-2 cursor-pointer
+    }
 }
