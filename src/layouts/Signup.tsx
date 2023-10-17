@@ -5,13 +5,38 @@ import { NavLink } from "react-router-dom";
 import { Step1 } from "../components/signupSteps/Step1";
 import { Step2 } from "../components/signupSteps/Step2";
 
+export interface UserInfo {
+  avatar: string;
+  userName: string;
+  userLogin: string;
+  birthdayDate: {
+    month: number | null;
+    day: number | null;
+    year: number | null;
+  };
+}
+
 export function Signup() {
   const [steps, setSteps] = useState<number>(1);
+  const totalSteps = 2;
+
+  const [userInfo, setUserInfo] = useState<UserInfo>({
+    userName: "",
+    userLogin: "",
+    avatar: "",
+    birthdayDate: {
+      month: null,
+      day: null,
+      year: null,
+    },
+  });
 
   function handleSteps() {
     if (steps >= 2) return;
     setSteps((prevState) => prevState + 1);
   }
+
+  console.log(userInfo);
 
   return (
     <div className="absolute inset-0 backdrop-blur-sm z-50 flex items-center justify-center">
@@ -28,13 +53,17 @@ export function Signup() {
             </button>
           </NavLink>
 
-          <p className="text-xl font-bold">Etapa 1 de 5</p>
+          <p className="text-xl font-bold">
+            Etapa {steps} de {totalSteps}
+          </p>
         </header>
 
         <div className="flex-1 max-w-[440px] w-full mx-auto mb-6">
           <h1 className="text-4xl font-bold mb-8">Criar sua conta</h1>
 
-          {steps == 1 && <Step1 />}
+          {steps == 1 && (
+            <Step1 setUserInfo={setUserInfo} userInfo={userInfo} />
+          )}
           {steps == 2 && <Step2 />}
         </div>
 
