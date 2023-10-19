@@ -1,62 +1,14 @@
-import { useEffect, useRef, useState } from "react";
+import { CaretDown } from "@phosphor-icons/react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { InputWrapper } from "./InputWrapper";
+import { UserInfo } from "../../context/UserContext";
 
-interface InputWrapperProps {
-  inputName: string;
-  maxLengthCaracters: number;
+interface Step1Props {
+  setUserInfo: Dispatch<SetStateAction<UserInfo>>;
+  userInfo: UserInfo;
 }
 
-function InputWrapper(props: InputWrapperProps) {
-  const [isFocused, setIsFocused] = useState<boolean | string>(false);
-  const [inputValue, setInputValue] = useState("");
-  const inputRef = useRef<null | HTMLInputElement>(null);
-
-  function handleClick() {
-    if (inputRef.current) {
-      setIsFocused(true);
-      inputRef.current.focus();
-    }
-  }
-
-  return (
-    <div
-      className="relative h-14 border-[2px] focus-within:border-twitterBlue group rounded mb-6"
-      onClick={handleClick}
-    >
-      <label htmlFor={`user${props.inputName}Input`} className="sr-only">
-        {props.inputName}
-      </label>
-      <input
-        type="text"
-        name={`user${props.inputName}Input`}
-        ref={inputRef}
-        className="w-full h-5 outline-none mt-6 px-2 text-sm"
-        maxLength={props.maxLengthCaracters}
-        onChange={(e) => setInputValue(e.target.value)}
-        onBlur={() => {
-          if (inputRef.current) {
-            if (inputRef.current?.value.length > 0) {
-              setIsFocused("hasCaracters");
-              return;
-            }
-          }
-
-          setIsFocused(false);
-        }}
-      />
-      <span
-        data-isfocused={isFocused}
-        className="absolute opacity-70 px-2 pt-4 left-0 transition-all duration-200 data-[isfocused=true]:text-twitterBlue data-[isfocused=true]:text-xs data-[isfocused=true]:pt-2 data-[isfocused=hasCaracters]:text-xs data-[isfocused=hasCaracters]:pt-2"
-      >
-        {props.inputName}
-      </span>
-      <p className="hidden absolute right-0 top-0 px-2 pt-2 text-xs group-focus-within:block">
-        {inputValue.length} / {props.maxLengthCaracters}
-      </p>
-    </div>
-  );
-}
-
-export function Step1() {
+export function Step1({ setUserInfo, userInfo }: Step1Props) {
   const [days, setDays] = useState<number[]>([]);
   const [years, setYears] = useState<number[]>([]);
   const [selectedMonth, setSelectedMonth] = useState<number>(1);
@@ -98,51 +50,135 @@ export function Step1() {
   }, [selectedMonth, selectedYear]);
 
   return (
-    <div>
+    <div className="pb-6">
       <div>
-        <InputWrapper inputName="Name" maxLengthCaracters={50} />
-        <InputWrapper inputName="Login" maxLengthCaracters={20} />
+        <InputWrapper
+          inputName="Name"
+          maxLengthCaracters={50}
+          setUserInfo={setUserInfo}
+          userInfo={userInfo}
+        />
+        <InputWrapper
+          inputName="Login"
+          maxLengthCaracters={20}
+          setUserInfo={setUserInfo}
+          userInfo={userInfo}
+        />
       </div>
 
       <div>
-        <p>Data de nascimento</p>
-        <p>
+        <p className="font-bold leading-5 mb-2">Data de nascimento</p>
+        <p className="text-mute text-sm mb-5">
           Isso não será exibido publicamente. Confirme sua própria idade, mesmo
           se esta conta for de empresa, de um animal de estimação ou outros.
         </p>
 
-        <div>
-          <select
-            id="month"
-            onChange={(e) => setSelectedMonth(parseInt(e.target.value, 10))}
-          >
-            {months.map((month) => {
-              return (
-                <option key={month.value} value={month.value}>
-                  {month.label}
-                </option>
-              );
-            })}
-          </select>
+        <div className="flex gap-3">
+          <div className="group flex-grow-[1]">
+            <div className="relative rounded outline outline-[1px] outline-[#cfd9de] group-focus-within:outline-twitterBlue">
+              <label htmlFor="month" className="selectLabel">
+                Month
+              </label>
 
-          <select id="days">
-            {days.map((day) => (
-              <option key={day} value={day}>
-                {day}
-              </option>
-            ))}
-          </select>
+              <select
+                id="month"
+                onChange={(e) => {
+                  setSelectedMonth(parseInt(e.target.value, 10));
+                  setUserInfo({
+                    ...userInfo,
+                    birthdayDate: {
+                      ...userInfo.birthdayDate,
+                      month: Number(e.target.value),
+                    },
+                  });
+                }}
+                className="selectSignup"
+              >
+                <option value="" hidden></option>
+                {months.map((month) => {
+                  return (
+                    <option key={month.value} value={month.value}>
+                      {month.label}
+                    </option>
+                  );
+                })}
+              </select>
 
-          <select
-            id="years"
-            onChange={(e) => setSelectedYear(Number(e.target.value))}
-          >
-            {years.map((year) => (
-              <option key={year} value={year}>
-                {year}
-              </option>
-            ))}
-          </select>
+              <CaretDown
+                size={18}
+                className="absolute top-[50%] -translate-y-[50%] right-3 pointer-events-none group-focus-within:text-twitterBlue"
+              />
+            </div>
+          </div>
+
+          <div className="group flex-1">
+            <div className="relative rounded outline outline-[1px] outline-[#cfd9de] group-focus-within:outline-twitterBlue">
+              <label htmlFor="days" className="selectLabel absolute">
+                Day
+              </label>
+
+              <select
+                id="days"
+                className="selectSignup"
+                onChange={(e) => {
+                  setUserInfo({
+                    ...userInfo,
+                    birthdayDate: {
+                      ...userInfo.birthdayDate,
+                      day: Number(e.target.value),
+                    },
+                  });
+                }}
+              >
+                <option value="" hidden></option>
+                {days.map((day) => (
+                  <option key={day} value={day}>
+                    {day}
+                  </option>
+                ))}
+              </select>
+
+              <CaretDown
+                size={18}
+                className="absolute top-[50%] -translate-y-[50%] right-3 pointer-events-none group-focus-within:text-twitterBlue"
+              />
+            </div>
+          </div>
+
+          <div className="group flex-1">
+            <div className="relative rounded outline outline-[1px] outline-[#cfd9de] group-focus-within:outline-twitterBlue">
+              <label htmlFor="years" className="selectLabel">
+                Year
+              </label>
+
+              <select
+                id="years"
+                onChange={(e) => {
+                  setSelectedYear(Number(e.target.value))
+                  setUserInfo({
+                    ...userInfo,
+                    birthdayDate: {
+                      ...userInfo.birthdayDate,
+                      year: Number(e.target.value),
+                    },
+                  });
+                }}
+                className="selectSignup"
+              >
+                <option value="" hidden></option>
+                {years.map((year) => (
+                  <option key={year} value={year}>
+                    {year}
+                  </option>
+                ))}
+              </select>
+
+              <CaretDown
+                size={18}
+                className="absolute top-[50%] -translate-y-[50%] right-3 pointer-events-none group-focus-within:text-twitterBlue"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
