@@ -3,8 +3,8 @@ import { loadUser } from "../utils/saveUserUtils";
 import { loadHasUser } from "../utils/hasUserUtils";
 
 export interface UserInfo {
-  userName: string;
-  userLogin: string;
+  name: string;
+  login: string;
   avatar: string;
   birthdayDate: {
     month: number | null;

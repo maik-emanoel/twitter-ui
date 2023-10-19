@@ -40,14 +40,14 @@ export function InputWrapper(props: InputWrapperProps) {
           if (props.inputName === "Name" && inputRef.current) {
             props.setUserInfo({
               ...props.userInfo,
-              userName: inputRef.current?.value,
+              name: inputRef.current?.value,
             });
           }
 
           if (props.inputName === "Login" && inputRef.current) {
             props.setUserInfo({
               ...props.userInfo,
-              userLogin: inputRef.current?.value,
+              login: inputRef.current?.value,
             });
           }
         }}

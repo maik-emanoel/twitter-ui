@@ -9,8 +9,8 @@ export function loadUser() {
   return storedUser
     ? (JSON.parse(storedUser) as UserInfo)
     : {
-        userName: "",
-        userLogin: "",
+        name: "",
+        login: "",
         avatar: "",
         birthdayDate: {
           month: null,
