@@ -1,7 +1,7 @@
 import { X } from "@phosphor-icons/react";
 import { useState } from "react";
 import { isTouchSupported } from "../utils/touchUtils";
-import { NavLink, Navigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Step1 } from "../components/signupSteps/Step1";
 import { Step2 } from "../components/signupSteps/Step2";
 import { saveUser } from "../utils/saveUserUtils";
@@ -12,23 +12,20 @@ export function Signup() {
   const [steps, setSteps] = useState<number>(1);
   const totalSteps = 2;
 
-  const { userInfo, setUserInfo, hasUser } = useUser();
+  const { userInfo, setUserInfo, setHasUser } = useUser();
 
   function handleSteps() {
-    if (steps === 2 && !hasUser) {
+    if (steps === 2) {
       setUserInfo({
         ...userInfo,
         created_at: `${new Date().getMonth()} ${new Date().getDate()}`,
       });
       saveUser(userInfo);
       saveHasUser(true)
+      setHasUser(true)
     }
 
     setSteps((prevState) => prevState + 1);
-  }
-
-  if (hasUser) {
-    return <Navigate to="/" />
   }
 
   return (
