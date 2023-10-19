@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useRef, useState } from "react";
-import { UserInfo } from "../../layouts/Signup";
+import { UserInfo } from "../../context/UserContext";
 
 interface InputWrapperProps {
   inputName: string;
