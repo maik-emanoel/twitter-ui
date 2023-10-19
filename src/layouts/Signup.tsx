@@ -1,42 +1,35 @@
 import { X } from "@phosphor-icons/react";
 import { useState } from "react";
 import { isTouchSupported } from "../utils/touchUtils";
-import { NavLink } from "react-router-dom";
+import { NavLink, Navigate } from "react-router-dom";
 import { Step1 } from "../components/signupSteps/Step1";
 import { Step2 } from "../components/signupSteps/Step2";
-
-export interface UserInfo {
-  avatar: string;
-  userName: string;
-  userLogin: string;
-  birthdayDate: {
-    month: number | null;
-    day: number | null;
-    year: number | null;
-  };
-}
+import { saveUser } from "../utils/saveUserUtils";
+import { useUser } from "../context/UserContext";
+import { saveHasUser } from "../utils/hasUserUtils";
 
 export function Signup() {
   const [steps, setSteps] = useState<number>(1);
   const totalSteps = 2;
 
-  const [userInfo, setUserInfo] = useState<UserInfo>({
-    userName: "",
-    userLogin: "",
-    avatar: "",
-    birthdayDate: {
-      month: null,
-      day: null,
-      year: null,
-    },
-  });
+  const { userInfo, setUserInfo, hasUser } = useUser();
 
   function handleSteps() {
-    if (steps >= 2) return;
+    if (steps === 2 && !hasUser) {
+      setUserInfo({
+        ...userInfo,
+        created_at: `${new Date().getMonth()} ${new Date().getDate()}`,
+      });
+      saveUser(userInfo);
+      saveHasUser(true)
+    }
+
     setSteps((prevState) => prevState + 1);
   }
 
-  console.log(userInfo);
+  if (hasUser) {
+    return <Navigate to="/" />
+  }
 
   return (
     <div className="absolute inset-0 backdrop-blur-sm z-50 flex items-center justify-center">
@@ -64,14 +57,23 @@ export function Signup() {
           {steps == 1 && (
             <Step1 setUserInfo={setUserInfo} userInfo={userInfo} />
           )}
-          {steps == 2 && <Step2 />}
+          {steps == 2 && (
+            <Step2 setUserInfo={setUserInfo} userInfo={userInfo} />
+          )}
         </div>
 
         <button
           onClick={handleSteps}
-          className="w-full max-w-[440px] h-[52px] mx-auto mb-2 rounded-full bg-twitterBlue text-white text-xl font-bold"
+          className="w-full max-w-[440px] h-[52px] mx-auto mb-2 rounded-full bg-twitterBlue text-white text-xl font-bold disabled:opacity-80"
+          disabled={
+            userInfo.userName.trim() === "" ||
+            userInfo.userLogin.trim() === "" ||
+            userInfo.birthdayDate.day === null ||
+            userInfo.birthdayDate.month === null ||
+            userInfo.birthdayDate.year === null
+          }
         >
-          Next
+          {steps === 1 ? "Next" : "Create"}
         </button>
       </div>
     </div>
