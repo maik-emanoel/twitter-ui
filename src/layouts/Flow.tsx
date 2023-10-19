@@ -6,8 +6,8 @@ import {
 } from "@phosphor-icons/react";
 import logoTwitter from "../assets/logo-twitter.svg";
 import { isTouchSupported } from "../utils/touchUtils";
-import { useState } from "react";
 import { NavLink, Navigate, Outlet } from "react-router-dom";
+import { useUser } from "../context/UserContext";
 
 interface ContentProps {
   icon: React.ElementType<IconProps>;
@@ -24,10 +24,10 @@ function Content(props: ContentProps) {
 }
 
 export function Flow() {
-  const [isUserAuthenticated] = useState(false);
-
-  if (isUserAuthenticated) {
-    return <Navigate to={"/"} />;
+  const { hasUser } = useUser()
+  
+  if (hasUser) {
+    return <Navigate to="/" />
   }
 
   return (

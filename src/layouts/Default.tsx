@@ -1,11 +1,18 @@
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import { Sidebar } from "../components/Sidebar";
 import { Bottombar } from "../components/Bottombar";
 import { SidebarProvider } from "../context/SidebarContext";
 import { TweetProvider } from "../context/TweetContext";
 import { ScrollDirectionProvider } from "../context/ScrollContext";
+import { useUser } from "../context/UserContext";
 
 export function Default() {
+  const { hasUser } = useUser();
+
+  if (hasUser === null || !hasUser) {
+    return <Navigate to='/flow/' />
+  }
+
   return (
     <div className="mx-auto max-w-[1000px] grid grid-cols-[300px_1fr] md:grid-cols-[80px_1fr] min-h-screen sm:grid-cols-1">
       <TweetProvider>
