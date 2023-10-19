@@ -1,8 +1,8 @@
 import { CameraPlus } from "@phosphor-icons/react";
 import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 import { isTouchSupported } from "../../utils/touchUtils";
-import { UserInfo } from "../../layouts/Signup";
 import emptyUserAvatar from "../../assets/emptyUserAvatar.png";
+import { UserInfo } from "../../context/UserContext";
 
 interface Step2Props {
   setUserInfo: Dispatch<SetStateAction<UserInfo>>;
