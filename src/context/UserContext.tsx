@@ -6,12 +6,15 @@ export interface UserInfo {
   name: string;
   login: string;
   avatar: string;
+  bio: string;
   birthdayDate: {
     month: number | null;
     day: number | null;
     year: number | null;
   };
   created_at: string;
+  followers: number;
+  following: number;
 }
 
 type UserContextType = {
