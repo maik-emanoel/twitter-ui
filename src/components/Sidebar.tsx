@@ -13,9 +13,11 @@ import {
 } from "@phosphor-icons/react";
 import { SidebarLink } from "./SidebarLink";
 import { isTouchSupported } from "../utils/touchUtils";
-import { initialUser } from "../initialUser";
+import { useUser } from "../context/UserContext";
 
 export function Sidebar() {
+  const {userInfo} = useUser()
+
   return (
     <aside className="pt-6 px-5 flex flex-col justify-between md:items-center h-screen sticky top-0 md:px-0 sm:hidden">
       <div className="flex flex-col gap-8 md:items-center">
@@ -40,7 +42,7 @@ export function Sidebar() {
             text="Bookmarks"
           />
           <SidebarLink path="/lists" icon={FileText} text="Lists" />
-          <SidebarLink path={`/${initialUser.login}`} icon={User} text="Profile" />
+          <SidebarLink path={`/${userInfo.login}`} icon={User} text="Profile" />
           <SidebarLink path="" icon={DotsThreeCircle} text="More" isNotAlink />
         </nav>
 
@@ -58,14 +60,14 @@ export function Sidebar() {
         data-[istouchsupported=false]:hover:dark:bg-zinc-800"
       >
         <img
-          src={initialUser.avatarURL}
-          alt={`Foto de perfil do usuário ${initialUser.name}`}
+          src={userInfo.avatar}
+          alt={`Foto de perfil do usuário ${userInfo.name}`}
           className="w-10 h-10 rounded-full"
         />
         <div className="flex flex-1 justify-between items-center md:hidden">
           <div className="flex flex-col flex-shrink-0 text-sm">
-            <span className="font-bold">{initialUser.name}</span>
-            <span className="opacity-70 dark:opacity-50">@{initialUser.login}</span>
+            <span className="font-bold">{userInfo.name}</span>
+            <span className="opacity-70 dark:opacity-50">@{userInfo.login}</span>
           </div>
           <div>
             <DotsThree weight="bold" size={18.75} />

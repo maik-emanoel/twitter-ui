@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 import { isTouchSupported } from "../utils/touchUtils";
 import { CountdownWrapper } from "./CountdownWrapper";
 import { maxCharacters } from "../utils/maxCharacters";
-import { initialUser } from "../initialUser";
+import { useUser } from "../context/UserContext";
 
 interface CreateNewFormProps {
   tweets: TweetProps[];
@@ -24,18 +24,19 @@ export function CreateTweetForm({
   scrollPosition,
 }: CreateNewFormProps) {
   const [newTweet, setNewTweet] = useState("");
-  const textareaRef = useRef<HTMLTextAreaElement | null>(null)
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+  const { userInfo } = useUser();
 
   const newTweetObj: TweetProps = {
     id: uuidv4(),
-    userAvatar: initialUser.avatarURL,
-    userName: initialUser.name,
-    userLogin: initialUser.login,
+    userAvatar: userInfo.avatar,
+    userName: userInfo.name,
+    userLogin: userInfo.login,
     content: newTweet,
     comments: 0,
     retweets: 0,
     likes: 0,
-    isLiked: false
+    isLiked: false,
   };
 
   function createNewTweet(e: FormEvent) {
@@ -82,7 +83,7 @@ export function CreateTweetForm({
       const scrollHeight = textareaRef.current.scrollHeight;
       textareaRef.current.style.height = `${scrollHeight}px`;
     }
-  }, [newTweet])
+  }, [newTweet]);
 
   return (
     <form
@@ -96,8 +97,8 @@ export function CreateTweetForm({
 
       <label htmlFor="tweet" className="flex gap-3 sm:mt-4">
         <img
-          src={initialUser.avatarURL}
-          alt={`Foto de perfil do usuário ${initialUser.name}`}
+          src={userInfo.avatar}
+          alt={`Foto de perfil do usuário ${userInfo.name}`}
           className="w-12 h-12 rounded-full sm:w-10 sm:h-10"
         />
         <textarea
