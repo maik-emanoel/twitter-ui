@@ -15,14 +15,17 @@ export function Signup() {
   const { userInfo, setUserInfo, setHasUser } = useUser();
 
   function handleSteps() {
+    setUserInfo({
+      ...userInfo,
+      followers: 0,
+      following: 0,
+      created_at: `${new Date().getMonth()} ${new Date().getFullYear()}`,
+    });
+
     if (steps === 2) {
-      setUserInfo({
-        ...userInfo,
-        created_at: `${new Date().getMonth()} ${new Date().getDate()}`,
-      });
       saveUser(userInfo);
-      saveHasUser(true)
-      setHasUser(true)
+      saveHasUser(true);
+      setHasUser(true);
     }
 
     setSteps((prevState) => prevState + 1);
