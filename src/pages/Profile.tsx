@@ -2,12 +2,13 @@ import { ArrowLeft, CalendarBlank } from "@phosphor-icons/react";
 import { isTouchSupported } from "../utils/touchUtils";
 import { Header } from "../components/Header";
 import { Link } from "../components/Link";
-import { initialUser } from "../initialUser";
 import { Outlet, useLocation } from "react-router-dom";
 import { useTweetContext } from "../context/TweetContext";
+import { useUser } from "../context/UserContext";
 
 export function Profile() {
   const { tweets } = useTweetContext();
+  const { userInfo } = useUser();
   const location = useLocation().pathname;
 
   let message: string;
@@ -16,11 +17,11 @@ export function Profile() {
   const likedTweets = tweets.filter((tweet) => tweet.isLiked);
   const tweetsWithImages = tweets.filter((tweet) => tweet.imageUrl);
 
-  if (location === `/${initialUser.login}/media`) {
+  if (location === `/${userInfo.login}/media`) {
     message =
       tweetsWithImages.length === 1 ? "Photo & video" : "Photos & videos";
     number = tweetsWithImages.length;
-  } else if (location === `/${initialUser.login}/likes`) {
+  } else if (location === `/${userInfo.login}/likes`) {
     message = likedTweets.length === 1 ? "Like" : "Likes";
     number = likedTweets.length;
   } else {
@@ -40,7 +41,7 @@ export function Profile() {
         </button>
 
         <div className="flex flex-col">
-          <span>{initialUser.name}</span>
+          <span>{userInfo.name}</span>
           <span className="text-xs font-normal opacity-70">
             {number} {message}
           </span>
@@ -62,13 +63,14 @@ export function Profile() {
             <div
               style={{
                 width: "max(45px, min(135px, 22vw))",
+                height: "max(45px, min(135px, 22vw))"
               }}
               className="p-1 rounded-full bg-white dark:bg-bodyDark absolute -translate-y-[52%]"
             >
               <img
-                src={initialUser.avatarURL}
-                alt={`Foto de perfil do usuário ${initialUser.name}`}
-                className="rounded-full"
+                src={userInfo.avatar}
+                alt={`Foto de perfil do usuário ${userInfo.name}`}
+                className="rounded-full w-full h-full"
               />
             </div>
 
@@ -90,33 +92,33 @@ export function Profile() {
           >
             <div className="flex flex-col">
               <span className="text-xl font-bold leading-6 dark:text-textDark">
-                {initialUser.name}
+                {userInfo.name}
               </span>
               <span className="text-mute dark:text-muteDark">
-                @{initialUser.login}
+                @{userInfo.login}
               </span>
             </div>
 
-            <p role="user-bio">{initialUser.bio}</p>
+            <p role="user-bio">{userInfo.bio}</p>
 
             <div
               role="presentation"
               className="flex items-center gap-1 text-mute dark:text-muteDark"
             >
               <CalendarBlank size={18.75} />
-              <span>Joined {initialUser.created_at}</span>
+              <span>Joined {userInfo.created_at}</span>
             </div>
 
             <div className="flex items-center gap-3 text-sm">
               <div>
                 <span className="mr-1 font-bold dark:text-textDark">
-                  {initialUser.following}
+                  {userInfo.following}
                 </span>
                 <span className="text-mute dark:text-muteDark">Following</span>
               </div>
               <div>
                 <span className="mr-1 font-bold dark:text-textDark">
-                  {initialUser.followers}
+                  {userInfo.followers}
                 </span>
                 <span className="text-mute dark:text-muteDark">Followers</span>
               </div>
@@ -126,11 +128,11 @@ export function Profile() {
       </div>
 
       <nav className="flex h-[53px] items-center justify-around border-b border-grayBorder dark:border-grayBorderDark">
-        <Link path={`/${initialUser.login}`} name="Posts" />
-        <Link path={`/${initialUser.login}/with_replies`} name="Replies" />
-        <Link path={`/${initialUser.login}/highlights`} name="Highlights" />
-        <Link path={`/${initialUser.login}/media`} name="Media" />
-        <Link path={`/${initialUser.login}/likes`} name="Likes" />
+        <Link path={`/${userInfo.login}`} name="Posts" />
+        <Link path={`/${userInfo.login}/with_replies`} name="Replies" />
+        <Link path={`/${userInfo.login}/highlights`} name="Highlights" />
+        <Link path={`/${userInfo.login}/media`} name="Media" />
+        <Link path={`/${userInfo.login}/likes`} name="Likes" />
       </nav>
 
       <Outlet />
