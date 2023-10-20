@@ -5,9 +5,18 @@ import { SidebarProvider } from "../context/SidebarContext";
 import { TweetProvider } from "../context/TweetContext";
 import { ScrollDirectionProvider } from "../context/ScrollContext";
 import { useUser } from "../context/UserContext";
+import { useEffect } from "react";
+import { saveHasUser } from "../utils/hasUserUtils";
 
 export function Default() {
-  const { hasUser } = useUser();
+  const { userInfo, hasUser, setHasUser } = useUser();
+
+  useEffect(() => {
+    if (userInfo.login === '') {
+      setHasUser(false);
+      saveHasUser(false)
+    }
+  }, [userInfo, setHasUser]);
 
   if (hasUser === null || !hasUser) {
     return <Navigate to='/flow/' />

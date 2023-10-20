@@ -8,6 +8,9 @@ import logoTwitter from "../assets/logo-twitter.svg";
 import { isTouchSupported } from "../utils/touchUtils";
 import { NavLink, Navigate, Outlet } from "react-router-dom";
 import { useUser } from "../context/UserContext";
+import { useEffect } from "react";
+import { saveHasUser } from "../utils/hasUserUtils";
+import { saveDarkModeValue } from "../utils/darkModeUtils";
 
 interface ContentProps {
   icon: React.ElementType<IconProps>;
@@ -24,8 +27,19 @@ function Content(props: ContentProps) {
 }
 
 export function Flow() {
-  const { hasUser } = useUser()
-  
+  const { hasUser, setHasUser, userInfo } = useUser()
+
+  const html = document.querySelector('html')
+  html?.classList.remove('dark')
+
+  useEffect(() => {
+    if (userInfo.login === '') {
+      setHasUser(false);
+      saveHasUser(false)
+      saveDarkModeValue(true)
+    }
+  }, [userInfo, setHasUser]);
+
   if (hasUser) {
     return <Navigate to="/" />
   }
