@@ -19,7 +19,7 @@ export function Signup() {
       ...userInfo,
       followers: 0,
       following: 0,
-      created_at: `${new Date().getMonth()} ${new Date().getFullYear()}`,
+      created_at: `${new Date().getMonth() + 1} ${new Date().getFullYear()}`,
     });
 
     if (steps === 2) {
