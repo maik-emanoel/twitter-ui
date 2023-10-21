@@ -17,11 +17,12 @@ import { useSidebarContext } from "../context/SidebarContext";
 import { MobileSidebarLink } from "./MobileSidebarLink";
 import { SectionLinks } from "./SectionLinks";
 import { useState } from "react";
-import { initialUser } from "../initialUser";
+import { useUser } from "../context/UserContext";
 
 export function MobileSidebar() {
   const { handleHideMobileSidebar } = useSidebarContext();
   const [isVisible, setIsVisible] = useState(true);
+  const { userInfo } = useUser();
 
   function addDelayOnCloseMobileSidebar() {
     setIsVisible(false);
@@ -43,9 +44,7 @@ export function MobileSidebar() {
       >
         <div className="h-[53px] px-4 flex items-center justify-between sticky top-0 bg-white/95 backdrop-blur-md z-30 dark:bg-bodyDark/95">
           <span className="font-bold">Account Info</span>
-          <button
-            onClick={() => addDelayOnCloseMobileSidebar()}
-          >
+          <button onClick={() => addDelayOnCloseMobileSidebar()}>
             <X size={20} />
           </button>
         </div>
@@ -53,9 +52,9 @@ export function MobileSidebar() {
         <div className="p-4 flex flex-col">
           <div className="flex justify-between">
             <img
-              src={initialUser.avatarURL}
-              alt={`Foto de perfil do usuário ${initialUser.name}`}
-              className="w-10 h-10 rounded-full"
+              src={userInfo.avatar}
+              alt={`Foto de perfil do usuário ${userInfo.name}`}
+              className="w-10 h-10 rounded-full object-cover object-top"
             />
             <div className="w-8 h-8 rounded-full border border-grayBorder flex items-center justify-center">
               <Plus size={18} />
@@ -63,20 +62,20 @@ export function MobileSidebar() {
           </div>
 
           <div className="flex flex-col mt-2">
-            <span className="font-bold leading-5">{initialUser.name}</span>
-            <span className="text-sm opacity-80">@{initialUser.login}</span>
+            <span className="font-bold leading-5">{userInfo.name}</span>
+            <span className="text-sm opacity-80">@{userInfo.login}</span>
           </div>
 
           <div className="flex mt-3 text-sm gap-5">
             <div>
               <span className="font-bold mr-1 opacity-80">
-                {initialUser.following}
+                {userInfo.following}
               </span>
               <span>Following</span>
             </div>
             <div>
               <span className="font-bold mr-1 opacity-80">
-                {initialUser.followers}
+                {userInfo.followers}
               </span>
               <span>Follower</span>
             </div>
@@ -84,7 +83,7 @@ export function MobileSidebar() {
         </div>
 
         <MobileSidebarLink
-          path={`/${initialUser.login}`}
+          path={`/${userInfo.login}`}
           icon={<User size={24} />}
           text="Profile"
         />

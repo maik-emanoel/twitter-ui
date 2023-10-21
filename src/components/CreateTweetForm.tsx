@@ -99,7 +99,7 @@ export function CreateTweetForm({
         <img
           src={userInfo.avatar}
           alt={`Foto de perfil do usuário ${userInfo.name}`}
-          className="w-12 h-12 rounded-full sm:w-10 sm:h-10"
+          className="w-12 h-12 rounded-full object-cover object-top sm:w-10 sm:h-10"
         />
         <textarea
           id="tweet"

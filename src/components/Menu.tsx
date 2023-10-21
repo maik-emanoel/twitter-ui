@@ -15,7 +15,7 @@ import {
 import { useEffect, useRef, useState } from "react";
 import { useTweetContext } from "../context/TweetContext";
 import { isTouchSupported } from "../utils/touchUtils";
-import { initialUser } from "../initialUser";
+import { useUser } from "../context/UserContext";
 
 interface MenuItemProps {
   icon: React.ElementType<IconProps>;
@@ -67,6 +67,8 @@ export function Menu({
   const layerRef = useRef<HTMLDivElement | null>(null);
   const [layer, setLayer] = useState(false);
 
+  const { userInfo } = useUser();
+
   useEffect(() => {
     setLayer(true);
     function handleClickOutside(e: MouseEvent) {
@@ -102,11 +104,11 @@ export function Menu({
       <div
         ref={menuRef}
         className={`absolute top-0 right-0 max-w-[384px] h-fit z-20 bg-white rounded-xl shadow-menu overflow-hidden dark:bg-bodyDark dark:shadow-menuDark animate-fadeDown sm:bottom-0 sm:top-auto sm:w-full sm:rounded-b-none sm:dark:shadow-none ${
-          userLogin === initialUser.login ? "w-72" : "w-fit"
+          userLogin === userInfo.login ? "w-72" : "w-fit"
         } sm:max-w-none sm:animate-fadeUp`}
         onClick={(e) => e.preventDefault()}
       >
-        {userLogin === initialUser.login ? (
+        {userLogin === userInfo.login ? (
           <>
             <MenuItem
               icon={Trash}

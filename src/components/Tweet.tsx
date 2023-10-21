@@ -28,7 +28,7 @@ export function Tweet({
       data-[istouchsupported=false]:hover:bg-black/[0.03] 
       data-[istouchsupported=false]:hover:dark:bg-white/[0.03]"
     >
-      <img src={userAvatar} alt={userName} className="w-10 h-10 rounded-full" />
+      <img src={userAvatar} alt={userName} className="w-10 h-10 rounded-full object-cover object-top" />
 
       <div className="flex flex-col gap-[2px] max-w-[500px]">
         <div

@@ -16,7 +16,7 @@ import { isTouchSupported } from "../utils/touchUtils";
 import { useUser } from "../context/UserContext";
 
 export function Sidebar() {
-  const {userInfo} = useUser()
+  const { userInfo } = useUser();
 
   return (
     <aside className="pt-6 px-5 flex flex-col justify-between md:items-center h-screen sticky top-0 md:px-0 sm:hidden">
@@ -46,14 +46,17 @@ export function Sidebar() {
           <SidebarLink path="" icon={DotsThreeCircle} text="More" isNotAlink />
         </nav>
 
-        <button data-istouchsupported={isTouchSupported} className="bg-twitterBlue rounded-full flex justify-center items-center w-full h-14 text-white text-xl font-black md:p-2 md:w-10 md:h-10 data-[istouchsupported=false]:hover:brightness-90">
+        <button
+          data-istouchsupported={isTouchSupported}
+          className="bg-twitterBlue rounded-full flex justify-center items-center w-full h-14 text-white text-xl font-black md:p-2 md:w-10 md:h-10 data-[istouchsupported=false]:hover:brightness-90"
+        >
           <Pencil className="w-6 h-6 hidden md:block" />
           <span className="md:hidden">Tweet</span>
         </button>
       </div>
 
       <div
-      data-istouchsupported={isTouchSupported}
+        data-istouchsupported={isTouchSupported}
         className="p-4 flex items-center gap-3 my-3 rounded-full transition-colors duration-200 select-none cursor-pointer
         md:w-16 md:h-16 md:p-3 
         data-[istouchsupported=false]:hover:bg-zinc-100 
@@ -62,12 +65,14 @@ export function Sidebar() {
         <img
           src={userInfo.avatar}
           alt={`Foto de perfil do usuário ${userInfo.name}`}
-          className="w-10 h-10 rounded-full"
+          className="w-10 h-10 rounded-full object-cover object-top"
         />
         <div className="flex flex-1 justify-between items-center md:hidden">
           <div className="flex flex-col flex-shrink-0 text-sm">
             <span className="font-bold">{userInfo.name}</span>
-            <span className="opacity-70 dark:opacity-50">@{userInfo.login}</span>
+            <span className="opacity-70 dark:opacity-50">
+              @{userInfo.login}
+            </span>
           </div>
           <div>
             <DotsThree weight="bold" size={18.75} />

@@ -5,8 +5,8 @@ import { useSidebarContext } from "../context/SidebarContext";
 import { loadDarkModeValue, saveDarkModeValue } from "../utils/darkModeUtils";
 import { isTouchSupported } from "../utils/touchUtils";
 import { twMerge } from "tailwind-merge";
-import { initialUser } from "../initialUser";
 import { useScrollDirection } from "../context/ScrollContext";
+import { useUser } from "../context/UserContext";
 
 interface HeaderProps extends React.HTMLProps<HTMLDivElement> {
   title: string;
@@ -17,6 +17,7 @@ export function Header({ title, children, className }: HeaderProps) {
   const [isDark, setIsDark] = useState<boolean>(loadDarkModeValue());
   const { handleShowMobileSidebar } = useSidebarContext();
   const scrollDirection = useScrollDirection();
+  const { userInfo } = useUser();
 
   function handleToggleTheme() {
     const html = document.querySelector("html");
@@ -59,9 +60,9 @@ export function Header({ title, children, className }: HeaderProps) {
         <>
           <div className="hidden sm:block" onClick={handleShowSidebar}>
             <img
-              src={initialUser.avatarURL}
-              alt={`Foto de perfil do usuário ${initialUser.name}`}
-              className="w-8 h-8 rounded-full"
+              src={userInfo.avatar}
+              alt={`Foto de perfil do usuário ${userInfo.name}`}
+              className="w-8 h-8 rounded-full object-cover object-top"
             />
           </div>
           <span className="sm:hidden">{title}</span>

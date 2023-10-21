@@ -7,7 +7,7 @@ import { useTweetContext } from "../context/TweetContext";
 import { ErrorPage } from "./ErrorPage";
 import { initialTweets } from "../InitialTweets";
 import { isTouchSupported } from "../utils/touchUtils";
-import { initialUser } from "../initialUser";
+import { useUser } from "../context/UserContext";
 
 interface AnswerProps {
   userAvatar: string;
@@ -21,7 +21,8 @@ interface AnswerProps {
 
 export function Status() {
   const { id } = useParams();
-  const { tweets } = useTweetContext()
+  const { tweets } = useTweetContext();
+  const { userInfo } = useUser();
 
   const [newAnswer, setNewAnswer] = useState("");
   const [answers, setAnswers] = useState<AnswerProps[]>([
@@ -46,9 +47,9 @@ export function Status() {
   ]);
 
   const newAnswerObj: AnswerProps = {
-    userAvatar: initialUser.avatarURL,
-    userName: initialUser.name,
-    userLogin: initialUser.login,
+    userAvatar: userInfo.avatar,
+    userName: userInfo.name,
+    userLogin: userInfo.login,
     content: newAnswer,
     comments: 0,
     retweets: 0,
@@ -74,8 +75,8 @@ export function Status() {
 
   const tweet = tweets.concat(initialTweets).find((tweet) => tweet.id === id);
 
-  if(!tweet) {
-    return <ErrorPage />
+  if (!tweet) {
+    return <ErrorPage />;
   }
 
   return (
@@ -83,16 +84,16 @@ export function Status() {
       <Header title="Tweet" />
 
       <Tweet
-          id={tweet.id}
-          userAvatar={tweet.userAvatar}
-          userName={tweet.userName}
-          userLogin={tweet.userLogin}
-          content={tweet.content}
-          imageUrl={tweet.imageUrl}
-          comments={tweet.comments}
-          retweets={tweet.retweets}
-          likes={tweet.likes}
-        />
+        id={tweet.id}
+        userAvatar={tweet.userAvatar}
+        userName={tweet.userName}
+        userLogin={tweet.userLogin}
+        content={tweet.content}
+        imageUrl={tweet.imageUrl}
+        comments={tweet.comments}
+        retweets={tweet.retweets}
+        likes={tweet.likes}
+      />
 
       <Separator />
 
@@ -105,9 +106,9 @@ export function Status() {
           className="flex items-center gap-3 flex-1 sm:w-full"
         >
           <img
-            src={initialUser.avatarURL}
-            alt={`Foto de perfil do usuário ${initialUser.name}`}
-            className="w-12 h-12 rounded-full sm:w-10 sm:h-10"
+            src={userInfo.avatar}
+            alt={`Foto de perfil do usuário ${userInfo.name}`}
+            className="w-12 h-12 rounded-full object-cover object-top sm:w-10 sm:h-10"
           />
           <textarea
             id="tweet"
