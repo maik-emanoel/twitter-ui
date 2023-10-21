@@ -5,6 +5,7 @@ import { Link } from "../components/Link";
 import { Outlet, useLocation } from "react-router-dom";
 import { useTweetContext } from "../context/TweetContext";
 import { useUser } from "../context/UserContext";
+import { getMonth } from "../utils/monthUtils";
 
 export function Profile() {
   const { tweets } = useTweetContext();
@@ -28,6 +29,9 @@ export function Profile() {
     message = tweets.length === 1 ? "Post" : "Posts";
     number = tweets.length;
   }
+
+  const getMonthUserWasCreated = Number(userInfo.created_at.split(" ")[0]);
+  const getYearUserWasCreated = Number(userInfo.created_at.split(" ")[1]);
 
   return (
     <>
@@ -63,14 +67,14 @@ export function Profile() {
             <div
               style={{
                 width: "max(45px, min(135px, 22vw))",
-                height: "max(45px, min(135px, 22vw))"
+                height: "max(45px, min(135px, 22vw))",
               }}
               className="p-1 rounded-full bg-white dark:bg-bodyDark absolute -translate-y-[52%]"
             >
               <img
                 src={userInfo.avatar}
                 alt={`Foto de perfil do usuário ${userInfo.name}`}
-                className="rounded-full w-full h-full"
+                className="rounded-full w-full h-full object-cover object-top"
               />
             </div>
 
@@ -106,7 +110,10 @@ export function Profile() {
               className="flex items-center gap-1 text-mute dark:text-muteDark"
             >
               <CalendarBlank size={18.75} />
-              <span>Joined {userInfo.created_at}</span>
+              <span>
+                Joined {getMonth(getMonthUserWasCreated)}{" "}
+                {getYearUserWasCreated}
+              </span>
             </div>
 
             <div className="flex items-center gap-3 text-sm">
