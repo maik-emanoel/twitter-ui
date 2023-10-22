@@ -10,18 +10,26 @@ interface Step2Props {
 }
 
 export function Step2({ setUserInfo, userInfo }: Step2Props) {
-  const [imgFile, setImgFile] = useState<string>(emptyUserAvatar);
+  const [imgFile, setImgFile] = useState<string | undefined>(emptyUserAvatar);
 
   function getImgFile(e: ChangeEvent<HTMLInputElement>) {
     if (e.target.files) {
       const file = e.target.files[0];
-      const imageUrl = URL.createObjectURL(file);
+      const reader = new FileReader();
 
-      setImgFile(imageUrl);
-      setUserInfo({
-        ...userInfo,
-        avatar: imageUrl,
-      });
+      reader.onload = (e) => {
+        const imageUrl = e.target?.result as string;
+
+        setImgFile(imageUrl);
+        if (imageUrl) {
+          setUserInfo({
+            ...userInfo,
+            avatar: imageUrl,
+          });
+        }
+      };
+
+      reader.readAsDataURL(file);
     }
   }
 
