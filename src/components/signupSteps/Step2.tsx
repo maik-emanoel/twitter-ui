@@ -39,7 +39,7 @@ export function Step2({ setUserInfo, userInfo }: Step2Props) {
         <img
           src={imgFile}
           alt="User profile image"
-          className="rounded-full w-full max-w-[200px] max-h-[200px] object-cover mx-auto mb-3 brightness-90"
+          className="rounded-full w-[200px] h-[200px] object-cover mx-auto mb-3 brightness-90"
         />
         <label
           htmlFor="avatarInput"
