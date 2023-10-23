@@ -58,6 +58,7 @@ export function Step2({ setUserInfo, userInfo }: Step2Props) {
         type="file"
         id="avatarInput"
         className="hidden"
+        accept="image/*"
         onChange={getImgFile}
       />
     </div>
