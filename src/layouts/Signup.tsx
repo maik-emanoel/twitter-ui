@@ -33,7 +33,7 @@ export function Signup() {
 
   return (
     <div className="absolute inset-0 backdrop-blur-sm z-50 flex items-center justify-center">
-      <div className="w-full max-w-[600px] min-h-[400px] py-4 px-4 bg-white shadow-menu rounded-2xl flex flex-col">
+      <div className="w-full max-w-[600px] min-h-[400px] mx-5 py-4 px-4 bg-white shadow-menu rounded-2xl flex flex-col md:max-w-none md:mx-0 md:max-h-none md:h-screen md:shadow-none md:rounded-none">
         <header className="flex items-center mb-5">
           <NavLink to="/flow">
             <button
@@ -51,7 +51,7 @@ export function Signup() {
           </p>
         </header>
 
-        <div className="flex-1 max-w-[440px] w-full mx-auto mb-6">
+        <div className="flex-1 max-w-[440px] w-full mx-auto mb-6 md:max-w-[600px]">
           <h1 className="text-4xl font-bold mb-8">Criar sua conta</h1>
 
           {steps == 1 && (
@@ -64,7 +64,7 @@ export function Signup() {
 
         <button
           onClick={handleSteps}
-          className="w-full max-w-[440px] h-[52px] mx-auto mb-2 rounded-full bg-twitterBlue text-white text-xl font-bold disabled:opacity-80"
+          className="w-full max-w-[440px] h-[52px] mx-auto mb-2 rounded-full bg-twitterBlue text-white text-xl font-bold disabled:opacity-80 md:max-w-[600px]"
           disabled={
             userInfo.name.trim() === "" ||
             userInfo.login.trim() === "" ||
