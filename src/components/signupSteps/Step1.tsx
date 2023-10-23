@@ -106,7 +106,7 @@ export function Step1({ setUserInfo, userInfo }: Step1Props) {
 
               <CaretDown
                 size={18}
-                className="absolute top-[50%] -translate-y-[50%] right-3 pointer-events-none group-focus-within:text-twitterBlue"
+                className="absolute top-[50%] -translate-y-[50%] right-3 pointer-events-none group-focus-within:text-twitterBlue sm:hidden"
               />
             </div>
           </div>
@@ -140,7 +140,7 @@ export function Step1({ setUserInfo, userInfo }: Step1Props) {
 
               <CaretDown
                 size={18}
-                className="absolute top-[50%] -translate-y-[50%] right-3 pointer-events-none group-focus-within:text-twitterBlue"
+                className="absolute top-[50%] -translate-y-[50%] right-3 pointer-events-none group-focus-within:text-twitterBlue sm:hidden"
               />
             </div>
           </div>
@@ -175,7 +175,7 @@ export function Step1({ setUserInfo, userInfo }: Step1Props) {
 
               <CaretDown
                 size={18}
-                className="absolute top-[50%] -translate-y-[50%] right-3 pointer-events-none group-focus-within:text-twitterBlue"
+                className="absolute top-[50%] -translate-y-[50%] right-3 pointer-events-none group-focus-within:text-twitterBlue sm:hidden"
               />
             </div>
           </div>
