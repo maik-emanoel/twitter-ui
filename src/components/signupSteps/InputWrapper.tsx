@@ -39,6 +39,10 @@ export function InputWrapper(props: InputWrapperProps) {
       setIsFocused(true);
       inputRef.current.focus();
     }
+
+    if (props.type === "editBio" && textareaRef.current) {
+      setIsFocused('hasCaracters');
+    }
   }, [props.type]);
 
   return (
@@ -104,7 +108,7 @@ export function InputWrapper(props: InputWrapperProps) {
           name={`user${props.type}Input`}
           ref={textareaRef}
           value={props.value}
-          className={`w-full outline-none mt-6 px-2 text-sm bg-transparent`}
+          className="w-full h-36 outline-none mt-6 px-2 text-sm bg-transparent resize-none"
           maxLength={props.maxLengthCaracters}
           onChange={(e) => {
             setCaractersNumber(e.target.value.trim());
