@@ -24,7 +24,7 @@ export function Tweet({
     <Link
       to={`/status/${id}`}
       data-istouchsupported={isTouchSupported}
-      className="w-full py-6 px-5 grid grid-cols-[max-content_1fr] gap-3 border-b-[1px] border-grayBorder transition-colors duration-200 dark:border-grayBorderDark 
+      className="w-full py-6 px-5 grid grid-cols-[max-content_1fr] gap-3 border-b border-grayBorder transition-[background] duration-200 dark:border-grayBorderDark 
       data-[istouchsupported=false]:hover:bg-black/[0.03] 
       data-[istouchsupported=false]:hover:dark:bg-white/[0.03]"
     >
