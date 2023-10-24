@@ -3,6 +3,8 @@ import { isTouchSupported } from "../utils/touchUtils";
 import { ChangeEvent, useState } from "react";
 import { useUser } from "../context/UserContext";
 import { InputWrapper } from "./signupSteps/InputWrapper";
+import { saveUser } from "../utils/saveUserUtils";
+import { useTweetContext } from "../context/TweetContext";
 
 interface EditProfileProps {
   setIsEditProfileVisible: React.Dispatch<React.SetStateAction<boolean>>;
@@ -10,10 +12,11 @@ interface EditProfileProps {
 
 export function EditProfile({ setIsEditProfileVisible }: EditProfileProps) {
   const { userInfo, setUserInfo } = useUser();
+  const { tweets, setTweets } = useTweetContext();
 
   const [imgFile, setImgFile] = useState<string | undefined>(userInfo.avatar);
   const [editNameValue, setEditNameValue] = useState(userInfo.name);
-  const [editBioValue, setEditBioValue] = useState(userInfo.bio)
+  const [editBioValue, setEditBioValue] = useState(userInfo.bio);
 
   function getImgFile(e: ChangeEvent<HTMLInputElement>) {
     if (e.target.files) {
@@ -36,7 +39,28 @@ export function EditProfile({ setIsEditProfileVisible }: EditProfileProps) {
         ...userInfo,
         avatar: imgFile as string,
         name: editNameValue,
+        bio: editBioValue,
       });
+
+      saveUser({
+        ...userInfo,
+        avatar: imgFile as string,
+        name: editNameValue,
+        bio: editBioValue,
+      });
+
+      const updatedTweets = tweets.map((tweet) => {
+        if (tweet.userLogin === userInfo.login) {
+          return {
+            ...tweet,
+            userName: editNameValue,
+            userAvatar: imgFile as string
+          };
+        }
+        return tweet;
+      });
+
+      setTweets(updatedTweets)
     }, 500);
   }
 
