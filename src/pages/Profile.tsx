@@ -6,7 +6,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import { useTweetContext } from "../context/TweetContext";
 import { useUser } from "../context/UserContext";
 import { getMonth } from "../utils/monthUtils";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { EditProfile } from "../components/EditProfile";
 
 export function Profile() {
@@ -38,15 +38,6 @@ export function Profile() {
   const getMonthUserWasCreated = Number(userInfo.created_at.split(" ")[0]);
   const getYearUserWasCreated = Number(userInfo.created_at.split(" ")[1]);
 
-  useEffect(() => {
-    if (isEditProfileVisible) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = 'initial'
-    }
-
-  }, [isEditProfileVisible])
-
   return (
     <>
       <Header title="" className="justify-normal py-0 gap-9">
@@ -58,8 +49,8 @@ export function Profile() {
           <ArrowLeft size={20} weight="bold" />
         </button>
 
-        <div className="flex flex-col">
-          <span>{userInfo.name}</span>
+        <div className="flex flex-col flex-1 overflow-hidden">
+          <span className="overflow-hidden text-ellipsis">{userInfo.name}</span>
           <span className="text-xs font-normal opacity-70">
             {number} {message}
           </span>
@@ -96,8 +87,8 @@ export function Profile() {
               onClick={() => setIsEditProfileVisible(true)}
               data-istouchsupported={isTouchSupported}
               className="justify-self-end w-28 h-9 rounded-full font-bold dark:text-textDark border border-black/10 dark:border-white/40 transition-all duration-200 
-            data-[istouchsupported=false]:hover:bg-black/10 
-            dark:data-[istouchsupported=false]:hover:bg-white/10"
+              data-[istouchsupported=false]:hover:bg-black/10 
+              dark:data-[istouchsupported=false]:hover:bg-white/10"
             >
               Edit Profile
             </button>
@@ -107,10 +98,10 @@ export function Profile() {
             style={{
               padding: "min(calc(2vw + 7px), 67px) 0 0 0",
             }}
-            className="flex flex-col gap-3"
+            className="flex flex-col flex-1 overflow-hidden gap-3"
           >
-            <div className="flex flex-col">
-              <span className="text-xl font-bold leading-6 dark:text-textDark">
+            <div className="flex flex-col flex-1">
+              <span className="text-xl font-bold leading-6 overflow-hidden text-ellipsis pr-2 dark:text-textDark">
                 {userInfo.name}
               </span>
               <span className="text-mute dark:text-muteDark">
@@ -118,7 +109,7 @@ export function Profile() {
               </span>
             </div>
 
-            <p role="user-bio">{userInfo.bio}</p>
+            <p role="user-bio" className="break-words">{userInfo.bio}</p>
 
             <div
               role="presentation"
