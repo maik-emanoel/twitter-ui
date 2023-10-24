@@ -6,11 +6,16 @@ import { Outlet, useLocation } from "react-router-dom";
 import { useTweetContext } from "../context/TweetContext";
 import { useUser } from "../context/UserContext";
 import { getMonth } from "../utils/monthUtils";
+import { useEffect, useState } from "react";
+import { EditProfile } from "../components/EditProfile";
 
 export function Profile() {
   const { tweets } = useTweetContext();
   const { userInfo } = useUser();
   const location = useLocation().pathname;
+
+  const [isEditProfileVisible, setIsEditProfileVisible] =
+    useState<boolean>(false);
 
   let message: string;
   let number: number;
@@ -32,6 +37,15 @@ export function Profile() {
 
   const getMonthUserWasCreated = Number(userInfo.created_at.split(" ")[0]);
   const getYearUserWasCreated = Number(userInfo.created_at.split(" ")[1]);
+
+  useEffect(() => {
+    if (isEditProfileVisible) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'initial'
+    }
+
+  }, [isEditProfileVisible])
 
   return (
     <>
@@ -79,6 +93,7 @@ export function Profile() {
             </div>
 
             <button
+              onClick={() => setIsEditProfileVisible(true)}
               data-istouchsupported={isTouchSupported}
               className="justify-self-end w-28 h-9 rounded-full font-bold dark:text-textDark border border-black/10 dark:border-white/40 transition-all duration-200 
             data-[istouchsupported=false]:hover:bg-black/10 
@@ -143,6 +158,7 @@ export function Profile() {
       </nav>
 
       <Outlet />
+      {isEditProfileVisible && <EditProfile setIsEditProfileVisible={setIsEditProfileVisible} />}
     </>
   );
 }
