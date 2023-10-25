@@ -1,4 +1,4 @@
-import { CameraPlus, X } from "@phosphor-icons/react";
+import { CameraPlus, CircleNotch, X } from "@phosphor-icons/react";
 import { isTouchSupported } from "../utils/touchUtils";
 import { ChangeEvent, useState } from "react";
 import { useUser } from "../context/UserContext";
@@ -13,6 +13,7 @@ interface EditProfileProps {
 export function EditProfile({ setIsEditProfileVisible }: EditProfileProps) {
   const { userInfo, setUserInfo } = useUser();
   const { tweets, setTweets } = useTweetContext();
+  const [isLoading, setIsLoading] = useState(false);
 
   const [imgFile, setImgFile] = useState<string | undefined>(userInfo.avatar);
   const [editNameValue, setEditNameValue] = useState(userInfo.name);
@@ -33,6 +34,8 @@ export function EditProfile({ setIsEditProfileVisible }: EditProfileProps) {
   }
 
   function handleSaveNewInfo() {
+    setIsLoading(true);
+
     setTimeout(() => {
       setIsEditProfileVisible(false);
       setUserInfo({
@@ -54,14 +57,15 @@ export function EditProfile({ setIsEditProfileVisible }: EditProfileProps) {
           return {
             ...tweet,
             userName: editNameValue,
-            userAvatar: imgFile as string
+            userAvatar: imgFile as string,
           };
         }
         return tweet;
       });
 
-      setTweets(updatedTweets)
-    }, 500);
+      setTweets(updatedTweets);
+      setIsLoading(false);
+    }, 1500);
   }
 
   return (
@@ -89,7 +93,11 @@ export function EditProfile({ setIsEditProfileVisible }: EditProfileProps) {
             data-istouchsupported={isTouchSupported}
             className="rounded-full w-16 h-8 font-bold text-sm grid transition-all duration-200 place-items-center bg-twitterBlue text-white dark:bg-textDark dark:text-bodyDark data-[istouchsupported=false]:hover:brightness-90"
           >
-            Save
+            {!isLoading ? (
+              "Save"
+            ) : (
+              <CircleNotch size={18} weight="bold" className="animate-spin" />
+            )}
           </button>
         </header>
 
