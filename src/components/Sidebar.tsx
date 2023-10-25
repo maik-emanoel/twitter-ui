@@ -67,10 +67,10 @@ export function Sidebar() {
           alt={`Foto de perfil do usuário ${userInfo.name}`}
           className="w-10 h-10 rounded-full object-cover object-top"
         />
-        <div className="flex flex-1 justify-between items-center md:hidden">
-          <div className="flex flex-col flex-shrink-0 text-sm">
-            <span className="font-bold">{userInfo.name}</span>
-            <span className="opacity-70 dark:opacity-50">
+        <div className="flex justify-between items-center w-full md:hidden">
+          <div className="flex flex-col w-full max-w-[157.25px] text-sm overflow-hidden pr-1">
+            <span className="font-bold w-full overflow-hidden text-ellipsis">{userInfo.name}</span>
+            <span className="opacity-70 dark:opacity-50 overflow-hidden text-ellipsis">
               @{userInfo.login}
             </span>
           </div>
