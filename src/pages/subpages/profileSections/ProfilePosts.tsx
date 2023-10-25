@@ -6,8 +6,8 @@ export function ProfilePosts() {
 
   return (
     <div className="min-h-[50vh]">
-      {tweets.map((tweet) => {
-        return (
+      {tweets.length > 0 ? (
+        tweets.map((tweet) => (
           <Tweet
             key={tweet.id}
             id={tweet.id}
@@ -21,8 +21,15 @@ export function ProfilePosts() {
             isLiked={tweet.isLiked}
             imageUrl={tweet.imageUrl}
           />
-        );
-      })}
+        ))
+      ) : (
+        <div className="max-w-[400px] my-8 mx-auto px-8 min-h-[50vh]">
+          <h2 className="text-3xl font-extrabold mb-2">Sorry :&#40;</h2>
+          <p className="text-sm dark:text-muteDark">
+            You don't have posts yet.
+          </p>
+        </div>
+      )}
     </div>
   );
 }
