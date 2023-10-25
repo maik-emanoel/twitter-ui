@@ -65,8 +65,8 @@ export function EditProfile({ setIsEditProfileVisible }: EditProfileProps) {
   }
 
   return (
-    <div className="absolute inset-0 backdrop-blur-sm z-50 flex items-center justify-center">
-      <div className="w-full max-w-[600px] min-h-[400px] mx-5 py-4 px-4 bg-white dark:bg-bodyDark shadow-menu rounded-2xl flex flex-col md:max-w-none md:mx-0 md:max-h-none md:h-screen md:shadow-none md:rounded-none">
+    <div className="fixed top-0 left-0 w-full h-full backdrop-blur-sm z-50 flex items-center justify-center">
+      <div className="w-full max-w-[600px] min-h-[400px] mx-5 py-4 px-4 bg-white dark:bg-bodyDark shadow-menu rounded-2xl flex flex-col md:max-w-none md:mx-0 md:max-h-none md:h-full md:shadow-none md:rounded-none">
         <header className="flex items-center justify-between mb-5">
           <div className="flex items-center">
             <button
