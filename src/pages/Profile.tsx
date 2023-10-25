@@ -6,7 +6,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import { useTweetContext } from "../context/TweetContext";
 import { useUser } from "../context/UserContext";
 import { getMonth } from "../utils/monthUtils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { EditProfile } from "../components/EditProfile";
 
 export function Profile() {
@@ -37,6 +37,14 @@ export function Profile() {
 
   const getMonthUserWasCreated = Number(userInfo.created_at.split(" ")[0]);
   const getYearUserWasCreated = Number(userInfo.created_at.split(" ")[1]);
+
+  useEffect(() => {
+    if (isEditProfileVisible) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'initial'
+    }
+  }, [isEditProfileVisible])
 
   return (
     <>
