@@ -17,7 +17,7 @@ export function MobileSidebarLink({
 
   return (
     <NavLink to={path} onClick={() => handleHideMobileSidebar()}>
-      <div className="p-4 flex items-center gap-5 active:bg-zinc-100 active:dark:bg-zinc-800">
+      <div className="p-4 flex items-center gap-5 text-[#0f1419] dark:text-textDark active:bg-zinc-100 active:dark:bg-zinc-800">
         {icon}
         <span className="font-bold text-xl">{text}</span>
       </div>
