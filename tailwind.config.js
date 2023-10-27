@@ -59,8 +59,8 @@ export default {
       'md': {'max': '767px'},
       // => @media (max-width: 767px) { ... }
 
-      'sm': {'max': '425px'},
-      // => @media (max-width: 425px) { ... }
+      'sm': {'max': '475px'},
+      // => @media (max-width: 475px) { ... }
     }
   },
   plugins: [],
