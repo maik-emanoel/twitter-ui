@@ -1,4 +1,4 @@
-import { ArrowLeft } from "@phosphor-icons/react";
+import { ArrowLeft, X } from "@phosphor-icons/react";
 import { useState, FormEvent, KeyboardEvent, useRef, useEffect } from "react";
 import { TweetToolbar } from "./TweetToolbar";
 import { TweetProps } from "../pages/Timeline";
@@ -26,6 +26,9 @@ export function CreateTweetForm({
   const [newTweet, setNewTweet] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
   const { userInfo } = useUser();
+  const [imageTweetFile, setImageTweetFile] = useState<string | undefined>(
+    undefined
+  );
 
   const newTweetObj: TweetProps = {
     id: uuidv4(),
@@ -37,6 +40,7 @@ export function CreateTweetForm({
     retweets: 0,
     likes: 0,
     isLiked: false,
+    imageUrl: imageTweetFile,
   };
 
   function createNewTweet(e: FormEvent) {
@@ -45,6 +49,7 @@ export function CreateTweetForm({
 
     setTweets([newTweetObj, ...tweets]);
     setNewTweet("");
+    setImageTweetFile(undefined)
 
     setTimeout(() => {
       handleHideTweetFormAndShowTweetOnTop();
@@ -58,6 +63,7 @@ export function CreateTweetForm({
     if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) {
       setTweets([newTweetObj, ...tweets]);
       setNewTweet("");
+      setImageTweetFile(undefined)
 
       setTimeout(() => {
         handleHideTweetFormAndShowTweetOnTop();
@@ -113,8 +119,22 @@ export function CreateTweetForm({
         />
       </label>
 
-      <div className="ml-auto sm:ml-0 sm:flex sm:justify-between">
-        <TweetToolbar />
+      {imageTweetFile != undefined && (
+        <div className="ml-[60px] rounded-2xl overflow-hidden max-h-[400px] relative sm:ml-0">
+          <img src={imageTweetFile} alt="" className="w-full h-full object-cover object-top"/>
+
+          <div
+            onClick={() => setImageTweetFile(undefined)}
+            data-istouchsupported={isTouchSupported}
+            className="absolute top-1 right-1 w-[30.4px] h-[30.4px] text-white grid place-items-center backdrop-blur-sm bg-[#0f1419bf] rounded-full cursor-pointer transition-all duration-200 data-[istouchsupported=false]:hover:brightness-150"
+          >
+            <X size={18} />
+          </div>
+        </div>
+      )}
+
+      <div className="sm:ml-0 flex justify-between pl-[60px] sm:pl-0">
+        <TweetToolbar setImageTweetFile={setImageTweetFile} />
 
         <div className="flex items-center gap-3">
           <CountdownWrapper characters={newTweet} />
@@ -122,15 +142,15 @@ export function CreateTweetForm({
           <button
             type="submit"
             data-istouchsupported={isTouchSupported}
-            className="bg-twitterBlue rounded-full py-3 px-6 text-white font-black transition-all duration-300 ease-in-out select-none disabled:opacity-60 disabled:pointer-events-none sm:absolute sm:top-3 sm:right-5 sm:h-8 sm:px-4 sm:py-0
-        data-[istouchsupported=false]:hover:brightness-90"
+            className="bg-twitterBlue rounded-full h-9 px-5 text-white font-black transition-all duration-300 ease-in-out select-none disabled:opacity-60 disabled:pointer-events-none sm:absolute sm:top-3 sm:right-5 sm:h-8 sm:px-4 sm:py-0
+            data-[istouchsupported=false]:hover:brightness-90"
             disabled={
               newTweet.trim() === "" || newTweet.trim().length > maxCharacters
                 ? true
                 : false
             }
           >
-            Tweet
+            Post
           </button>
         </div>
       </div>
