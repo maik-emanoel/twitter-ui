@@ -9,6 +9,7 @@ import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { isTouchSupported } from "../utils/touchUtils";
 import { useTweetContext } from "../context/TweetContext";
+import { Tooltip } from "./Tooltip";
 
 interface ButtonsWrapperProps {
   comments: number | undefined;
@@ -78,7 +79,7 @@ function Button({
       >
         {!isLiked ? <Icon size={18.75} /> : <Icon size={18.75} weight="fill" />}
         {showTooltip && !isTouchSupported && (
-          <span className="tooltip">{ariaLabel}</span>
+          <Tooltip text={ariaLabel} />
         )}
       </div>
       <span className="pl-1">{text}</span>
