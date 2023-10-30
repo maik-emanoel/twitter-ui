@@ -100,7 +100,7 @@ interface TweetToolbarProps {
 
 export function TweetToolbar({ setImageTweetFile }: TweetToolbarProps) {
   return (
-    <div className="sm:divide-y-[1px] divide-grayBorder text-twitterBlue dark:divide-grayBorderDark flex sm:flex-col sm:mt-3">
+    <div className="sm:divide-y-[1px] divide-grayBorder text-twitterBlue dark:divide-grayBorderDark flex sm:flex-col sm:mt-3 select-none">
       <div className="hidden mb-3 px-3 -ml-3 sm:flex items-center gap-1 rounded-full w-fit h-6 active:bg-twitterBlue/20">
         <GlobeHemisphereWest weight="fill" />
         <span className="text-sm font-medium">Everyone can reply</span>
