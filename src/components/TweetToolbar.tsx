@@ -20,7 +20,7 @@ interface TweetToolbarItemProps {
   isMediaButton?: boolean;
   setImageTweetFile?: React.Dispatch<React.SetStateAction<string | undefined>>;
 
-  label: string
+  label: string;
 }
 
 function TweetToolbarItem({
@@ -30,9 +30,9 @@ function TweetToolbarItem({
   isHidden,
   isMediaButton,
   setImageTweetFile,
-  label
+  label,
 }: TweetToolbarItemProps) {
-  const [showTooltip, setShowTooltip] = useState<boolean>(false)
+  const [showTooltip, setShowTooltip] = useState<boolean>(false);
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     if (e.target.files) {
@@ -89,7 +89,7 @@ function TweetToolbarItem({
         </label>
       )}
 
-      {showTooltip && <Tooltip text={label} />}
+      {showTooltip && !isTouchSupported && <Tooltip text={label} />}
     </div>
   );
 }
@@ -113,10 +113,10 @@ export function TweetToolbar({ setImageTweetFile }: TweetToolbarProps) {
           setImageTweetFile={setImageTweetFile}
           label="Media"
         />
-        <TweetToolbarItem icon={Gif} label="GIF"/>
-        <TweetToolbarItem icon={ListBullets} isHidden label="Poll"/>
-        <TweetToolbarItem icon={Smiley} label="Emoji"/>
-        <TweetToolbarItem icon={CalendarBlank} isHidden label="Schedule"/>
+        <TweetToolbarItem icon={Gif} label="GIF" />
+        <TweetToolbarItem icon={ListBullets} isHidden label="Poll" />
+        <TweetToolbarItem icon={Smiley} label="Emoji" />
+        <TweetToolbarItem icon={CalendarBlank} isHidden label="Schedule" />
         <TweetToolbarItem icon={MapPin} isLast label="" />
       </div>
     </div>
