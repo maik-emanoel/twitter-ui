@@ -30,15 +30,15 @@ export function Tweet({
     >
       <img src={userAvatar} alt={userName} className="w-10 h-10 rounded-full object-cover object-top" />
 
-      <div className="flex flex-col gap-[2px] max-w-[500px]">
+      <div className="flex flex-col flex-1 gap-[2px] max-w-[500px]">
         <div
           data-ismenuvisible={isMenuVisible}
           className="flex items-center justify-between relative
           sm:data-[ismenuvisible=true]:static"
         >
-          <div className="flex items-center gap-1 flex-wrap sm:gap-0">
-            <strong className="whitespace-nowrap leading-5 sm:mr-1">{userName}</strong>
-            <span className="text-sm text-[#89a2b8] dark:text-[#828282] pr-8">
+          <div className="w-full grid grid-cols-[auto,1fr] gap-x-1 pr-8 sm:gap-0 overflow-hidden">
+            <strong className="whitespace-nowrap w-full overflow-hidden text-ellipsis leading-5 sm:mr-1">{userName}</strong>
+            <span className="text-sm text-[#89a2b8] dark:text-[#828282]">
               @{userLogin}
             </span>
           </div>
