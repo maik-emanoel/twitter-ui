@@ -21,7 +21,7 @@ export function ProfileInfo({
       onMouseEnter={() => setMouseIsOnProfileInfo(true)}
       onMouseLeave={() => setMouseIsOnProfileInfo(false)}
       onClick={(e) => e.preventDefault()}
-      className="absolute top-20 left-5 w-full max-w-[300px] bg-white dark:bg-bodyDark rounded-2xl p-3 shadow-menu dark:shadow-menuDark flex flex-col gap-2 z-50"
+      className="absolute top-20 left-5 w-full max-w-[300px] bg-white dark:bg-bodyDark rounded-2xl p-3 shadow-menu dark:shadow-menuDark flex flex-col gap-2 z-50 cursor-default"
     >
       <div className="">
         <div className="flex items-start justify-between mb-3">
