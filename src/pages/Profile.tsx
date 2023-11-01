@@ -58,7 +58,7 @@ export function Profile() {
         </button>
 
         <div className="flex flex-col flex-1 overflow-hidden">
-          <span className="overflow-hidden text-ellipsis">{userInfo.name}</span>
+          <span className="overflow-hidden text-ellipsis whitespace-nowrap">{userInfo.name}</span>
           <span className="text-xs font-normal opacity-70">
             {number} {message}
           </span>
