@@ -24,15 +24,21 @@ export function Tweet({
   const [mouseIsOnProfileInfo, setMouseIsOnProfileInfo] = useState(false);
   const profileInfoRef = useRef<null | HTMLDivElement>(null);
 
+  const path = window.location.pathname;
+
   function handleMouseEnter() {
+    if (path != "/") return;
+
     setTimeout(() => {
       setIsProfileInfoVisible(true);
     }, 500);
   }
 
   function handleMouseLeave() {
+    if (path != "/") return;
+
     if (mouseIsOnProfileInfo) {
-      setIsProfileInfoVisible(true)
+      setIsProfileInfoVisible(true);
     } else {
       setTimeout(() => {
         setIsProfileInfoVisible(false);
@@ -71,7 +77,7 @@ export function Tweet({
               {userName}
             </strong>
             <span
-              className="text-sm text-[#89a2b8] dark:text-[#828282]"
+              className="text-sm text-[#89a2b8] dark:text-[#828282] w-fit"
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
