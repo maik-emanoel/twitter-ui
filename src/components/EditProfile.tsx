@@ -34,6 +34,11 @@ export function EditProfile({ setIsEditProfileVisible }: EditProfileProps) {
   }
 
   function handleSaveNewInfo() {
+    if (editNameValue.trim() === '') {
+      alert('Please, fill the field "Name"')
+      return
+    } 
+
     setIsLoading(true);
 
     setTimeout(() => {
