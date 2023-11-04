@@ -93,6 +93,7 @@ export function Tweet({
               e.preventDefault();
               setIsMenuVisible(true);
             }}
+            title="Menu"
           >
             <DotsThree
               weight="bold"
