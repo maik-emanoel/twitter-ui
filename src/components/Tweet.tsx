@@ -21,7 +21,6 @@ export function Tweet({
 }: TweetProps) {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const [isProfileInfoVisible, setIsProfileInfoVisible] = useState(false);
-  const [mouseIsOnProfileInfo, setMouseIsOnProfileInfo] = useState(false);
   const profileInfoRef = useRef<null | HTMLDivElement>(null);
 
   const path = window.location.pathname;
@@ -34,16 +33,27 @@ export function Tweet({
     }, 500);
   }
 
+  let timeout: number;
+
   function handleMouseLeave() {
     if (path != "/") return;
+    if (profileInfoRef.current) {
+      setIsProfileInfoVisible(true)
 
-    if (mouseIsOnProfileInfo) {
-      setIsProfileInfoVisible(true);
-    } else {
-      setTimeout(() => {
-        setIsProfileInfoVisible(false);
-      }, 1000);
+      profileInfoRef.current.onmouseenter = () => {
+        clearTimeout(timeout)
+      }
+
+      profileInfoRef.current.onmouseleave = () => {
+        setTimeout(() => {
+          setIsProfileInfoVisible(false)
+        }, 500)
+      }
     }
+
+    timeout = setTimeout(() => {
+      setIsProfileInfoVisible(false)
+    }, 1000)
   }
 
   return (
@@ -143,7 +153,6 @@ export function Tweet({
       {isProfileInfoVisible && (
         <ProfileInfo
           profileInfoRef={profileInfoRef}
-          setMouseIsOnProfileInfo={setMouseIsOnProfileInfo}
           userAvatar={userAvatar}
           userName={userName}
           userLogin={userLogin}
