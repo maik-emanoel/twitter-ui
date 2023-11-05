@@ -2,7 +2,6 @@ import { isTouchSupported } from "../utils/touchUtils";
 
 interface ProfileInfoProps {
   profileInfoRef: React.MutableRefObject<null | HTMLDivElement>;
-  setMouseIsOnProfileInfo: React.Dispatch<React.SetStateAction<boolean>>;
   userAvatar: string;
   userName: string;
   userLogin: string;
@@ -13,13 +12,10 @@ export function ProfileInfo({
   userAvatar,
   userName,
   userLogin,
-  setMouseIsOnProfileInfo,
 }: ProfileInfoProps) {
   return (
     <div
       ref={profileInfoRef}
-      onMouseEnter={() => setMouseIsOnProfileInfo(true)}
-      onMouseLeave={() => setMouseIsOnProfileInfo(false)}
       onClick={(e) => e.preventDefault()}
       className="absolute top-20 left-5 w-full max-w-[300px] bg-white dark:bg-bodyDark rounded-2xl p-3 shadow-menu dark:shadow-menuDark flex flex-col gap-2 z-50 cursor-default"
     >
