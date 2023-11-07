@@ -68,6 +68,7 @@ export function Tweet({
         src={userAvatar}
         alt={userName}
         className="w-10 h-10 rounded-full object-cover object-top"
+        loading="lazy"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       />
