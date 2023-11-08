@@ -2,7 +2,7 @@ import { ArrowLeft, CalendarBlank } from "@phosphor-icons/react";
 import { isTouchSupported } from "../utils/touchUtils";
 import { Header } from "../components/Header";
 import { Link } from "../components/Link";
-import { Outlet, useLocation } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { useTweetContext } from "../context/TweetContext";
 import { useUser } from "../context/UserContext";
 import { getMonth } from "../utils/monthUtils";
@@ -14,6 +14,7 @@ export function Profile() {
   const { userInfo } = useUser();
   const location = useLocation().pathname;
 
+  const [backButtonWasClicked, setBackButtonWasClicked] = useState(false)
   const [isEditProfileVisible, setIsEditProfileVisible] =
     useState<boolean>(false);
 
@@ -46,11 +47,15 @@ export function Profile() {
     }
   }, [isEditProfileVisible])
 
+  if (backButtonWasClicked) {
+    return <Navigate to="/" />
+  }
+
   return (
     <>
       <Header title="" className="justify-normal py-0 gap-9">
         <button
-          onClick={() => window.history.back()}
+          onClick={() => setBackButtonWasClicked(true)}
           data-istouchsupported={isTouchSupported}
           className="w-9 h-9 grid place-items-center rounded-full data-[istouchsupported=false]:hover:bg-black/10 dark:data-[istouchsupported=false]:hover:bg-white/10"
         >
