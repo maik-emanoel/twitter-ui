@@ -1,4 +1,4 @@
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { Sidebar } from "../components/Sidebar";
 import { Bottombar } from "../components/Bottombar";
 import { SidebarProvider } from "../context/SidebarContext";
@@ -7,19 +7,23 @@ import { ScrollDirectionProvider } from "../context/ScrollContext";
 import { useUser } from "../context/UserContext";
 import { useEffect } from "react";
 import { saveHasUser } from "../utils/hasUserUtils";
+import { changeTitle } from "../utils/titleUtils";
 
 export function Default() {
   const { userInfo, hasUser, setHasUser } = useUser();
 
   useEffect(() => {
-    if (userInfo.login === '') {
+    if (userInfo.login === "") {
       setHasUser(false);
-      saveHasUser(false)
+      saveHasUser(false);
     }
   }, [userInfo, setHasUser]);
 
+  const path = useLocation().pathname;
+  changeTitle({ path, userLogin: userInfo.login, userName: userInfo.name });
+
   if (hasUser === null || !hasUser) {
-    return <Navigate to='/flow/' />
+    return <Navigate to="/flow/" />;
   }
 
   return (
