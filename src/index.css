@@ -47,6 +47,19 @@
     .bg-gradient-dark {
         background: conic-gradient(var(--fillColor) var(--progress, 0) , #2F3336 0deg);
     }
+
+    body::-webkit-scrollbar{
+        width: .6rem;
+    }
+      
+    body::-webkit-scrollbar-track{
+        background: transparent;
+    }
+    
+    body::-webkit-scrollbar-thumb {
+        background: #2F2F2F;
+        border-radius: 999px;
+    }
 }
 
 @layer components {
