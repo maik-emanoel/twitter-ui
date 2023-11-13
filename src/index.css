@@ -48,15 +48,20 @@
         background: conic-gradient(var(--fillColor) var(--progress, 0) , #2F3336 0deg);
     }
 
-    body::-webkit-scrollbar{
+    html::-webkit-scrollbar{
         width: .6rem;
     }
       
-    body::-webkit-scrollbar-track{
+    html::-webkit-scrollbar-track{
         background: transparent;
     }
-    
-    body::-webkit-scrollbar-thumb {
+
+    html::-webkit-scrollbar-thumb {
+        background: #ebeef0;
+        border-radius: 999px;
+    }
+
+    html.dark::-webkit-scrollbar-thumb {
         background: #2F2F2F;
         border-radius: 999px;
     }
