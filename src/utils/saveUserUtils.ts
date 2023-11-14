@@ -1,4 +1,5 @@
 import { UserInfo } from "../context/UserContext";
+import emptyUserAvatar from '../assets/emptyUserAvatar.png'
 
 export function saveUser(userInfo: UserInfo) {
   localStorage.setItem("userInfo", JSON.stringify(userInfo));
@@ -11,7 +12,7 @@ export function loadUser() {
     : {
         name: "",
         login: "",
-        avatar: "",
+        avatar: emptyUserAvatar,
         bio: "",
         birthdayDate: {
           month: null,
