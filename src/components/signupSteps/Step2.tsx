@@ -29,6 +29,15 @@ export function Step2({ setUserInfo, userInfo }: Step2Props) {
         }
       };
 
+      const fileSizeInMegabytes = file.size / (1024 * 1024);
+      // console.log(`Tamanho do arquivo: ${fileSizeInMegabytes.toFixed(2)} MB`);
+
+      if (fileSizeInMegabytes > 2) {
+        alert('O tamanho da imagem é muito grande. Por favor, selecione uma imagem menor (limite: 2 MB).')
+        e.target.value = "";
+        return
+      }
+
       reader.readAsDataURL(file);
     }
   }
