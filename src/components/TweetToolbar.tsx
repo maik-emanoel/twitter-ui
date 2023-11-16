@@ -61,7 +61,7 @@ function TweetToolbarItem({
     e.target.value = "";
   }
 
-  let timeout: number;
+  let timeout: NodeJS.Timeout;
 
   function handleMouseEnter() {
     timeout = setTimeout(() => {
