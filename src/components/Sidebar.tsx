@@ -57,7 +57,7 @@ export function Sidebar() {
 
       <div
         data-istouchsupported={isTouchSupported}
-        className="p-4 flex items-center gap-3 my-3 rounded-full transition-colors duration-200 select-none cursor-pointer
+        className="p-4 flex items-center gap-3 my-3 rounded-full transition-colors duration-200 select-none cursor-pointer relative
         md:w-16 md:h-16 md:p-3 
         data-[istouchsupported=false]:hover:bg-zinc-100 
         data-[istouchsupported=false]:hover:dark:bg-zinc-800"
@@ -65,11 +65,13 @@ export function Sidebar() {
         <img
           src={userInfo.avatar}
           alt={`Foto de perfil do usuário ${userInfo.name}`}
-          className="w-10 h-10 rounded-full object-cover object-top"
+          className="w-10 h-10 rounded-full object-cover object-top flex-shrink-0"
         />
         <div className="flex justify-between items-center w-full md:hidden">
           <div className="flex flex-col w-full max-w-[157.25px] text-sm overflow-hidden pr-1">
-            <span className="font-bold w-full overflow-hidden text-ellipsis whitespace-nowrap">{userInfo.name}</span>
+            <span className="font-bold w-full overflow-hidden text-ellipsis whitespace-nowrap">
+              {userInfo.name}
+            </span>
             <span className="opacity-70 dark:opacity-50 overflow-hidden text-ellipsis">
               @{userInfo.login}
             </span>
