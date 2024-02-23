@@ -61,16 +61,16 @@ function TweetToolbarItem({
     e.target.value = "";
   }
 
-  let timeout: NodeJS.Timeout;
+  let timeout: number | undefined;
 
   function handleMouseEnter() {
-    timeout = setTimeout(() => {
+    timeout = window.setTimeout(() => {
       setShowTooltip(true);
-    }, 500);
+    }, 100);
   }
 
   function handleMouseLeave() {
-    clearTimeout(timeout);
+    window.clearTimeout(timeout);
     setShowTooltip(false);
   }
 
