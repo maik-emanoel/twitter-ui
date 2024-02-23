@@ -30,30 +30,30 @@ export function Tweet({
 
     setTimeout(() => {
       setIsProfileInfoVisible(true);
-    }, 500);
+    }, 300);
   }
 
-  let timeout: number;
+  let timeout: number | undefined;
 
   function handleMouseLeave() {
     if (path != "/") return;
     if (profileInfoRef.current) {
-      setIsProfileInfoVisible(true)
+      setIsProfileInfoVisible(true);
 
       profileInfoRef.current.onmouseenter = () => {
-        clearTimeout(timeout)
-      }
+        clearTimeout(timeout);
+      };
 
       profileInfoRef.current.onmouseleave = () => {
         setTimeout(() => {
-          setIsProfileInfoVisible(false)
-        }, 500)
-      }
+          setIsProfileInfoVisible(false);
+        }, 500);
+      };
     }
 
-    timeout = setTimeout(() => {
-      setIsProfileInfoVisible(false)
-    }, 1000)
+    timeout = window.setTimeout(() => {
+      setIsProfileInfoVisible(false);
+    }, 500);
   }
 
   return (
@@ -80,18 +80,10 @@ export function Tweet({
           sm:data-[ismenuvisible=true]:static"
         >
           <div className="w-full grid grid-cols-[auto,1fr] gap-x-1 pr-8 sm:gap-0 overflow-hidden">
-            <strong
-              className="whitespace-nowrap w-full overflow-hidden text-ellipsis leading-5 sm:mr-1"
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
+            <strong className="whitespace-nowrap w-full overflow-hidden text-ellipsis leading-5 sm:mr-1">
               {userName}
             </strong>
-            <span
-              className="text-sm text-[#89a2b8] dark:text-[#828282] w-fit"
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
+            <span className="text-sm text-[#89a2b8] dark:text-[#828282] w-fit">
               @{userLogin}
             </span>
           </div>

@@ -46,16 +46,16 @@ function Button({
 }: ButtonProps) {
   const [showTooltip, setShowTooltip] = useState(false);
 
-  let timeout: number;
+  let timeout: number | undefined;
 
   function handleMouseEnter() {
-    timeout = setTimeout(() => {
+    timeout = window.setTimeout(() => {
       setShowTooltip(true);
     }, 500);
   }
 
   function handleMouseLeave() {
-    clearTimeout(timeout);
+    window.clearTimeout(timeout);
     setShowTooltip(false);
   }
 
